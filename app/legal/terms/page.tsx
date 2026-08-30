@@ -30,7 +30,7 @@ export default function TermsOfServicePage() {
             </div>
             <span className="font-newsreader text-xl font-bold text-primary">Legal Infrastructure</span>
           </div>
-          <nav className="hidden md:flex gap-8 items-center">
+          <nav aria-label="Main" className="hidden md:flex gap-8 items-center">
             <a className="font-manrope text-sm font-medium text-on-surface-variant hover:text-primary transition-colors duration-300" href="/legal/terms">
               Overview
             </a>
@@ -74,10 +74,10 @@ export default function TermsOfServicePage() {
           <aside className="lg:col-span-3 hidden lg:block">
             <div className="sticky top-32 space-y-1">
               <div className="bg-surface-container-low p-6 rounded-xl">
-                <h3 className="font-newsreader text-lg text-on-tertiary-fixed-variant mb-6">
+                <h2 className="font-newsreader text-lg text-on-tertiary-fixed-variant mb-6">
                   Legal Directory
-                </h3>
-                <nav className="flex flex-col space-y-2">
+                </h2>
+                <nav aria-label="Legal pages" className="flex flex-col space-y-2">
                   {navItems.map((item, index) => (
                     <a
                       key={item.href}
@@ -95,7 +95,7 @@ export default function TermsOfServicePage() {
               </div>
               <div className="mt-8 p-6 bg-primary-container rounded-xl overflow-hidden relative">
                 <div aria-hidden="true" className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-12 -mt-12" />
-                <h4 className="font-newsreader text-white text-xl relative z-10">Need clarity?</h4>
+                <h3 className="font-newsreader text-white text-xl relative z-10">Need clarity?</h3>
                 <p className="text-on-primary-container text-sm mt-2 relative z-10">
                   Our legal desk is available for infrastructure
                   consultation.
@@ -116,7 +116,7 @@ export default function TermsOfServicePage() {
             <article className="bg-surface-container-lowest p-8 md:p-12 rounded-xl relative overflow-hidden scroll-mt-32" id="acceptance">
               <div aria-hidden="true" className="absolute top-0 left-0 w-1 h-full bg-on-tertiary-container" />
               <div className="flex items-center gap-4 mb-6">
-                <span className="font-newsreader text-4xl text-primary opacity-20">01</span>
+                <span className="font-newsreader text-4xl text-on-surface-variant/65">01</span>
                 <h2 className="font-newsreader text-3xl text-primary">
                   Introduction &amp; Acceptance of Terms
                 </h2>
@@ -144,12 +144,12 @@ export default function TermsOfServicePage() {
             {/* Section 2: Intellectual Property */}
             <article className="bg-surface-container-low p-8 md:p-12 rounded-xl scroll-mt-32" id="intellectual">
               <div className="flex items-center gap-4 mb-6">
-                <span className="font-newsreader text-4xl text-primary opacity-20">02</span>
+                <span className="font-newsreader text-4xl text-on-surface-variant/65">02</span>
                 <h2 className="font-newsreader text-3xl text-primary">Intellectual Property Rights</h2>
               </div>
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-4">
-                  <h4 className="font-manrope text-lg font-bold text-primary">Proprietary Architecture</h4>
+                  <h3 className="font-manrope text-lg font-bold text-primary">Proprietary Architecture</h3>
                   <p className="text-on-surface-variant text-sm">
                     Unless otherwise indicated, all digital architecture,
                     source code, databases, functionality, software,
@@ -184,16 +184,16 @@ export default function TermsOfServicePage() {
             {/* Section 3: User Responsibilities */}
             <article className="bg-surface-container-lowest p-8 md:p-12 rounded-xl scroll-mt-32" id="responsibilities">
               <div className="flex items-center gap-4 mb-6">
-                <span className="font-newsreader text-4xl text-primary opacity-20">03</span>
+                <span className="font-newsreader text-4xl text-on-surface-variant/65">03</span>
                 <h2 className="font-newsreader text-3xl text-primary">User Responsibilities</h2>
               </div>
               <ul className="space-y-6">
                 <li className="flex gap-4">
-                  <span className="material-symbols-outlined text-on-tertiary-container mt-1" aria-hidden="true">
+                  <span className="material-symbols-outlined text-on-tertiary-fixed-variant mt-1" aria-hidden="true">
                     check_circle
                   </span>
                   <div>
-                    <h5 className="font-manrope font-bold text-primary">Compliance Standards</h5>
+                    <h3 className="font-manrope font-bold text-primary">Compliance Standards</h3>
                     <p className="text-on-surface-variant text-sm">
                       Users must ensure that all data and interactions
                       with our systems comply with Kenyan data protection
@@ -202,11 +202,11 @@ export default function TermsOfServicePage() {
                   </div>
                 </li>
                 <li className="flex gap-4">
-                  <span className="material-symbols-outlined text-on-tertiary-container mt-1" aria-hidden="true">
+                  <span className="material-symbols-outlined text-on-tertiary-fixed-variant mt-1" aria-hidden="true">
                     check_circle
                   </span>
                   <div>
-                    <h5 className="font-manrope font-bold text-primary">Integrity of Systems</h5>
+                    <h3 className="font-manrope font-bold text-primary">Integrity of Systems</h3>
                     <p className="text-on-surface-variant text-sm">
                       Users are prohibited from reverse-engineering,
                       attempting to gain unauthorized access, or
@@ -273,7 +273,7 @@ export default function TermsOfServicePage() {
       <footer className="bg-primary w-full">
         <div className="w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-6 max-w-7xl mx-auto">
           <div className="flex flex-col items-center md:items-start gap-2">
-            <span className="font-newsreader italic text-on-tertiary-fixed-variant text-xl font-bold">
+            <span className="font-newsreader italic text-on-tertiary-container text-xl font-bold">
               JG Creative Tech
             </span>
             <p className="font-manrope text-xs uppercase tracking-widest text-on-primary/70">

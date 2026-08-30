@@ -76,7 +76,7 @@ export default function PrivacyPolicyPage() {
               Privacy Infrastructure
             </span>
           </div>
-          <nav className="hidden md:flex gap-8 items-center">
+          <nav aria-label="Main" className="hidden md:flex gap-8 items-center">
             <a className="text-primary font-bold border-b-2 border-on-tertiary-container transition-colors" href="/legal/privacy">
               Framework
             </a>
@@ -101,7 +101,7 @@ export default function PrivacyPolicyPage() {
         <div className="mb-10">
           <p className="text-lg font-newsreader font-bold text-primary">Policy Framework</p>
         </div>
-        <nav className="flex flex-col gap-2 font-manrope text-sm font-semibold tracking-wide">
+        <nav aria-label="Legal pages" className="flex flex-col gap-2 font-manrope text-sm font-semibold tracking-wide">
           {drawerItems.map((item, index) => (
             <a
               key={item.href}
@@ -163,8 +163,8 @@ export default function PrivacyPolicyPage() {
                 >
                   security
                 </span>
-                <h3 className="text-2xl font-newsreader italic mb-2">Zero-Trust Architecture</h3>
-                <p className="text-sm opacity-80">
+                <h2 className="text-2xl font-newsreader italic mb-2">Zero-Trust Architecture</h2>
+                <p className="text-sm text-white/70">
                   We employ industry-leading encryption and access
                   controls to ensure your infrastructure remains yours.
                 </p>
@@ -185,7 +185,7 @@ export default function PrivacyPolicyPage() {
                 <span className="material-symbols-outlined text-primary mb-6 block text-3xl" aria-hidden="true">
                   {card.icon}
                 </span>
-                <h4 className="text-xl font-newsreader italic mb-4">{card.title}</h4>
+                <h3 className="text-xl font-newsreader italic mb-4">{card.title}</h3>
                 <p className="text-sm text-on-surface-variant leading-relaxed">{card.description}</p>
               </div>
             ))}
@@ -254,7 +254,7 @@ export default function PrivacyPolicyPage() {
                   index % 2 === 1 ? "md:border-l border-outline-variant/10" : ""
                 } ${index >= 2 ? "border-t border-outline-variant/10" : ""}`}
               >
-                <h4 className="text-xl font-bold font-manrope">{right.title}</h4>
+                <h3 className="text-xl font-bold font-manrope">{right.title}</h3>
                 <p className="text-sm text-on-surface-variant">{right.description}</p>
               </div>
             ))}
@@ -274,7 +274,7 @@ export default function PrivacyPolicyPage() {
           </div>
           <div className="md:col-span-5 flex flex-col gap-6">
             <div className="bg-secondary-container p-8 rounded-3xl flex-1">
-              <h4 className="font-bold text-lg mb-2">Legal Office</h4>
+              <h3 className="font-bold text-lg mb-2">Legal Office</h3>
               <p className="text-sm text-on-secondary-container">
                 JG Creative Tech HQ
                 <br />
@@ -282,7 +282,7 @@ export default function PrivacyPolicyPage() {
               </p>
             </div>
             <div className="bg-tertiary-fixed p-8 rounded-3xl flex-1">
-              <h4 className="font-bold text-lg mb-2">DPO Direct</h4>
+              <h3 className="font-bold text-lg mb-2">DPO Direct</h3>
               <p className="text-sm text-on-tertiary-fixed-variant">
                 {siteConfig.contact.dpoEmail}
               </p>

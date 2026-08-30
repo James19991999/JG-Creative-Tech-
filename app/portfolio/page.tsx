@@ -37,7 +37,7 @@ export default function PortfolioPage() {
             </div>
             <div className="flex gap-4">
               <div className="h-px w-12 bg-outline-variant/30 self-center hidden lg:block" />
-              <span className="font-headline text-2xl italic text-secondary/40">
+              <span className="font-headline text-2xl italic text-secondary/70">
                 Est. 2024
               </span>
             </div>
@@ -123,23 +123,23 @@ export default function PortfolioPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-surface-container-lowest p-6 rounded-xl shadow-sm ghost-border">
-                <span className="material-symbols-outlined text-on-tertiary-container mb-4 block" aria-hidden="true">cloud</span>
-                <h4 className="font-body font-bold text-primary mb-2">Cloud Native</h4>
+                <span className="material-symbols-outlined text-on-tertiary-fixed-variant mb-4 block" aria-hidden="true">cloud</span>
+                <h3 className="font-body font-bold text-primary mb-2">Cloud Native</h3>
                 <p className="font-body text-xs text-on-surface-variant">AWS &amp; Google Cloud infrastructure.</p>
               </div>
               <div className="bg-surface-container-lowest p-6 rounded-xl shadow-sm ghost-border mt-8">
-                <span className="material-symbols-outlined text-on-tertiary-container mb-4 block" aria-hidden="true">security</span>
-                <h4 className="font-body font-bold text-primary mb-2">Hardened Security</h4>
+                <span className="material-symbols-outlined text-on-tertiary-fixed-variant mb-4 block" aria-hidden="true">security</span>
+                <h3 className="font-body font-bold text-primary mb-2">Hardened Security</h3>
                 <p className="font-body text-xs text-on-surface-variant">Enterprise-grade encryption by default.</p>
               </div>
               <div className="bg-surface-container-lowest p-6 rounded-xl shadow-sm ghost-border -mt-8">
-                <span className="material-symbols-outlined text-on-tertiary-container mb-4 block" aria-hidden="true">database</span>
-                <h4 className="font-body font-bold text-primary mb-2">Elastic Data</h4>
+                <span className="material-symbols-outlined text-on-tertiary-fixed-variant mb-4 block" aria-hidden="true">database</span>
+                <h3 className="font-body font-bold text-primary mb-2">Elastic Data</h3>
                 <p className="font-body text-xs text-on-surface-variant">PostgreSQL and NoSQL hybrid systems.</p>
               </div>
               <div className="bg-surface-container-lowest p-6 rounded-xl shadow-sm ghost-border">
-                <span className="material-symbols-outlined text-on-tertiary-container mb-4 block" aria-hidden="true">api</span>
-                <h4 className="font-body font-bold text-primary mb-2">Seamless APIs</h4>
+                <span className="material-symbols-outlined text-on-tertiary-fixed-variant mb-4 block" aria-hidden="true">api</span>
+                <h3 className="font-body font-bold text-primary mb-2">Seamless APIs</h3>
                 <p className="font-body text-xs text-on-surface-variant">GraphQL &amp; RESTful integrations.</p>
               </div>
             </div>

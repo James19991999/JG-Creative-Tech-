@@ -135,7 +135,7 @@ export default function AboutPage() {
             {team.map((member) => (
               <div key={member.name} className="text-center">
                 <div className="aspect-square rounded-xl overflow-hidden bg-surface-container-high mb-4 flex items-center justify-center">
-                  <span className="material-symbols-outlined text-6xl text-outline-variant" aria-hidden="true">
+                  <span className="material-symbols-outlined text-6xl text-outline" aria-hidden="true">
                     person
                   </span>
                 </div>

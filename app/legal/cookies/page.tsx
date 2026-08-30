@@ -99,7 +99,7 @@ export default function CookiePolicyPage() {
                 className="object-cover"
               />
             </div>
-            <div className="absolute -bottom-4 -left-4 bg-on-tertiary-container text-white px-4 py-2 rounded-lg text-xs font-bold font-manrope uppercase">
+            <div className="absolute -bottom-4 -left-4 bg-on-tertiary-fixed-variant text-white px-4 py-2 rounded-lg text-xs font-bold font-manrope uppercase">
               Institutional Standard
             </div>
           </div>

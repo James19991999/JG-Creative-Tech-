@@ -27,6 +27,17 @@ const descriptionVariantStyles: Record<FeatureCardVariant, string> = {
   muted: "text-on-surface-variant",
 };
 
+// The "dark" variant sits on the deep-navy primary-container background,
+// where the default teal (text-secondary) icon color fails WCAG contrast
+// (1.96:1, needs 3:1 for a large glyph). on-primary-container is the
+// token this component already pairs with primary-container elsewhere
+// (see descriptionVariantStyles above), and it clears contrast at ~4.6:1.
+const iconVariantStyles: Record<FeatureCardVariant, string> = {
+  light: "text-secondary",
+  dark: "text-on-primary-container",
+  muted: "text-secondary",
+};
+
 /**
  * Reusable feature/service card used across the bento-style grids on the
  * Home, Solutions, and Digital Architecture pages. Mirrors the Stitch
@@ -48,7 +59,7 @@ export function FeatureCard({
     >
       <div className="relative z-10">
         <span
-          className="material-symbols-outlined text-4xl text-secondary mb-6 block"
+          className={`material-symbols-outlined text-4xl mb-6 block ${iconVariantStyles[variant]}`}
           aria-hidden="true"
           style={{ fontVariationSettings: "'FILL' 1" }}
         >

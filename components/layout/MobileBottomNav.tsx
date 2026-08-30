@@ -39,7 +39,7 @@ export function MobileBottomNav() {
             className={
               isActive
                 ? "flex flex-col items-center justify-center bg-primary text-on-primary rounded-full px-5 py-2 scale-105 -translate-y-1 transition-all"
-                : "flex flex-col items-center justify-center text-outline p-2 hover:text-primary transition-colors"
+                : "flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors"
             }
           >
             <span

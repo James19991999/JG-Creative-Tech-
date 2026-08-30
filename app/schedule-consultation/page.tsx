@@ -45,7 +45,7 @@ export default function ScheduleConsultationPage() {
             <span className="text-on-tertiary-fixed-variant font-manrope text-sm uppercase tracking-widest font-bold">
               Step 2 of 2
             </span>
-            <span className="text-outline text-sm font-medium">Finalizing Schedule</span>
+            <span className="text-on-surface-variant text-sm font-medium">Finalizing Schedule</span>
           </div>
           <div className="w-full h-1 bg-surface-container rounded-full overflow-hidden">
             <div className="h-full bg-gradient-to-r from-primary to-primary-container w-full" />
@@ -88,9 +88,9 @@ export default function ScheduleConsultationPage() {
             </div>
           </div>
           <div className="space-y-6">
-            <h3 className="font-newsreader text-3xl text-primary">
+            <h2 className="font-newsreader text-3xl text-primary">
               Institutional stability for the digital age.
-            </h3>
+            </h2>
             <p className="text-on-surface-variant leading-relaxed">
               At JG Creative Tech, we don&apos;t just build software. We
               engineer the digital bone structure that allows Kenyan SMEs
@@ -99,14 +99,14 @@ export default function ScheduleConsultationPage() {
             </p>
             <div className="flex gap-8">
               <div>
-                <p className="text-4xl font-newsreader text-on-tertiary-container">25+</p>
-                <p className="text-xs uppercase tracking-widest font-bold text-outline">
+                <p className="text-4xl font-newsreader text-on-tertiary-fixed-variant">25+</p>
+                <p className="text-xs uppercase tracking-widest font-bold text-on-surface-variant">
                   Projects Delivered
                 </p>
               </div>
               <div>
-                <p className="text-4xl font-newsreader text-on-tertiary-container">2+yr</p>
-                <p className="text-xs uppercase tracking-widest font-bold text-outline">
+                <p className="text-4xl font-newsreader text-on-tertiary-fixed-variant">2+yr</p>
+                <p className="text-xs uppercase tracking-widest font-bold text-on-surface-variant">
                   Avg Experience
                 </p>
               </div>

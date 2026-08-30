@@ -112,7 +112,7 @@ export function BookingForm() {
               {/* Date Picker */}
               <div className="p-8 bg-surface-container-lowest">
                 <div className="flex items-center justify-between mb-8">
-                  <h3 className="font-newsreader text-xl text-primary">November 2026</h3>
+                  <h2 className="font-newsreader text-xl text-primary">November 2026</h2>
                   <div className="flex gap-2">
                     <button
                       type="button"
@@ -138,13 +138,13 @@ export function BookingForm() {
                   {weekdayLabels.map((day) => (
                     <div
                       key={day}
-                      className="text-xs font-bold uppercase tracking-widest text-outline py-2"
+                      className="text-xs font-bold uppercase tracking-widest text-on-surface-variant py-2"
                     >
                       {day}
                     </div>
                   ))}
                   {leadingDimDays.map((day) => (
-                    <div key={`lead-${day}`} className="py-3 text-surface-dim">
+                    <div key={`lead-${day}`} className="py-3 text-on-surface-variant/80">
                       {day}
                     </div>
                   ))}
@@ -172,10 +172,10 @@ export function BookingForm() {
               {/* Time Slots */}
               <div className="p-8 lg:border-l border-outline-variant/15 flex flex-col h-full">
                 <div className="mb-6">
-                  <h3 className="font-newsreader text-xl text-primary mb-1">
+                  <h2 className="font-newsreader text-xl text-primary mb-1">
                     {selectedDay ? `November ${selectedDay}, 2026` : "Select a date"}
-                  </h3>
-                  <p className="text-sm text-outline font-medium">
+                  </h2>
+                  <p className="text-sm text-on-surface-variant font-medium">
                     {BOOKING_TIME_SLOTS.length} available slots
                   </p>
                 </div>
@@ -277,8 +277,8 @@ export function BookingForm() {
                   timer
                 </span>
                 <div>
-                  <h4 className="font-bold text-white">30-Minute Session</h4>
-                  <p className="text-on-primary-container/80 text-sm leading-relaxed">
+                  <h3 className="font-bold text-white">30-Minute Session</h3>
+                  <p className="text-white/70 text-sm leading-relaxed">
                     A focused deep dive into your current challenges and
                     future goals.
                   </p>
@@ -293,8 +293,8 @@ export function BookingForm() {
                   account_tree
                 </span>
                 <div>
-                  <h4 className="font-bold text-white">Senior Architect</h4>
-                  <p className="text-on-primary-container/80 text-sm leading-relaxed">
+                  <h3 className="font-bold text-white">Senior Architect</h3>
+                  <p className="text-white/70 text-sm leading-relaxed">
                     Consult directly with an industry veteran specializing in
                     agile infrastructure.
                   </p>
@@ -309,8 +309,8 @@ export function BookingForm() {
                   lightbulb
                 </span>
                 <div>
-                  <h4 className="font-bold text-white">Actionable Blueprint</h4>
-                  <p className="text-on-primary-container/80 text-sm leading-relaxed">
+                  <h3 className="font-bold text-white">Actionable Blueprint</h3>
+                  <p className="text-white/70 text-sm leading-relaxed">
                     Walk away with a preliminary high-level architecture
                     draft for your project.
                   </p>
@@ -327,7 +327,7 @@ export function BookingForm() {
                 </span>
               </div>
               <div>
-                <p className="text-xs uppercase tracking-widest text-outline font-bold">
+                <p className="text-xs uppercase tracking-widest text-on-surface-variant font-bold">
                   Privacy Guaranteed
                 </p>
                 <p className="text-sm font-medium text-primary">
@@ -345,7 +345,7 @@ export function BookingForm() {
                 arrow_forward
               </span>
             </button>
-            <p className="text-center mt-4 text-xs text-outline font-medium">
+            <p className="text-center mt-4 text-xs text-on-surface-variant font-medium">
               No credit card required for initial discovery.
             </p>
           </div>

@@ -53,7 +53,7 @@ export function NewsletterSignup() {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-3">
-      <p className="text-xs font-manrope text-on-primary-container opacity-70">
+      <p className="text-xs font-manrope text-white/80">
         Insights on digital infrastructure for Kenyan SMEs, once a month. No
         spam.
       </p>

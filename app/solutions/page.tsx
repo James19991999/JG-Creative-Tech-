@@ -81,7 +81,7 @@ export default function SolutionsPage() {
             <h2 className="font-headline text-4xl text-primary">
               Strategic Solutions
             </h2>
-            <p className="text-outline mt-2 max-w-md">
+            <p className="text-on-surface-variant mt-2 max-w-md">
               Comprehensive craftsmanship for every stage of your digital
               evolution.
             </p>
@@ -102,7 +102,7 @@ export default function SolutionsPage() {
                   digital engines that power your business growth.
                 </p>
                 <div className="mt-auto">
-                  <ul className="flex flex-wrap gap-3 text-xs font-bold uppercase tracking-tighter text-outline mb-6">
+                  <ul className="flex flex-wrap gap-3 text-xs font-bold uppercase tracking-tighter text-on-surface-variant mb-6">
                     <li className="bg-surface-container px-3 py-1 rounded">Next.js</li>
                     <li className="bg-surface-container px-3 py-1 rounded">Microservices</li>
                     <li className="bg-surface-container px-3 py-1 rounded">API Integration</li>
@@ -218,7 +218,7 @@ export default function SolutionsPage() {
               <h2 className="font-headline text-4xl text-primary italic">
                 The Architectural Process
               </h2>
-              <p className="text-outline mt-2">
+              <p className="text-on-surface-variant mt-2">
                 A methodical journey from concept to global scale.
               </p>
             </div>
@@ -233,9 +233,9 @@ export default function SolutionsPage() {
                     <div className="bg-white w-12 h-12 rounded-full flex items-center justify-center shadow-md mb-6">
                       <span className="text-primary font-bold">{step.number}</span>
                     </div>
-                    <h4 className="font-headline text-2xl text-primary mb-2">
+                    <h3 className="font-headline text-2xl text-primary mb-2">
                       {step.title}
-                    </h4>
+                    </h3>
                     <p className="text-sm text-on-surface-variant leading-relaxed">
                       {step.description}
                     </p>

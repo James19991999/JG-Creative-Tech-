@@ -149,7 +149,7 @@ export function StrategicContextForm() {
                   className={
                     isSelected
                       ? "material-symbols-outlined text-primary"
-                      : "material-symbols-outlined text-outline group-hover:text-primary transition-colors"
+                      : "material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors"
                   }
                   aria-hidden="true"
                   style={isSelected ? { fontVariationSettings: "'FILL' 1" } : undefined}
@@ -173,7 +173,7 @@ export function StrategicContextForm() {
         <textarea
           id="infrastructure-description"
           name="infrastructure-description"
-          className="w-full min-h-[160px] p-6 bg-surface-container-lowest rounded-xl border-none focus:ring-2 focus:ring-primary/20 whisper-shadow font-manrope text-on-surface placeholder:text-outline"
+          className="w-full min-h-[160px] p-6 bg-surface-container-lowest rounded-xl border-none focus:ring-2 focus:ring-primary/20 whisper-shadow font-manrope text-on-surface placeholder:text-on-surface-variant"
           placeholder="Describe your existing tech stack, legacy systems, and current pain points..."
         />
       </div>

@@ -135,7 +135,7 @@ export default function InnovationLabPage() {
                   <span className={`px-3 py-1 ${exp.statusClass} text-[10px] font-bold uppercase tracking-wider rounded-full`}>
                     {exp.status}
                   </span>
-                  <span className="material-symbols-outlined text-outline" aria-hidden="true">
+                  <span className="material-symbols-outlined text-on-surface-variant" aria-hidden="true">
                     {exp.icon}
                   </span>
                 </div>
@@ -167,7 +167,7 @@ export default function InnovationLabPage() {
                   </span>
                 </div>
                 <div>
-                  <h5 className="font-manrope font-bold text-primary mb-1">{item.title}</h5>
+                  <h4 className="font-manrope font-bold text-primary mb-1">{item.title}</h4>
                   <p className="text-on-surface-variant text-sm">{item.description}</p>
                 </div>
               </div>

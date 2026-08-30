@@ -55,9 +55,9 @@ export default function ContactPage() {
                 mail
               </span>
             </div>
-            <h3 className="font-manrope font-bold text-sm text-primary mb-1">
+            <h2 className="font-manrope font-bold text-sm text-primary mb-1">
               Email Us
-            </h3>
+            </h2>
             <p className="text-[11px] text-on-surface-variant break-all">
               {siteConfig.contact.email}
             </p>
@@ -75,9 +75,9 @@ export default function ContactPage() {
                 location_on
               </span>
             </div>
-            <h3 className="font-manrope font-bold text-sm text-primary mb-1">
+            <h2 className="font-manrope font-bold text-sm text-primary mb-1">
               Visit Us
-            </h3>
+            </h2>
             <p className="text-[11px] text-on-surface-variant">
               Nairobi, Kenya
             </p>

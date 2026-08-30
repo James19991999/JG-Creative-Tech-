@@ -43,7 +43,7 @@ export function CookiePreferences() {
         <h3 className="font-newsreader text-3xl font-bold text-primary">
           Operational Frameworks
         </h3>
-        <p className="text-outline uppercase tracking-wider font-semibold text-xs">
+        <p className="text-on-surface-variant uppercase tracking-wider font-semibold text-xs">
           Category Classifications
         </p>
       </div>

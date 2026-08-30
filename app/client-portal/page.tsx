@@ -57,7 +57,7 @@ export default function ClientPortalPage() {
               <h2 className="font-newsreader text-5xl md:text-6xl font-semibold text-primary tracking-tight">
                 Welcome back, Sarah
               </h2>
-              <p className="text-outline mt-3 max-w-xl text-lg leading-relaxed">
+              <p className="text-on-surface-variant mt-3 max-w-xl text-lg leading-relaxed">
                 Your infrastructure deployment is proceeding according to
                 the Q4 roadmap. Here is the latest update on your digital
                 assets.
@@ -67,7 +67,7 @@ export default function ClientPortalPage() {
               <span className="bg-secondary/10 text-secondary text-xs font-bold px-4 py-2 rounded-full">
                 SECURE PORTAL
               </span>
-              <span className="text-outline text-xs pr-4">Last login: 2h ago</span>
+              <span className="text-on-surface-variant text-xs pr-4">Last login: 2h ago</span>
             </div>
           </div>
         </section>
@@ -168,7 +168,7 @@ export default function ClientPortalPage() {
                 </div>
                 <span className="font-bold text-primary">Upload Documents</span>
               </div>
-              <span className="material-symbols-outlined text-outline opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">
+              <span className="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">
                 arrow_forward
               </span>
             </a>
@@ -184,7 +184,7 @@ export default function ClientPortalPage() {
                 </div>
                 <span className="font-bold text-primary">Message Team</span>
               </div>
-              <span className="material-symbols-outlined text-outline opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">
+              <span className="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">
                 arrow_forward
               </span>
             </a>
@@ -200,7 +200,7 @@ export default function ClientPortalPage() {
                 </div>
                 <span className="font-bold text-primary">View Invoices</span>
               </div>
-              <span className="material-symbols-outlined text-outline opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">
+              <span className="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">
                 arrow_forward
               </span>
             </a>
@@ -230,17 +230,17 @@ export default function ClientPortalPage() {
                   </div>
                   <div>
                     <h4 className="font-bold text-primary">Strategic Roadmap.pdf</h4>
-                    <p className="text-xs text-outline">Modified yesterday by Alex M.</p>
+                    <p className="text-xs text-on-surface-variant">Modified yesterday by Alex M.</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-xs font-bold text-outline uppercase px-3 py-1 bg-surface-container rounded-full">
+                  <span className="text-xs font-bold text-on-surface-variant uppercase px-3 py-1 bg-surface-container rounded-full">
                     Shared
                   </span>
                   <button
                     type="button"
                     aria-label="Download Strategic Roadmap.pdf"
-                    className="material-symbols-outlined text-outline hover:text-primary"
+                    className="material-symbols-outlined text-on-surface-variant hover:text-primary"
                   >
                     download
                   </button>
@@ -255,17 +255,17 @@ export default function ClientPortalPage() {
                   </div>
                   <div>
                     <h4 className="font-bold text-primary">Security Audit.docx</h4>
-                    <p className="text-xs text-outline">Validated 3 days ago</p>
+                    <p className="text-xs text-on-surface-variant">Validated 3 days ago</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-xs font-bold text-outline uppercase px-3 py-1 bg-surface-container rounded-full">
+                  <span className="text-xs font-bold text-on-surface-variant uppercase px-3 py-1 bg-surface-container rounded-full">
                     Internal
                   </span>
                   <button
                     type="button"
                     aria-label="Download Security Audit.docx"
-                    className="material-symbols-outlined text-outline hover:text-primary"
+                    className="material-symbols-outlined text-on-surface-variant hover:text-primary"
                   >
                     download
                   </button>
@@ -280,7 +280,7 @@ export default function ClientPortalPage() {
           <h4 className="font-newsreader text-3xl font-semibold text-primary">
             System Integrity Report
           </h4>
-          <p className="text-outline mt-2 max-w-2xl">
+          <p className="text-on-surface-variant mt-2 max-w-2xl">
             Global CDN performance is at 99.9% uptime. Database clusters in
             Nairobi and London are synchronized. All security patches have
             been deployed as of Nov 12.
@@ -333,18 +333,18 @@ export default function ClientPortalPage() {
           <a href="/client-portal" aria-current="page" aria-label="Overview" className="material-symbols-outlined text-primary bg-white p-3 rounded-2xl shadow-md">
             dashboard
           </a>
-          <a href="/portfolio" aria-label="Projects" className="material-symbols-outlined text-outline hover:text-primary transition-colors">
+          <a href="/portfolio" aria-label="Projects" className="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">
             account_tree
           </a>
-          <a href="/contact" aria-label="Documents" className="material-symbols-outlined text-outline hover:text-primary transition-colors">
+          <a href="/contact" aria-label="Documents" className="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">
             folder_open
           </a>
-          <a href="/contact" aria-label="Support" className="material-symbols-outlined text-outline hover:text-primary transition-colors">
+          <a href="/contact" aria-label="Support" className="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">
             chat_bubble
           </a>
         </div>
         <div className="mt-auto">
-          <a href="/client-portal#settings" aria-label="Settings" className="material-symbols-outlined text-outline hover:text-primary transition-colors">
+          <a href="/client-portal#settings" aria-label="Settings" className="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">
             settings
           </a>
         </div>

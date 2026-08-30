@@ -60,7 +60,7 @@ export function Sidebar({
               className={
                 isActive
                   ? "flex items-center gap-3 justify-center xl:justify-start bg-white text-primary p-3 xl:px-4 xl:py-3 rounded-2xl shadow-md font-bold transition-colors"
-                  : "flex items-center gap-3 justify-center xl:justify-start text-outline hover:text-primary hover:bg-white/60 p-3 xl:px-4 xl:py-3 rounded-2xl transition-colors"
+                  : "flex items-center gap-3 justify-center xl:justify-start text-on-surface-variant hover:text-primary hover:bg-white/60 p-3 xl:px-4 xl:py-3 rounded-2xl transition-colors"
               }
             >
               <span className="material-symbols-outlined" aria-hidden="true">

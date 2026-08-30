@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Button } from "@/components/ui/Button";
 import { FeatureCard } from "@/components/ui/FeatureCard";
+import { HeroVideo } from "@/components/HeroVideo";
 import { portfolioProjects } from "@/lib/portfolio";
 
 export const metadata: Metadata = {
@@ -70,20 +71,15 @@ export default function HomePage() {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-square rounded-full overflow-hidden whisper-shadow relative z-10 ghost-border">
-                <Image
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDl-bFV5Gr1Vt8xoxaYQFX-l_5BGvVVSTTsaC9WkF5sNbPwCGeI__D2pWCXj1CLp_A4WV7lC1Dbgwvfj1BI4uZYSy8mEt_exiIjr_B4tLgAx5I9qJHQx0yzTOiS4kh6nlltkneZXIqrjTGE3-WreaHw2xU1NLx5A6ti_SfEoO1W04UoWGCRbrPwyZtpzUqp6IEVOS_ZoOor69zquDPHFbX311NSVByuZFZmtalFgVrqZQ4Wlkqh1LDYnE--w"
-                  alt="Modern professional workspace in Nairobi with sleek computers, warm natural lighting, and a view of urban greenery through large windows"
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 90vw, 45vw"
-                  className="object-cover"
-                />
-              </div>
+              <HeroVideo
+                mp4Src="/videos/hero-showcase.mp4"
+                webmSrc="/videos/hero-showcase.webm"
+                poster="/videos/hero-poster.jpg"
+              />
               <div className="absolute -bottom-8 -left-8 bg-surface-container-lowest p-6 rounded-xl whisper-shadow z-20 ghost-border md:block hidden max-w-[240px]">
                 <div className="flex items-center gap-3 mb-2">
                   <span
-                    className="material-symbols-outlined text-on-tertiary-container"
+                    className="material-symbols-outlined text-on-tertiary-fixed-variant"
                     style={{ fontVariationSettings: "'FILL' 1" }}
                     aria-hidden="true"
                   >
@@ -123,17 +119,17 @@ export default function HomePage() {
                 </p>
                 <div className="grid grid-cols-2 gap-8">
                   <div>
-                    <h4 className="text-primary font-bold text-2xl font-newsreader mb-2">
+                    <h3 className="text-primary font-bold text-2xl font-newsreader mb-2">
                       25+
-                    </h4>
+                    </h3>
                     <p className="text-sm text-on-surface-variant font-manrope">
                       Solutions Delivered across East Africa
                     </p>
                   </div>
                   <div>
-                    <h4 className="text-primary font-bold text-2xl font-newsreader mb-2">
+                    <h3 className="text-primary font-bold text-2xl font-newsreader mb-2">
                       98%
-                    </h4>
+                    </h3>
                     <p className="text-sm text-on-surface-variant font-manrope">
                       Client Retention &amp; Ecosystem Growth
                     </p>
@@ -232,9 +228,9 @@ export default function HomePage() {
                   <div className="flex justify-between items-start">
                     <div>
                       <div className="flex items-center gap-2">
-                        <h4 className="text-white text-2xl font-newsreader font-bold">
+                        <h3 className="text-white text-2xl font-newsreader font-bold">
                           {project.name}
-                        </h4>
+                        </h3>
                         <span
                           className="material-symbols-outlined text-on-primary-container text-sm group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
                           aria-hidden="true"
@@ -292,9 +288,9 @@ export default function HomePage() {
                         />
                       </div>
                       <div>
-                        <h5 className="font-manrope font-bold text-primary text-sm not-italic">
+                        <h3 className="font-manrope font-bold text-primary text-sm not-italic">
                           {t.name}
-                        </h5>
+                        </h3>
                         <p className="text-xs text-on-surface-variant not-italic">
                           {t.role}
                         </p>
@@ -321,7 +317,7 @@ export default function HomePage() {
               <div className="flex flex-wrap justify-center gap-6">
                 <Link
                   href="/schedule-consultation"
-                  className="bg-on-tertiary-container text-white px-10 py-5 rounded-full font-bold whisper-shadow hover:scale-105 transition-transform active:scale-95"
+                  className="bg-on-tertiary-fixed-variant text-white px-10 py-5 rounded-full font-bold whisper-shadow hover:scale-105 transition-transform active:scale-95"
                 >
                   Book a Consultation
                 </Link>

@@ -157,7 +157,7 @@ export default function DigitalArchitecturePage() {
                   <span className="text-4xl font-black font-manrope text-primary group-hover:text-white transition-colors">
                     {tech.name}
                   </span>
-                  <span className="mt-4 text-xs tracking-widest uppercase opacity-60 group-hover:text-white transition-colors">
+                  <span className="mt-4 text-xs tracking-widest uppercase opacity-70 group-hover:text-white transition-colors">
                     {tech.label}
                   </span>
                 </div>
@@ -181,7 +181,7 @@ export default function DigitalArchitecturePage() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-2xl font-newsreader font-bold mb-2">{step.title}</h3>
-                    <p className="text-on-primary-container/80 leading-relaxed">{step.description}</p>
+                    <p className="text-white/70 leading-relaxed">{step.description}</p>
                   </div>
                 </li>
               ))}

@@ -22,7 +22,7 @@ export function SiteFooter() {
           <div className="text-2xl font-newsreader font-bold text-white mb-6">
             JG Creative Tech
           </div>
-          <p className="font-manrope text-sm opacity-70 leading-relaxed mb-6">
+          <p className="font-manrope text-sm text-white/80 leading-relaxed mb-6">
             Building the digital foundations for Kenya&apos;s most ambitious
             businesses. We specialize in digital infrastructure that is both
             resilient and elegant.
@@ -33,22 +33,22 @@ export function SiteFooter() {
             </p>
             <NewsletterSignup />
           </div>
-          <p className="font-manrope text-sm opacity-70">
+          <p className="font-manrope text-sm text-white/80">
             © {year} JG Creative Tech Solution. Digital Infrastructure as a
             Premium Craft.
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-12">
           <nav aria-label="Services">
-            <h6 className="text-white font-bold font-newsreader text-lg mb-6">
+            <h2 className="text-white font-bold font-newsreader text-lg mb-6">
               Services
-            </h6>
+            </h2>
             <ul className="space-y-4 font-manrope text-sm">
               {footerServiceLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="opacity-70 hover:opacity-100 transition-opacity"
+                    className="text-white/70 hover:text-white transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -57,15 +57,15 @@ export function SiteFooter() {
             </ul>
           </nav>
           <nav aria-label="Company">
-            <h6 className="text-white font-bold font-newsreader text-lg mb-6">
+            <h2 className="text-white font-bold font-newsreader text-lg mb-6">
               Company
-            </h6>
+            </h2>
             <ul className="space-y-4 font-manrope text-sm">
               {footerCompanyLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="opacity-70 hover:opacity-100 transition-opacity"
+                    className="text-white/70 hover:text-white transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -74,9 +74,9 @@ export function SiteFooter() {
             </ul>
           </nav>
           <div className="col-span-2 md:col-span-1">
-            <h6 className="text-white font-bold font-newsreader text-lg mb-6">
+            <h2 className="text-white font-bold font-newsreader text-lg mb-6">
               Connect
-            </h6>
+            </h2>
             <div className="flex gap-4">
               <a
                 href={siteConfig.social.linkedin}
@@ -122,14 +122,14 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-        <div className="flex flex-wrap gap-8 text-xs font-manrope opacity-50">
+        <div className="flex flex-wrap gap-8 text-xs font-manrope text-white/70">
           {footerLegalLinks.map((link) => (
             <Link key={link.href} href={link.href} className="hover:underline font-bold">
               {link.label}
             </Link>
           ))}
         </div>
-        <div className="text-xs font-manrope opacity-50 italic">
+        <div className="text-xs font-manrope text-white/70 italic">
           Crafted in Nairobi for the Global Stage.
         </div>
       </div>

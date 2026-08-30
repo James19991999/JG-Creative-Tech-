@@ -120,7 +120,7 @@ export default function DigitalStrategyPage() {
                   key={step.number}
                   className="relative overflow-hidden bg-surface-container-lowest p-10 rounded-xl hover:shadow-2xl hover:shadow-black/5 transition-all duration-500"
                 >
-                  <div aria-hidden="true" className="absolute top-0 right-0 p-4 font-newsreader text-6xl text-surface-container-high">
+                  <div aria-hidden="true" className="absolute top-0 right-0 p-4 font-newsreader text-6xl text-on-surface-variant/65">
                     {step.number}
                   </div>
                   <span className="material-symbols-outlined text-4xl text-primary mb-8 block" aria-hidden="true">

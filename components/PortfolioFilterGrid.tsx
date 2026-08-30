@@ -118,9 +118,9 @@ export function PortfolioFilterGrid({ projects }: PortfolioFilterGridProps) {
                 <div className="w-1 h-12 bg-on-tertiary-container" />
                 <div>
                   <div className="flex items-center gap-3 mb-2">
-                    <h3 className="font-headline text-2xl md:text-3xl text-primary">
+                    <h2 className="font-headline text-2xl md:text-3xl text-primary">
                       {project.name}
-                    </h3>
+                    </h2>
                     <span
                       className="material-symbols-outlined text-secondary text-sm group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
                       aria-hidden="true"
