@@ -1,0 +1,79 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Client Portal data. This is a single-client deployment: exactly
+    // one clients/{uid} document is expected to exist, matching the
+    // one Firebase Auth account created for the client. Every rule
+    // below re-derives access from request.auth.uid rather than
+    // trusting anything the client sends - this is the real security
+    // boundary, not the app code that calls it.
+
+    match /clients/{uid} {
+      // The client can read their own profile. Profile fields
+      // (project status, CDN stats, invoices summary text) are
+      // administered by JG Creative Tech via the Firebase Console or
+      // Admin SDK, not editable by the client - there is no client
+      // write rule for this document at all.
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+
+      match /documents/{docId} {
+        allow read: if request.auth != null && request.auth.uid == uid;
+        // The client may only create documents for themselves, and
+        // only with the fields the upload flow actually sends -
+        // no arbitrary extra fields, no writing as another uploader.
+        allow create: if request.auth != null
+          && request.auth.uid == uid
+          && request.resource.data.uploadedBy == "client"
+          && request.resource.data.keys().hasOnly([
+            "name", "storagePath", "contentType", "sizeBytes",
+            "uploadedAt", "uploadedBy", "visibility"
+          ]);
+        // Documents are immutable once created and can only be
+        // deleted by an admin (Admin SDK bypasses rules entirely).
+        allow update: if false;
+        allow delete: if false;
+      }
+
+      match /invoices/{invoiceId} {
+        // Invoices are issued by JG Creative Tech, not the client -
+        // read-only from the client side.
+        allow read: if request.auth != null && request.auth.uid == uid;
+        allow write: if false;
+      }
+
+      match /notifications/{notifId} {
+        allow read: if request.auth != null && request.auth.uid == uid;
+        // The client may only flip `read`, and only their own
+        // notification - not create, delete, or touch any other field.
+        allow update: if request.auth != null
+          && request.auth.uid == uid
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["read"]);
+        allow create: if false;
+        allow delete: if false;
+      }
+
+      match /messages/{messageId} {
+        allow read: if request.auth != null && request.auth.uid == uid;
+        allow create: if request.auth != null
+          && request.auth.uid == uid
+          && request.resource.data.sentBy == "client"
+          && request.resource.data.body is string
+          && request.resource.data.body.size() > 0
+          && request.resource.data.body.size() <= 2000;
+        allow update: if false;
+        allow delete: if false;
+      }
+    }
+
+    // Everything else used by the public site (contact/newsletter
+    // submissions) is written exclusively by the server via the Admin
+    // SDK, which bypasses these rules - so no client access is granted
+    // to those collections at all.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

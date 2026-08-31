@@ -171,7 +171,7 @@ Apply `${newsreader.variable} ${manrope.variable}` to `<html>` className, remove
 
 ## 6. Backend / Firebase
 
-All three API routes follow the same pattern:
+All three public API routes follow the same pattern:
 1. Per-IP rate limit (5 req/min, in-memory)
 2. Server-side validation
 3. Write to Firestore **if** `FIREBASE_PROJECT_ID`, `FIREBASE_CLIENT_EMAIL`, and `FIREBASE_PRIVATE_KEY` are set (see `.env.example`)
@@ -181,9 +181,79 @@ Firestore collections: `contact_submissions`, `newsletter_subscribers`, `consult
 
 ---
 
+## 6a. Client Portal (`/client-portal`) — Setup
+
+The portal is a real, single-client feature: one real sign-in, real
+per-client documents (upload + download), real invoices, real
+notifications, and a real message thread — not a static mockup.
+Scoped deliberately to **one client account**, not a multi-tenant
+system, per the actual requirement.
+
+### What's real vs. what needs a one-time manual step
+
+| Piece | Status |
+|---|---|
+| Sign-in (email/password) | Real — Firebase Auth |
+| Document upload/download | Real — Firebase Storage, enforced by `storage.rules` |
+| Documents/invoices/notifications/messages list | Real — Firestore, enforced by `firestore.rules` |
+| Data isolation | Real — every rule re-checks `request.auth.uid`, not just app code |
+| The client's Firebase Auth account itself | **Manual, one-time** — see step 2 below |
+| Their profile (name, project status, invoices) | **Manual, ongoing** — see step 3 below |
+
+The client can never edit their own project-status fields, CDN stats,
+or invoices — `firestore.rules` makes the `clients/{uid}` profile
+document and `invoices` subcollection **read-only from the client
+side on purpose.** Those are set by you.
+
+### Setup steps
+
+1. **Add the client-portal env vars** to `.env` / Vercel project
+   settings (see `.env.example` — `NEXT_PUBLIC_FIREBASE_*`). These are
+   safe to expose to the browser; the real protection is the rules
+   files, not secrecy of these values.
+2. **Create the one client account**: Firebase Console → Authentication
+   → Add user → their email + a temporary password (have them reset it
+   on first login via Firebase's password-reset flow, not built into
+   this UI since there's only one account to manage).
+3. **Create their profile document**: Firestore Console → start
+   collection `clients` → document ID = **their Auth UID** (copy it
+   from the Authentication tab) → add fields matching the `ClientProfile`
+   type in `lib/client-portal/hooks.ts` (`displayName`,
+   `activeProjectName`, `activeProjectCompletionPercent`, etc.). Until
+   this exists, the dashboard correctly shows "no active project" /
+   "welcome back, `<their email>`" rather than blank or fake data.
+4. **Deploy the security rules** — this is not optional, the app will
+   not work correctly without it (Firestore/Storage default-deny
+   everything until rules are deployed):
+   ```bash
+   firebase login
+   firebase use --add        # select the same project as your env vars
+   firebase deploy --only firestore:rules,storage:rules
+   ```
+5. Add invoices/documents/notifications the same way — new documents
+   under `clients/{uid}/invoices`, `.../documents`, `.../notifications`
+   in the Firestore Console (or the client can upload their own
+   documents directly from the portal UI once signed in).
+
+### What deliberately isn't built
+
+- **No payment processing.** Invoices are informational status
+  records (number, amount, status, dates) — there's no "Pay Now"
+  button because no payment processor is wired into this project.
+  Adding one is a real scope/cost decision, not a checkbox.
+- **No self-service password reset UI** and **no account creation
+  UI** — both are one-account, admin-driven per the scope above.
+- **No multi-client / admin dashboard.** If a second client ever
+  needs this, the data model (`clients/{uid}/...`) already generalizes
+  cleanly, but the sign-up flow, an admin view across clients, and
+  probably role-based access all still need to be designed and built
+  — that's a genuinely different scope, not a small extension.
+
+---
+
 ## 7. Testing
 
-**111 tests across 18 suites.** Run with `npm test`.
+**132 tests across 21 suites.** Run with `npm test`.
 
 | Suite | What it covers |
 |---|---|
@@ -205,6 +275,9 @@ Firestore collections: `contact_submissions`, `newsletter_subscribers`, `consult
 | `Sidebar.test.tsx` | All items, active aria-current, landmark |
 | `Button.test.tsx` | Link/button rendering, onClick, disabled, icon, variants |
 | `FeatureCard.test.tsx` | Title, description, heading role, decoration, variant styling |
+| `SignInForm.test.tsx` | Not-configured state, field rendering, submit → signIn call, friendly vs. generic error messages |
+| `ClientPortalDashboard.test.tsx` | Not-configured/loading/redirect states, real name vs. email fallback, empty vs. populated documents, no-project fallback copy, real invoice rendering |
+| `client-portal-actions.test.ts` | Upload size limit enforced before Storage is touched, message length/empty validation, correct Firestore payload shape |
 
 ---
 
