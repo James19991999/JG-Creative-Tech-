@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { portfolioProjects } from "@/lib/portfolio";
+import { getAllPosts } from "@/lib/blog";
 
 const baseUrl = "https://www.jgcreativetech.solutions";
 
@@ -18,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/strategic-context", priority: 0.5, changeFrequency: "monthly" as const },
     { path: "/innovation-lab", priority: 0.6, changeFrequency: "monthly" as const },
     { path: "/portfolio", priority: 0.8, changeFrequency: "weekly" as const },
+    { path: "/blog", priority: 0.7, changeFrequency: "weekly" as const },
     { path: "/contact", priority: 0.7, changeFrequency: "yearly" as const },
     { path: "/legal/privacy", priority: 0.3, changeFrequency: "yearly" as const },
     { path: "/legal/terms", priority: 0.3, changeFrequency: "yearly" as const },
@@ -30,7 +32,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
   }));
 
-  return [...routes, ...portfolioRoutes].map((route) => ({
+  const blogRoutes = getAllPosts().map((post) => ({
+    path: `/blog/${post.slug}`,
+    priority: 0.6,
+    changeFrequency: "monthly" as const,
+  }));
+
+  return [...routes, ...portfolioRoutes, ...blogRoutes].map((route) => ({
     url: `${baseUrl}${route.path}`,
     lastModified: new Date(),
     changeFrequency: route.changeFrequency,
