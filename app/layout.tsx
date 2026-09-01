@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { JsonLd } from "@/components/JsonLd";
 import { CookieBanner } from "@/components/CookieBanner";
+import { RouteTransition } from "@/components/RouteTransition";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -33,21 +34,12 @@ export const metadata: Metadata = {
     title: "JG Creative Tech Solution | Digital Infrastructure for Kenyan SMEs",
     description:
       "Premium digital infrastructure, web development, and growth strategy for Kenyan SMEs.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "JG Creative Tech Solution",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "JG Creative Tech Solution",
     description:
       "Premium digital infrastructure, web development, and growth strategy for Kenyan SMEs.",
-    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -104,7 +96,7 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        {children}
+        <RouteTransition>{children}</RouteTransition>
         <CookieBanner />
       </body>
     </html>

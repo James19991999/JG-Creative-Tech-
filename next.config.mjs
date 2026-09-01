@@ -62,9 +62,10 @@ const nextConfig = {
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
       },
-      // Cache OG image and icons for a day
+      // Cache favicon/icons for a day (OG images are handled by Next's
+      // own file-convention route caching, not this rule)
       {
-        source: "/(og-image.png|favicon.ico|icon.png|apple-icon.png)",
+        source: "/(favicon.ico|icon.png|apple-icon.png)",
         headers: [
           { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" },
         ],

@@ -49,19 +49,31 @@ export default function HomePage() {
         <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 md:px-8 overflow-hidden">
           <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div className="relative z-10">
-              <span className="inline-block text-on-tertiary-fixed-variant font-manrope font-bold tracking-widest text-xs uppercase mb-4 px-3 py-1 bg-tertiary-fixed rounded-full">
+              <span
+                className="hero-reveal inline-block text-on-tertiary-fixed-variant font-manrope font-bold tracking-widest text-xs uppercase mb-4 px-3 py-1 bg-tertiary-fixed rounded-full"
+                style={{ animationDelay: "0ms" }}
+              >
                 Digital Infrastructure as a Craft
               </span>
-              <h1 className="text-5xl md:text-7xl font-newsreader text-primary leading-tight font-bold mb-6">
+              <h1
+                className="hero-reveal text-5xl md:text-7xl font-newsreader text-primary leading-tight font-bold mb-6"
+                style={{ animationDelay: "100ms" }}
+              >
                 Empowering Kenyan SMEs with{" "}
                 <span className="italic">Future-Ready</span> Technology.
               </h1>
-              <p className="text-lg md:text-xl text-on-surface-variant max-w-lg mb-10 leading-relaxed">
+              <p
+                className="hero-reveal text-lg md:text-xl text-on-surface-variant max-w-lg mb-10 leading-relaxed"
+                style={{ animationDelay: "220ms" }}
+              >
                 We build the digital foundations that allow local resilience
                 to scale globally. Premium architecture for businesses that
                 demand excellence.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div
+                className="hero-reveal flex flex-wrap gap-4"
+                style={{ animationDelay: "340ms" }}
+              >
                 <Button href="/schedule-consultation" size="lg" icon="arrow_forward">
                   Start Your Evolution
                 </Button>
