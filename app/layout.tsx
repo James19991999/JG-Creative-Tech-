@@ -3,6 +3,7 @@ import "./globals.css";
 import { JsonLd } from "@/components/JsonLd";
 import { CookieBanner } from "@/components/CookieBanner";
 import { RouteTransition } from "@/components/RouteTransition";
+import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -98,6 +99,7 @@ export default function RootLayout({
         </a>
         <RouteTransition>{children}</RouteTransition>
         <CookieBanner />
+        <ServiceWorkerRegistration />
       </body>
     </html>
   );
