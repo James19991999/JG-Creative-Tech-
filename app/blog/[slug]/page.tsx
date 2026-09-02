@@ -93,14 +93,14 @@ export default function BlogPostPage({ params }: Props) {
         </Link>
 
         <div className="flex items-center gap-3 mb-4 text-xs font-manrope font-bold uppercase tracking-widest">
-          <span className="text-on-tertiary-fixed-variant">{post.category}</span>
+          <span className="text-accent">{post.category}</span>
           <span className="text-on-surface-variant" aria-hidden="true">·</span>
           <span className="text-on-surface-variant">{formatDate(post.date)}</span>
           <span className="text-on-surface-variant" aria-hidden="true">·</span>
           <span className="text-on-surface-variant">{post.readingTimeMinutes} min read</span>
         </div>
 
-        <h1 className="font-newsreader text-4xl md:text-5xl text-primary font-semibold leading-tight mb-8">
+        <h1 className="font-newsreader text-4xl md:text-5xl text-ink font-semibold leading-tight mb-8">
           {post.title}
         </h1>
 

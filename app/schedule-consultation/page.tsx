@@ -17,10 +17,10 @@ export default function ScheduleConsultationPage() {
       <header className="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl">
         <div className="flex justify-between items-center px-8 h-20 w-full max-w-screen-2xl mx-auto">
           <div className="flex items-center gap-3">
-            <span className="material-symbols-outlined text-primary" style={{ fontSize: "1.75rem" }} aria-hidden="true">
+            <span className="material-symbols-outlined text-ink" style={{ fontSize: "1.75rem" }} aria-hidden="true">
               architecture
             </span>
-            <span className="text-2xl font-newsreader text-primary tracking-tight">
+            <span className="text-2xl font-newsreader text-ink tracking-tight">
               The Digital Architect
             </span>
           </div>
@@ -28,7 +28,7 @@ export default function ScheduleConsultationPage() {
             <a className="text-on-surface-variant font-manrope font-medium hover:bg-surface-container-low transition-colors px-3 py-2 rounded" href="/get-started/discovery">
               Discovery
             </a>
-            <span className="text-primary font-manrope font-semibold px-3 py-2 rounded">
+            <span className="text-ink font-manrope font-semibold px-3 py-2 rounded">
               Consultation
             </span>
             <a className="text-on-surface-variant font-manrope font-medium hover:bg-surface-container-low transition-colors px-3 py-2 rounded" href="/about">
@@ -42,7 +42,7 @@ export default function ScheduleConsultationPage() {
         {/* Progress Indicator */}
         <div className="mb-12">
           <div className="flex items-center justify-between mb-4 max-w-xs">
-            <span className="text-on-tertiary-fixed-variant font-manrope text-sm uppercase tracking-widest font-bold">
+            <span className="text-accent font-manrope text-sm uppercase tracking-widest font-bold">
               Step 2 of 2
             </span>
             <span className="text-on-surface-variant text-sm font-medium">Finalizing Schedule</span>
@@ -56,7 +56,7 @@ export default function ScheduleConsultationPage() {
         <header className="space-y-4 mb-10">
           <div className="flex items-center gap-2">
             <div className="w-1 h-8 bg-on-tertiary-container" />
-            <h1 className="font-newsreader text-5xl text-primary tracking-tight">
+            <h1 className="font-newsreader text-5xl text-ink tracking-tight">
               Select a Consultation Time
             </h1>
           </div>
@@ -88,7 +88,7 @@ export default function ScheduleConsultationPage() {
             </div>
           </div>
           <div className="space-y-6">
-            <h2 className="font-newsreader text-3xl text-primary">
+            <h2 className="font-newsreader text-3xl text-ink">
               Institutional stability for the digital age.
             </h2>
             <p className="text-on-surface-variant leading-relaxed">
@@ -99,13 +99,13 @@ export default function ScheduleConsultationPage() {
             </p>
             <div className="flex gap-8">
               <div>
-                <p className="text-4xl font-newsreader text-on-tertiary-fixed-variant">25+</p>
+                <p className="text-4xl font-newsreader text-accent">25+</p>
                 <p className="text-xs uppercase tracking-widest font-bold text-on-surface-variant">
                   Projects Delivered
                 </p>
               </div>
               <div>
-                <p className="text-4xl font-newsreader text-on-tertiary-fixed-variant">2+yr</p>
+                <p className="text-4xl font-newsreader text-accent">2+yr</p>
                 <p className="text-xs uppercase tracking-widest font-bold text-on-surface-variant">
                   Avg Experience
                 </p>

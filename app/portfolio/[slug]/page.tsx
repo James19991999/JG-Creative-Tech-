@@ -80,12 +80,12 @@ export default function PortfolioCaseStudyPage({ params }: Props) {
         <nav aria-label="Breadcrumb" className="mb-10">
           <ol className="flex items-center gap-2 text-sm text-on-surface-variant font-manrope">
             <li>
-              <a href="/portfolio" className="hover:text-primary transition-colors">
+              <a href="/portfolio" className="hover:text-ink transition-colors">
                 Portfolio
               </a>
             </li>
             <li aria-hidden="true">/</li>
-            <li className="text-primary font-bold">{project.name}</li>
+            <li className="text-ink font-bold">{project.name}</li>
           </ol>
         </nav>
 
@@ -94,7 +94,7 @@ export default function PortfolioCaseStudyPage({ params }: Props) {
           <span className="inline-block px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant font-label text-[10px] uppercase tracking-[0.2em] font-bold mb-6 rounded-full">
             {project.category}
           </span>
-          <h1 className="font-newsreader text-5xl md:text-6xl text-primary font-bold leading-tight mb-6">
+          <h1 className="font-newsreader text-5xl md:text-6xl text-ink font-bold leading-tight mb-6">
             {project.name}
           </h1>
           <p className="text-on-surface-variant text-lg max-w-2xl leading-relaxed">
@@ -118,7 +118,7 @@ export default function PortfolioCaseStudyPage({ params }: Props) {
         <div className="grid grid-cols-3 gap-6 mb-16 bg-surface-container-low rounded-xl p-8">
           {project.stats.map((stat) => (
             <div key={stat.label} className="text-center">
-              <div className="font-newsreader text-3xl text-primary font-bold mb-1">
+              <div className="font-newsreader text-3xl text-ink font-bold mb-1">
                 {stat.value}
               </div>
               <div className="text-xs uppercase tracking-widest text-on-surface-variant">
@@ -131,7 +131,7 @@ export default function PortfolioCaseStudyPage({ params }: Props) {
         {/* Narrative */}
         <div className="grid md:grid-cols-3 gap-12 mb-16">
           <section>
-            <h2 className="font-newsreader text-xl text-primary font-bold mb-3">
+            <h2 className="font-newsreader text-xl text-ink font-bold mb-3">
               The Challenge
             </h2>
             <p className="text-on-surface-variant leading-relaxed text-sm">
@@ -139,7 +139,7 @@ export default function PortfolioCaseStudyPage({ params }: Props) {
             </p>
           </section>
           <section>
-            <h2 className="font-newsreader text-xl text-primary font-bold mb-3">
+            <h2 className="font-newsreader text-xl text-ink font-bold mb-3">
               Our Approach
             </h2>
             <p className="text-on-surface-variant leading-relaxed text-sm">
@@ -147,7 +147,7 @@ export default function PortfolioCaseStudyPage({ params }: Props) {
             </p>
           </section>
           <section>
-            <h2 className="font-newsreader text-xl text-primary font-bold mb-3">
+            <h2 className="font-newsreader text-xl text-ink font-bold mb-3">
               The Outcome
             </h2>
             <p className="text-on-surface-variant leading-relaxed text-sm">
@@ -158,7 +158,7 @@ export default function PortfolioCaseStudyPage({ params }: Props) {
 
         {/* Services used */}
         <div className="mb-20">
-          <h2 className="font-newsreader text-xl text-primary font-bold mb-4">
+          <h2 className="font-newsreader text-xl text-ink font-bold mb-4">
             Services Delivered
           </h2>
           <ul className="flex flex-wrap gap-3">

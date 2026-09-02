@@ -55,7 +55,7 @@ export function PrivacyContactForm() {
         <span className="material-symbols-outlined text-4xl text-secondary mb-4 block" aria-hidden="true">
           check_circle
         </span>
-        <p className="font-newsreader text-xl text-primary font-bold">Inquiry sent.</p>
+        <p className="font-newsreader text-xl text-ink font-bold">Inquiry sent.</p>
         <p className="text-on-surface-variant text-sm mt-2">
           Our Data Protection Officer will respond within one business
           day.

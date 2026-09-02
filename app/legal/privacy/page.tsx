@@ -69,21 +69,21 @@ export default function PrivacyPolicyPage() {
       <header className="bg-surface/80 backdrop-blur-md fixed top-0 w-full z-50">
         <div className="flex justify-between items-center px-8 py-6 max-w-full mx-auto">
           <div className="flex items-center gap-4">
-            <span className="material-symbols-outlined text-primary text-3xl" aria-hidden="true">
+            <span className="material-symbols-outlined text-ink text-3xl" aria-hidden="true">
               gavel
             </span>
-            <span className="text-2xl font-newsreader font-black text-primary">
+            <span className="text-2xl font-newsreader font-black text-ink">
               Privacy Infrastructure
             </span>
           </div>
           <nav aria-label="Main" className="hidden md:flex gap-8 items-center">
-            <a className="text-primary font-bold border-b-2 border-on-tertiary-container transition-colors" href="/legal/privacy">
+            <a className="text-ink font-bold border-b-2 border-on-tertiary-container transition-colors" href="/legal/privacy">
               Framework
             </a>
-            <a className="text-on-surface-variant font-medium hover:text-primary transition-colors" href="/legal/terms">
+            <a className="text-on-surface-variant font-medium hover:text-ink transition-colors" href="/legal/terms">
               Governance
             </a>
-            <a className="text-on-surface-variant font-medium hover:text-primary transition-colors" href="/legal/cookies">
+            <a className="text-on-surface-variant font-medium hover:text-ink transition-colors" href="/legal/cookies">
               Security
             </a>
             <a
@@ -99,7 +99,7 @@ export default function PrivacyPolicyPage() {
       {/* NavigationDrawer */}
       <aside className="fixed left-0 top-0 h-full w-72 p-6 z-40 bg-surface-container-low hidden lg:block rounded-r-3xl shadow-xl shadow-primary/5 mt-24">
         <div className="mb-10">
-          <p className="text-lg font-newsreader font-bold text-primary">Policy Framework</p>
+          <p className="text-lg font-newsreader font-bold text-ink">Policy Framework</p>
         </div>
         <nav aria-label="Legal pages" className="flex flex-col gap-2 font-manrope text-sm font-semibold tracking-wide">
           {drawerItems.map((item, index) => (
@@ -126,16 +126,16 @@ export default function PrivacyPolicyPage() {
         {/* Hero Header */}
         <section className="mb-20 scroll-mt-32" id="introduction">
           <div className="flex flex-col gap-4 mb-8">
-            <span className="text-on-tertiary-fixed-variant text-xs font-bold uppercase tracking-widest font-manrope">
+            <span className="text-accent text-xs font-bold uppercase tracking-widest font-manrope">
               Privacy &amp; Sovereignty
             </span>
-            <h1 className="text-5xl md:text-7xl font-newsreader text-primary leading-tight italic">
+            <h1 className="text-5xl md:text-7xl font-newsreader text-ink leading-tight italic">
               Protecting the digital foundations of Kenyan innovation.
             </h1>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
             <div className="md:col-span-8 bg-surface-container-lowest p-8 md:p-12 rounded-xl">
-              <p className="text-xs text-on-tertiary-fixed-variant font-bold mb-4 uppercase tracking-widest">
+              <p className="text-xs text-accent font-bold mb-4 uppercase tracking-widest">
                 Last Updated: June 1, 2026
               </p>
               <p className="text-xl leading-relaxed text-on-surface-variant mb-6 font-manrope">
@@ -182,7 +182,7 @@ export default function PrivacyPolicyPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {dataCards.map((card) => (
               <div key={card.title} className="bg-surface-container-low p-8 rounded-xl hover:bg-surface-container-high transition-colors">
-                <span className="material-symbols-outlined text-primary mb-6 block text-3xl" aria-hidden="true">
+                <span className="material-symbols-outlined text-ink mb-6 block text-3xl" aria-hidden="true">
                   {card.icon}
                 </span>
                 <h3 className="text-xl font-newsreader italic mb-4">{card.title}</h3>
@@ -282,7 +282,7 @@ export default function PrivacyPolicyPage() {
               </p>
             </div>
             <div className="bg-tertiary-fixed p-8 rounded-3xl flex-1">
-              <h3 className="font-bold text-lg mb-2">DPO Direct</h3>
+              <h3 className="font-bold text-lg mb-2 text-on-tertiary-fixed-variant">DPO Direct</h3>
               <p className="text-sm text-on-tertiary-fixed-variant">
                 {siteConfig.contact.dpoEmail}
               </p>

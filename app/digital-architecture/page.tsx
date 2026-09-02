@@ -74,10 +74,10 @@ export default function DigitalArchitecturePage() {
         {/* Hero Section */}
         <section className="relative min-h-[60vh] flex items-center px-6 md:px-8 py-24 overflow-hidden bg-surface">
           <div className="max-w-4xl relative z-10">
-            <span className="text-on-tertiary-fixed-variant font-manrope text-xs tracking-widest uppercase mb-4 block">
+            <span className="text-accent font-manrope text-xs tracking-widest uppercase mb-4 block">
               Structural Integrity
             </span>
-            <h1 className="text-6xl md:text-8xl font-headline italic tracking-tight text-primary leading-tight mb-8">
+            <h1 className="text-6xl md:text-8xl font-headline italic tracking-tight text-ink leading-tight mb-8">
               Architecture as a <br />
               <span className="not-italic font-bold">Foundation</span>
             </h1>
@@ -115,7 +115,7 @@ export default function DigitalArchitecturePage() {
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center gap-4 mb-16">
               <div className="w-1 h-12 bg-on-tertiary-container" />
-              <h2 className="text-4xl font-headline font-bold text-primary">
+              <h2 className="text-4xl font-headline font-bold text-ink">
                 Core Principles
               </h2>
             </div>
@@ -140,7 +140,7 @@ export default function DigitalArchitecturePage() {
         <section id="stack" className="scroll-mt-24 px-6 md:px-8 py-24 bg-surface">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20">
-              <h2 className="text-5xl font-headline font-bold text-primary mb-6">
+              <h2 className="text-5xl font-headline font-bold text-ink mb-6">
                 The Tech Stack
               </h2>
               <p className="text-on-surface-variant max-w-2xl mx-auto">
@@ -154,7 +154,7 @@ export default function DigitalArchitecturePage() {
                   key={tech.name}
                   className="group relative overflow-hidden rounded-xl aspect-square bg-surface-container flex flex-col items-center justify-center p-8 text-center transition-all hover:bg-primary-container"
                 >
-                  <span className="text-4xl font-black font-manrope text-primary group-hover:text-white transition-colors">
+                  <span className="text-4xl font-black font-manrope text-ink group-hover:text-white transition-colors">
                     {tech.name}
                   </span>
                   <span className="mt-4 text-xs tracking-widest uppercase opacity-70 group-hover:text-white transition-colors">
@@ -192,7 +192,7 @@ export default function DigitalArchitecturePage() {
         {/* CTA */}
         <section className="px-6 md:px-8 py-32 bg-surface">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-5xl md:text-7xl font-headline font-bold text-primary mb-8">
+            <h2 className="text-5xl md:text-7xl font-headline font-bold text-ink mb-8">
               Build Your Future
             </h2>
             <p className="text-xl text-on-surface-variant mb-12">

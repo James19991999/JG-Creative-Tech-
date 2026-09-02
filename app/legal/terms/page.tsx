@@ -28,19 +28,19 @@ export default function TermsOfServicePage() {
             <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold overflow-hidden">
               <span className="font-newsreader text-sm">JG</span>
             </div>
-            <span className="font-newsreader text-xl font-bold text-primary">Legal Infrastructure</span>
+            <span className="font-newsreader text-xl font-bold text-ink">Legal Infrastructure</span>
           </div>
           <nav aria-label="Main" className="hidden md:flex gap-8 items-center">
-            <a className="font-manrope text-sm font-medium text-on-surface-variant hover:text-primary transition-colors duration-300" href="/legal/terms">
+            <a className="font-manrope text-sm font-medium text-on-surface-variant hover:text-ink transition-colors duration-300" href="/legal/terms">
               Overview
             </a>
-            <a className="font-manrope text-sm font-medium text-primary border-b-2 border-tertiary-fixed-variant pb-1" href="/legal/terms">
+            <a className="font-manrope text-sm font-medium text-ink border-b-2 border-tertiary-fixed-variant pb-1" href="/legal/terms">
               User Agreement
             </a>
-            <a className="font-manrope text-sm font-medium text-on-surface-variant hover:text-primary transition-colors duration-300" href="/legal/privacy">
+            <a className="font-manrope text-sm font-medium text-on-surface-variant hover:text-ink transition-colors duration-300" href="/legal/privacy">
               Privacy Standards
             </a>
-            <a className="font-manrope text-sm font-medium text-on-surface-variant hover:text-primary transition-colors duration-300" href="/legal/cookies">
+            <a className="font-manrope text-sm font-medium text-on-surface-variant hover:text-ink transition-colors duration-300" href="/legal/cookies">
               Compliance
             </a>
           </nav>
@@ -52,10 +52,10 @@ export default function TermsOfServicePage() {
         <section className="mb-16">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div className="max-w-2xl">
-              <p className="font-manrope text-xs uppercase tracking-widest text-on-tertiary-fixed-variant mb-4">
+              <p className="font-manrope text-xs uppercase tracking-widest text-accent mb-4">
                 Institutional Framework
               </p>
-              <h1 className="font-newsreader text-5xl md:text-6xl text-primary tracking-tight mb-6">
+              <h1 className="font-newsreader text-5xl md:text-6xl text-ink tracking-tight mb-6">
                 Terms of Service
               </h1>
               <div className="flex items-center gap-2 text-on-surface-variant">
@@ -74,7 +74,7 @@ export default function TermsOfServicePage() {
           <aside className="lg:col-span-3 hidden lg:block">
             <div className="sticky top-32 space-y-1">
               <div className="bg-surface-container-low p-6 rounded-xl">
-                <h2 className="font-newsreader text-lg text-on-tertiary-fixed-variant mb-6">
+                <h2 className="font-newsreader text-lg text-accent mb-6">
                   Legal Directory
                 </h2>
                 <nav aria-label="Legal pages" className="flex flex-col space-y-2">
@@ -117,13 +117,13 @@ export default function TermsOfServicePage() {
               <div aria-hidden="true" className="absolute top-0 left-0 w-1 h-full bg-on-tertiary-container" />
               <div className="flex items-center gap-4 mb-6">
                 <span className="font-newsreader text-4xl text-on-surface-variant/65">01</span>
-                <h2 className="font-newsreader text-3xl text-primary">
+                <h2 className="font-newsreader text-3xl text-ink">
                   Introduction &amp; Acceptance of Terms
                 </h2>
               </div>
               <div className="space-y-6 text-on-surface-variant font-manrope leading-relaxed">
                 <p>
-                  Welcome to <span className="font-bold text-primary italic">JG Creative Tech</span>.
+                  Welcome to <span className="font-bold text-ink italic">JG Creative Tech</span>.
                   These Terms of Service (&quot;Terms&quot;) constitute a
                   legally binding agreement between you, whether
                   personally or on behalf of an entity (&quot;Client&quot;),
@@ -145,11 +145,11 @@ export default function TermsOfServicePage() {
             <article className="bg-surface-container-low p-8 md:p-12 rounded-xl scroll-mt-32" id="intellectual">
               <div className="flex items-center gap-4 mb-6">
                 <span className="font-newsreader text-4xl text-on-surface-variant/65">02</span>
-                <h2 className="font-newsreader text-3xl text-primary">Intellectual Property Rights</h2>
+                <h2 className="font-newsreader text-3xl text-ink">Intellectual Property Rights</h2>
               </div>
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-4">
-                  <h3 className="font-manrope text-lg font-bold text-primary">Proprietary Architecture</h3>
+                  <h3 className="font-manrope text-lg font-bold text-ink">Proprietary Architecture</h3>
                   <p className="text-on-surface-variant text-sm">
                     Unless otherwise indicated, all digital architecture,
                     source code, databases, functionality, software,
@@ -159,7 +159,7 @@ export default function TermsOfServicePage() {
                   </p>
                 </div>
                 <div className="bg-surface-container-lowest p-6 rounded-lg border-l-4 border-secondary shadow-sm">
-                  <p className="text-primary font-bold text-sm mb-2">The &quot;Digital Architect&quot; Clause:</p>
+                  <p className="text-ink font-bold text-sm mb-2">The &quot;Digital Architect&quot; Clause:</p>
                   <p className="text-on-surface-variant text-sm italic">
                     Clients are granted a non-exclusive license to use the
                     delivered infrastructure, but the underlying
@@ -185,15 +185,15 @@ export default function TermsOfServicePage() {
             <article className="bg-surface-container-lowest p-8 md:p-12 rounded-xl scroll-mt-32" id="responsibilities">
               <div className="flex items-center gap-4 mb-6">
                 <span className="font-newsreader text-4xl text-on-surface-variant/65">03</span>
-                <h2 className="font-newsreader text-3xl text-primary">User Responsibilities</h2>
+                <h2 className="font-newsreader text-3xl text-ink">User Responsibilities</h2>
               </div>
               <ul className="space-y-6">
                 <li className="flex gap-4">
-                  <span className="material-symbols-outlined text-on-tertiary-fixed-variant mt-1" aria-hidden="true">
+                  <span className="material-symbols-outlined text-accent mt-1" aria-hidden="true">
                     check_circle
                   </span>
                   <div>
-                    <h3 className="font-manrope font-bold text-primary">Compliance Standards</h3>
+                    <h3 className="font-manrope font-bold text-ink">Compliance Standards</h3>
                     <p className="text-on-surface-variant text-sm">
                       Users must ensure that all data and interactions
                       with our systems comply with Kenyan data protection
@@ -202,11 +202,11 @@ export default function TermsOfServicePage() {
                   </div>
                 </li>
                 <li className="flex gap-4">
-                  <span className="material-symbols-outlined text-on-tertiary-fixed-variant mt-1" aria-hidden="true">
+                  <span className="material-symbols-outlined text-accent mt-1" aria-hidden="true">
                     check_circle
                   </span>
                   <div>
-                    <h3 className="font-manrope font-bold text-primary">Integrity of Systems</h3>
+                    <h3 className="font-manrope font-bold text-ink">Integrity of Systems</h3>
                     <p className="text-on-surface-variant text-sm">
                       Users are prohibited from reverse-engineering,
                       attempting to gain unauthorized access, or
@@ -232,7 +232,7 @@ export default function TermsOfServicePage() {
               </article>
               <article className="bg-surface-container-high p-8 md:p-10 rounded-xl flex flex-col justify-between scroll-mt-32" id="governing">
                 <div>
-                  <h2 className="font-newsreader text-3xl text-primary mb-6">Governing Law</h2>
+                  <h2 className="font-newsreader text-3xl text-ink mb-6">Governing Law</h2>
                   <p className="font-manrope text-sm text-on-surface-variant">
                     These Terms shall be governed by and defined following
                     the laws of <span className="font-bold">Kenya</span>.
@@ -247,10 +247,10 @@ export default function TermsOfServicePage() {
             {/* Section 6: Updates */}
             <article className="bg-surface-container-lowest p-8 md:p-12 rounded-xl text-center scroll-mt-32" id="updates">
               <div className="max-w-xl mx-auto">
-                <span className="material-symbols-outlined text-4xl text-primary mb-4 block" aria-hidden="true">
+                <span className="material-symbols-outlined text-4xl text-ink mb-4 block" aria-hidden="true">
                   update
                 </span>
-                <h2 className="font-newsreader text-3xl text-primary mb-4">Updates to Terms</h2>
+                <h2 className="font-newsreader text-3xl text-ink mb-4">Updates to Terms</h2>
                 <p className="text-on-surface-variant font-manrope text-sm mb-8">
                   We reserve the right to modify these Terms at any time.
                   We will notify clients of material changes via the
@@ -259,7 +259,7 @@ export default function TermsOfServicePage() {
                 </p>
                 <a
                   href={`mailto:${siteConfig.contact.legalEmail}`}
-                  className="inline-block bg-surface-container-highest text-primary font-bold px-6 py-3 rounded-full hover:bg-outline-variant/30 transition-colors"
+                  className="inline-block bg-surface-container-highest text-ink font-bold px-6 py-3 rounded-full hover:bg-outline-variant/30 transition-colors"
                 >
                   Subscribe to Legal Alerts
                 </a>

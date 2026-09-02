@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { primaryNavLinks } from "@/lib/site-config";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 type SiteHeaderProps = {
   activeHref?: string;
@@ -55,7 +56,7 @@ export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
           {/* Wordmark */}
           <Link
             href="/"
-            className="text-2xl font-newsreader font-bold text-primary"
+            className="text-2xl font-newsreader font-bold text-ink"
           >
             JG Creative Tech
           </Link>
@@ -71,8 +72,8 @@ export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
                   aria-current={isActive ? "page" : undefined}
                   className={
                     isActive
-                      ? "text-primary border-b-2 border-primary font-bold pb-1 font-newsreader tracking-tight transition-colors duration-300"
-                      : "text-on-surface-variant font-manrope hover:text-primary transition-colors duration-300"
+                      ? "text-ink border-b-2 border-primary font-bold pb-1 font-newsreader tracking-tight transition-colors duration-300"
+                      : "text-on-surface-variant font-manrope hover:text-ink transition-colors duration-300"
                   }
                 >
                   {link.label}
@@ -82,6 +83,8 @@ export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
           </div>
 
           <div className="flex items-center gap-3">
+            <ThemeToggle />
+
             {/* CTA — always visible */}
             <Link
               href="/schedule-consultation"
@@ -155,8 +158,8 @@ export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
                     aria-current={isActive ? "page" : undefined}
                     className={`flex items-center gap-3 px-4 py-3 rounded-xl font-manrope font-medium transition-colors ${
                       isActive
-                        ? "bg-primary-container text-primary font-bold"
-                        : "text-on-surface-variant hover:bg-surface-container-low hover:text-primary"
+                        ? "bg-primary-container text-on-primary-container font-bold"
+                        : "text-on-surface-variant hover:bg-surface-container-low hover:text-ink"
                     }`}
                   >
                     {link.label}

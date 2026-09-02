@@ -27,7 +27,7 @@ export function MobileBottomNav() {
   return (
     <nav
       aria-label="Mobile"
-      className="md:hidden fixed bottom-0 left-0 right-0 z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/90 backdrop-blur-lg rounded-t-3xl shadow-[0_-8px_30px_rgba(0,0,0,0.06)]"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-surface-container-lowest/90 backdrop-blur-lg rounded-t-3xl shadow-[0_-8px_30px_rgba(0,0,0,0.06)]"
     >
       {items.map((item) => {
         const isActive = pathname === item.href;
@@ -39,7 +39,7 @@ export function MobileBottomNav() {
             className={
               isActive
                 ? "flex flex-col items-center justify-center bg-primary text-on-primary rounded-full px-5 py-2 scale-105 -translate-y-1 transition-all"
-                : "flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors"
+                : "flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-ink transition-colors"
             }
           >
             <span

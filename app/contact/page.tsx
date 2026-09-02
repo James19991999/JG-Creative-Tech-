@@ -21,13 +21,13 @@ export default function ContactPage() {
       <main id="main-content" className="pt-32 pb-28 md:pb-32 px-6 max-w-md mx-auto">
         {/* Editorial Header */}
         <section className="mb-10">
-          <span className="text-on-tertiary-fixed-variant font-label text-[10px] uppercase tracking-[0.2em] font-bold mb-2 block">
+          <span className="text-accent font-label text-[10px] uppercase tracking-[0.2em] font-bold mb-2 block">
             Connect With Us
           </span>
           <div className="flex items-start">
             <div className="w-1 h-12 bg-on-tertiary-container mr-4 rounded-full" />
             <div>
-              <h1 className="font-newsreader headline-md font-bold tracking-tight text-primary leading-tight">
+              <h1 className="font-newsreader headline-md font-bold tracking-tight text-ink leading-tight">
                 Contact Our Team
               </h1>
               <p className="mt-3 text-on-surface-variant leading-relaxed opacity-90">
@@ -55,7 +55,7 @@ export default function ContactPage() {
                 mail
               </span>
             </div>
-            <h2 className="font-manrope font-bold text-sm text-primary mb-1">
+            <h2 className="font-manrope font-bold text-sm text-ink mb-1">
               Email Us
             </h2>
             <p className="text-[11px] text-on-surface-variant break-all">
@@ -70,12 +70,12 @@ export default function ContactPage() {
             rel="noopener noreferrer"
             className="bg-surface-container-low p-5 rounded-xl hover:bg-surface-container-high transition-colors"
           >
-            <div className="bg-secondary w-10 h-10 rounded-lg flex items-center justify-center mb-4 text-white">
+            <div className="bg-secondary dark:bg-secondary-fixed-dim w-10 h-10 rounded-lg flex items-center justify-center mb-4 text-white dark:text-on-secondary-fixed">
               <span className="material-symbols-outlined" aria-hidden="true">
                 location_on
               </span>
             </div>
-            <h2 className="font-manrope font-bold text-sm text-primary mb-1">
+            <h2 className="font-manrope font-bold text-sm text-ink mb-1">
               Visit Us
             </h2>
             <p className="text-[11px] text-on-surface-variant">

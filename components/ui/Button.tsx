@@ -10,8 +10,8 @@ const variantStyles: Record<ButtonVariant, string> = {
   primary:
     "gradient-primary text-on-primary whisper-shadow hover:opacity-90 active:scale-95",
   secondary:
-    "border border-primary/10 text-primary hover:bg-surface-container-low",
-  tertiary: "text-secondary font-bold hover:text-primary",
+    "border border-primary/10 text-ink hover:bg-surface-container-low",
+  tertiary: "text-secondary font-bold hover:text-ink",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {

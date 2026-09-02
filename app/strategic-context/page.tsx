@@ -17,15 +17,15 @@ export default function StrategicContextPage() {
       <header className="fixed w-full top-0 z-50 bg-surface/80 backdrop-blur-md glass-nav whisper-shadow">
         <nav className="flex items-center justify-between px-8 py-6 max-w-full mx-auto">
           <div className="flex items-center gap-3">
-            <span className="material-symbols-outlined text-primary" aria-hidden="true">
+            <span className="material-symbols-outlined text-ink" aria-hidden="true">
               analytics
             </span>
-            <span className="font-newsreader text-2xl italic font-bold text-primary">
+            <span className="font-newsreader text-2xl italic font-bold text-ink">
               Discovery Session
             </span>
           </div>
           <div className="hidden md:flex items-center gap-8">
-            <span className="text-primary border-b-2 border-primary font-bold text-sm tracking-wide uppercase">
+            <span className="text-ink border-b-2 border-primary font-bold text-sm tracking-wide uppercase">
               Strategic Context
             </span>
             <a
@@ -43,7 +43,7 @@ export default function StrategicContextPage() {
           </div>
           <div className="flex items-center gap-4">
             <a href="/client-portal" aria-label="Account">
-              <span className="material-symbols-outlined text-primary" aria-hidden="true">
+              <span className="material-symbols-outlined text-ink" aria-hidden="true">
                 account_circle
               </span>
             </a>
@@ -56,14 +56,14 @@ export default function StrategicContextPage() {
         <div className="mb-12">
           <div className="flex justify-between items-end mb-4">
             <div>
-              <span className="text-on-tertiary-fixed-variant font-bold text-xs uppercase tracking-[0.2em] block mb-1">
+              <span className="text-accent font-bold text-xs uppercase tracking-[0.2em] block mb-1">
                 Architecture Journey
               </span>
-              <span className="font-newsreader text-xl text-primary">
+              <span className="font-newsreader text-xl text-ink">
                 Step 2 of 2: Finalizing Strategy
               </span>
             </div>
-            <span className="font-manrope font-bold text-primary">100%</span>
+            <span className="font-manrope font-bold text-ink">100%</span>
           </div>
           <div className="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
             <div className="h-full bg-gradient-to-r from-primary to-primary-container w-full rounded-full" />
@@ -74,7 +74,7 @@ export default function StrategicContextPage() {
           {/* Left Column: Content */}
           <div className="lg:col-span-5 space-y-8">
             <div>
-              <h1 className="font-newsreader text-5xl md:text-6xl text-primary leading-tight mb-6">
+              <h1 className="font-newsreader text-5xl md:text-6xl text-ink leading-tight mb-6">
                 Strategic Context
               </h1>
               <p className="text-lg text-on-surface-variant leading-relaxed">
@@ -112,7 +112,7 @@ export default function StrategicContextPage() {
       <footer className="bg-surface-container w-full py-12 mt-auto">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 px-12 max-w-7xl mx-auto">
           <div className="flex flex-col gap-2">
-            <span className="font-newsreader text-xl font-semibold text-primary-container">
+            <span className="font-newsreader text-xl font-semibold text-ink">
               The Digital Architect
             </span>
             <p className="font-manrope text-sm text-on-surface-variant max-w-xs">

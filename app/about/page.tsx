@@ -48,10 +48,10 @@ export default function AboutPage() {
       <main id="main-content" className="pt-32 pb-24">
         {/* Hero */}
         <section className="px-6 md:px-8 max-w-4xl mx-auto text-center mb-24">
-          <span className="text-on-tertiary-fixed-variant font-manrope font-bold text-xs uppercase tracking-widest mb-4 block">
+          <span className="text-accent font-manrope font-bold text-xs uppercase tracking-widest mb-4 block">
             The Digital Architect
           </span>
-          <h1 className="text-5xl md:text-6xl font-newsreader text-primary font-bold leading-tight mb-8">
+          <h1 className="text-5xl md:text-6xl font-newsreader text-ink font-bold leading-tight mb-8">
             Architecture Rooted in Purpose.
           </h1>
           <div className="relative aspect-video rounded-xl overflow-hidden whisper-shadow ghost-border max-w-2xl mx-auto">
@@ -68,7 +68,7 @@ export default function AboutPage() {
 
         {/* Story */}
         <section className="px-6 md:px-8 max-w-3xl mx-auto mb-24">
-          <h2 className="text-3xl font-newsreader text-primary font-bold mb-6 italic">
+          <h2 className="text-3xl font-newsreader text-ink font-bold mb-6 italic">
             The Story of the Architect
           </h2>
           <p className="text-lg text-on-surface-variant leading-relaxed mb-4">
@@ -86,7 +86,7 @@ export default function AboutPage() {
 
         {/* Core Values */}
         <section className="px-6 md:px-8 max-w-6xl mx-auto mb-24">
-          <h2 className="text-center font-newsreader italic text-3xl text-primary mb-12">
+          <h2 className="text-center font-newsreader italic text-3xl text-ink mb-12">
             Our Core Values
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
@@ -96,7 +96,7 @@ export default function AboutPage() {
                 className={
                   index === 1
                     ? "bg-primary-container text-on-primary p-8 rounded-xl whisper-shadow"
-                    : "bg-surface-container-lowest text-primary p-8 rounded-xl ghost-border whisper-shadow"
+                    : "bg-surface-container-lowest text-ink p-8 rounded-xl ghost-border whisper-shadow"
                 }
               >
                 <span
@@ -128,7 +128,7 @@ export default function AboutPage() {
 
         {/* Team */}
         <section className="px-6 md:px-8 max-w-6xl mx-auto mb-24">
-          <h2 className="text-center font-newsreader italic text-3xl text-primary mb-12">
+          <h2 className="text-center font-newsreader italic text-3xl text-ink mb-12">
             The Minds Behind the Blueprint
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
@@ -139,7 +139,7 @@ export default function AboutPage() {
                     person
                   </span>
                 </div>
-                <h3 className="font-newsreader font-bold text-primary text-lg">
+                <h3 className="font-newsreader font-bold text-ink text-lg">
                   {member.name}
                 </h3>
                 <p className="text-sm text-on-surface-variant">{member.role}</p>

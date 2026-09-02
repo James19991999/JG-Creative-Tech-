@@ -40,7 +40,7 @@ export function CookiePreferences() {
   return (
     <section className="space-y-8">
       <div className="space-y-2">
-        <h3 className="font-newsreader text-3xl font-bold text-primary">
+        <h3 className="font-newsreader text-3xl font-bold text-ink">
           Operational Frameworks
         </h3>
         <p className="text-on-surface-variant uppercase tracking-wider font-semibold text-xs">
@@ -80,7 +80,7 @@ export function CookiePreferences() {
           <div className="bg-surface-container-lowest p-8 rounded-xl space-y-6 hover:bg-surface-container-high transition-colors duration-300">
             <div className="flex justify-between items-start">
               <div className="space-y-2">
-                <h4 className="font-newsreader text-xl font-bold text-primary">
+                <h4 className="font-newsreader text-xl font-bold text-ink">
                   Analytics &amp; Performance
                 </h4>
                 <p className="text-on-surface-variant text-sm leading-relaxed">
@@ -96,7 +96,7 @@ export function CookiePreferences() {
                   className="sr-only peer"
                   type="checkbox"
                 />
-                <div className="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary" />
+                <div className="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary dark:peer-checked:bg-secondary-fixed-dim" />
               </label>
             </div>
           </div>
@@ -105,7 +105,7 @@ export function CookiePreferences() {
           <div className="bg-surface-container-lowest p-8 rounded-xl space-y-6 hover:bg-surface-container-high transition-colors duration-300">
             <div className="flex justify-between items-start">
               <div className="space-y-2">
-                <h4 className="font-newsreader text-xl font-bold text-primary">
+                <h4 className="font-newsreader text-xl font-bold text-ink">
                   Marketing &amp; Advertising
                 </h4>
                 <p className="text-on-surface-variant text-sm leading-relaxed">
@@ -121,7 +121,7 @@ export function CookiePreferences() {
                   className="sr-only peer"
                   type="checkbox"
                 />
-                <div className="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary" />
+                <div className="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary dark:peer-checked:bg-secondary-fixed-dim" />
               </label>
             </div>
           </div>

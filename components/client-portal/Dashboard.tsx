@@ -43,7 +43,7 @@ function formatBytes(bytes: number): string {
 
 const INVOICE_STATUS_STYLES: Record<string, string> = {
   paid: "bg-secondary/10 text-secondary",
-  sent: "bg-primary-container/20 text-primary",
+  sent: "bg-primary-container/20 text-ink",
   overdue: "bg-error-container text-on-error-container",
   draft: "bg-surface-container text-on-surface-variant",
 };
@@ -177,7 +177,7 @@ export function ClientPortalDashboard() {
     <div className="bg-surface text-on-surface min-h-screen pb-24 md:pb-0 md:pl-20">
       {/* TopAppBar */}
       <header className="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl whisper-shadow flex justify-between items-center px-6 py-4 max-w-full md:pl-26">
-        <h1 className="text-xl font-newsreader font-bold text-primary">
+        <h1 className="text-xl font-newsreader font-bold text-ink">
           Infrastructure Portal
         </h1>
         <div className="flex items-center gap-4 relative">
@@ -201,7 +201,7 @@ export function ClientPortalDashboard() {
               ) : (
                 notifications.map((n) => (
                   <div key={n.id} className="p-3 rounded-lg hover:bg-surface-container">
-                    <p className="font-bold text-sm text-primary">{n.title}</p>
+                    <p className="font-bold text-sm text-ink">{n.title}</p>
                     <p className="text-xs text-on-surface-variant mt-1">{n.body}</p>
                     <p className="text-[10px] text-on-surface-variant/70 mt-1">
                       {formatDate(n.createdAt)}
@@ -220,7 +220,7 @@ export function ClientPortalDashboard() {
           <button
             type="button"
             onClick={() => signOut()}
-            className="text-sm font-bold text-on-surface-variant hover:text-primary transition-colors"
+            className="text-sm font-bold text-on-surface-variant hover:text-ink transition-colors"
           >
             Sign out
           </button>
@@ -230,12 +230,12 @@ export function ClientPortalDashboard() {
       <main id="main-content" className="pt-24 px-6 md:px-12 max-w-7xl mx-auto space-y-12">
         {/* Welcome Section */}
         <section className="mt-8">
-          <span className="text-on-tertiary-fixed-variant font-medium text-xs tracking-[0.2em] uppercase mb-2 block">
+          <span className="text-accent font-medium text-xs tracking-[0.2em] uppercase mb-2 block">
             Executive Overview
           </span>
           <div className="flex flex-col md:flex-row justify-between items-end gap-6">
             <div>
-              <h2 className="font-newsreader text-5xl md:text-6xl font-semibold text-primary tracking-tight">
+              <h2 className="font-newsreader text-5xl md:text-6xl font-semibold text-ink tracking-tight">
                 Welcome back, {profileLoading ? "…" : displayName}
               </h2>
               <p className="text-on-surface-variant mt-3 max-w-xl text-lg leading-relaxed">
@@ -353,12 +353,12 @@ export function ClientPortalDashboard() {
               className="group flex items-center justify-between bg-surface-container-lowest p-6 rounded-[1.5rem] hover:bg-surface-container transition-all duration-300 disabled:opacity-60 text-left"
             >
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <div className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-ink group-hover:bg-primary group-hover:text-white transition-colors">
                   <span className="material-symbols-outlined" aria-hidden="true">
                     upload_file
                   </span>
                 </div>
-                <span className="font-bold text-primary">
+                <span className="font-bold text-ink">
                   {uploading ? "Uploading…" : "Upload Documents"}
                 </span>
               </div>
@@ -378,12 +378,12 @@ export function ClientPortalDashboard() {
               className="group flex items-center justify-between bg-surface-container-lowest p-6 rounded-[1.5rem] hover:bg-surface-container transition-all duration-300 text-left"
             >
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <div className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-ink group-hover:bg-primary group-hover:text-white transition-colors">
                   <span className="material-symbols-outlined" aria-hidden="true">
                     forum
                   </span>
                 </div>
-                <span className="font-bold text-primary">Message Team</span>
+                <span className="font-bold text-ink">Message Team</span>
               </div>
             </button>
 
@@ -395,12 +395,12 @@ export function ClientPortalDashboard() {
               className="group flex items-center justify-between bg-surface-container-lowest p-6 rounded-[1.5rem] hover:bg-surface-container transition-all duration-300 text-left"
             >
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <div className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-ink group-hover:bg-primary group-hover:text-white transition-colors">
                   <span className="material-symbols-outlined" aria-hidden="true">
                     receipt_long
                   </span>
                 </div>
-                <span className="font-bold text-primary">View Invoices</span>
+                <span className="font-bold text-ink">View Invoices</span>
               </div>
             </button>
           </div>
@@ -448,7 +448,7 @@ export function ClientPortalDashboard() {
                         </span>
                       </div>
                       <div className="min-w-0">
-                        <h4 className="font-bold text-primary truncate">
+                        <h4 className="font-bold text-ink truncate">
                           {docItem.name}
                         </h4>
                         <p className="text-xs text-on-surface-variant">
@@ -466,7 +466,7 @@ export function ClientPortalDashboard() {
                         onClick={() =>
                           handleDownload(docItem.storagePath, docItem.name)
                         }
-                        className="material-symbols-outlined text-on-surface-variant hover:text-primary"
+                        className="material-symbols-outlined text-on-surface-variant hover:text-ink"
                       >
                         download
                       </button>
@@ -495,13 +495,13 @@ export function ClientPortalDashboard() {
                   className="flex items-center justify-between p-5 bg-surface-container-lowest rounded-2xl ghost-border"
                 >
                   <div>
-                    <h4 className="font-bold text-primary">Invoice {inv.number}</h4>
+                    <h4 className="font-bold text-ink">Invoice {inv.number}</h4>
                     <p className="text-xs text-on-surface-variant">
                       Issued {formatDate(inv.issuedAt)} · Due {formatDate(inv.dueAt)}
                     </p>
                   </div>
                   <div className="flex items-center gap-4">
-                    <span className="font-bold text-primary">
+                    <span className="font-bold text-ink">
                       {(inv.amountCents / 100).toLocaleString(undefined, {
                         style: "currency",
                         currency: inv.currency || "USD",
@@ -522,7 +522,7 @@ export function ClientPortalDashboard() {
         {/* Infrastructure Accent Section */}
         {profile?.cdnUptimePercent ? (
           <section className="py-12 border-l-4 border-on-tertiary-container pl-8">
-            <h4 className="font-newsreader text-3xl font-semibold text-primary">
+            <h4 className="font-newsreader text-3xl font-semibold text-ink">
               System Integrity Report
             </h4>
             <p className="text-on-surface-variant mt-2 max-w-2xl">
@@ -547,7 +547,7 @@ export function ClientPortalDashboard() {
           className="fixed inset-0 z-[100] bg-black/40 flex items-center justify-center px-6"
         >
           <div className="bg-surface-container-lowest rounded-2xl p-8 max-w-md w-full whisper-shadow">
-            <h3 id="message-team-title" className="font-newsreader text-2xl font-bold text-primary mb-4">
+            <h3 id="message-team-title" className="font-newsreader text-2xl font-bold text-ink mb-4">
               Message your team
             </h3>
             {messageState === "sent" ? (
@@ -588,7 +588,7 @@ export function ClientPortalDashboard() {
                   <button
                     type="button"
                     onClick={() => setMessageOpen(false)}
-                    className="flex-1 border border-outline-variant text-primary font-bold py-3 rounded-full"
+                    className="flex-1 border border-outline-variant text-ink font-bold py-3 rounded-full"
                   >
                     Cancel
                   </button>
@@ -636,16 +636,16 @@ export function ClientPortalDashboard() {
         className="hidden md:flex fixed left-0 top-0 h-full w-20 flex-col items-center py-8 bg-surface-container-low z-[60]"
       >
         <div className="mb-12">
-          <span className="material-symbols-outlined text-primary text-3xl" aria-hidden="true">token</span>
+          <span className="material-symbols-outlined text-ink text-3xl" aria-hidden="true">token</span>
         </div>
         <div className="flex flex-col gap-8">
           <a href="/client-portal" aria-current="page" aria-label="Overview" className="material-symbols-outlined text-primary bg-white p-3 rounded-2xl shadow-md">
             dashboard
           </a>
-          <a href="/portfolio" aria-label="Projects" className="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">
+          <a href="/portfolio" aria-label="Projects" className="material-symbols-outlined text-on-surface-variant hover:text-ink transition-colors">
             account_tree
           </a>
-          <a href="/contact" aria-label="Support" className="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">
+          <a href="/contact" aria-label="Support" className="material-symbols-outlined text-on-surface-variant hover:text-ink transition-colors">
             chat_bubble
           </a>
         </div>

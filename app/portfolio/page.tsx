@@ -26,7 +26,7 @@ export default function PortfolioPage() {
           </span>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-12">
             <div className="max-w-2xl">
-              <h1 className="font-headline text-5xl md:text-7xl text-primary leading-[1.1] mb-8 italic">
+              <h1 className="font-headline text-5xl md:text-7xl text-ink leading-[1.1] mb-8 italic">
                 The Archive of Excellence
               </h1>
               <p className="font-body text-on-surface-variant text-lg leading-relaxed max-w-xl">
@@ -86,7 +86,7 @@ export default function PortfolioPage() {
         <section className="bg-surface-container-low rounded-[32px] p-8 md:p-16 mb-32">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="font-headline text-4xl text-primary mb-6">
+              <h2 className="font-headline text-4xl text-ink mb-6">
                 Behind the Craft
               </h2>
               <p className="font-body text-on-surface-variant mb-8 text-lg">
@@ -98,7 +98,7 @@ export default function PortfolioPage() {
                 <li className="flex gap-4">
                   <span className="material-symbols-outlined text-secondary" aria-hidden="true">terminal</span>
                   <div>
-                    <span className="font-body font-bold block text-primary">
+                    <span className="font-body font-bold block text-ink">
                       Micro-Service Architecture
                     </span>
                     <span className="font-body text-sm text-on-surface-variant">
@@ -110,7 +110,7 @@ export default function PortfolioPage() {
                 <li className="flex gap-4">
                   <span className="material-symbols-outlined text-secondary" aria-hidden="true">speed</span>
                   <div>
-                    <span className="font-body font-bold block text-primary">
+                    <span className="font-body font-bold block text-ink">
                       Edge-First Performance
                     </span>
                     <span className="font-body text-sm text-on-surface-variant">
@@ -123,23 +123,23 @@ export default function PortfolioPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-surface-container-lowest p-6 rounded-xl shadow-sm ghost-border">
-                <span className="material-symbols-outlined text-on-tertiary-fixed-variant mb-4 block" aria-hidden="true">cloud</span>
-                <h3 className="font-body font-bold text-primary mb-2">Cloud Native</h3>
+                <span className="material-symbols-outlined text-accent mb-4 block" aria-hidden="true">cloud</span>
+                <h3 className="font-body font-bold text-ink mb-2">Cloud Native</h3>
                 <p className="font-body text-xs text-on-surface-variant">AWS &amp; Google Cloud infrastructure.</p>
               </div>
               <div className="bg-surface-container-lowest p-6 rounded-xl shadow-sm ghost-border mt-8">
-                <span className="material-symbols-outlined text-on-tertiary-fixed-variant mb-4 block" aria-hidden="true">security</span>
-                <h3 className="font-body font-bold text-primary mb-2">Hardened Security</h3>
+                <span className="material-symbols-outlined text-accent mb-4 block" aria-hidden="true">security</span>
+                <h3 className="font-body font-bold text-ink mb-2">Hardened Security</h3>
                 <p className="font-body text-xs text-on-surface-variant">Enterprise-grade encryption by default.</p>
               </div>
               <div className="bg-surface-container-lowest p-6 rounded-xl shadow-sm ghost-border -mt-8">
-                <span className="material-symbols-outlined text-on-tertiary-fixed-variant mb-4 block" aria-hidden="true">database</span>
-                <h3 className="font-body font-bold text-primary mb-2">Elastic Data</h3>
+                <span className="material-symbols-outlined text-accent mb-4 block" aria-hidden="true">database</span>
+                <h3 className="font-body font-bold text-ink mb-2">Elastic Data</h3>
                 <p className="font-body text-xs text-on-surface-variant">PostgreSQL and NoSQL hybrid systems.</p>
               </div>
               <div className="bg-surface-container-lowest p-6 rounded-xl shadow-sm ghost-border">
-                <span className="material-symbols-outlined text-on-tertiary-fixed-variant mb-4 block" aria-hidden="true">api</span>
-                <h3 className="font-body font-bold text-primary mb-2">Seamless APIs</h3>
+                <span className="material-symbols-outlined text-accent mb-4 block" aria-hidden="true">api</span>
+                <h3 className="font-body font-bold text-ink mb-2">Seamless APIs</h3>
                 <p className="font-body text-xs text-on-surface-variant">GraphQL &amp; RESTful integrations.</p>
               </div>
             </div>
@@ -148,7 +148,7 @@ export default function PortfolioPage() {
 
         {/* CTA Footer */}
         <section className="text-center py-24">
-          <h2 className="font-headline text-5xl md:text-7xl text-primary mb-12 italic">
+          <h2 className="font-headline text-5xl md:text-7xl text-ink mb-12 italic">
             Ready to build the future?
           </h2>
           <div className="flex flex-col md:flex-row justify-center items-center gap-6">

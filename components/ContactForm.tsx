@@ -65,7 +65,7 @@ export function ContactForm() {
         >
           check_circle
         </span>
-        <h3 className="font-newsreader text-xl font-bold text-primary mb-2">
+        <h3 className="font-newsreader text-xl font-bold text-ink mb-2">
           Message sent.
         </h3>
         <p className="text-on-surface-variant text-sm">

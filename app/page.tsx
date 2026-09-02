@@ -56,7 +56,7 @@ export default function HomePage() {
                 Digital Infrastructure as a Craft
               </span>
               <h1
-                className="hero-reveal text-5xl md:text-7xl font-newsreader text-primary leading-tight font-bold mb-6"
+                className="hero-reveal text-5xl md:text-7xl font-newsreader text-ink leading-tight font-bold mb-6"
                 style={{ animationDelay: "100ms" }}
               >
                 Empowering Kenyan SMEs with{" "}
@@ -91,13 +91,13 @@ export default function HomePage() {
               <div className="absolute -bottom-8 -left-8 bg-surface-container-lowest p-6 rounded-xl whisper-shadow z-20 ghost-border md:block hidden max-w-[240px]">
                 <div className="flex items-center gap-3 mb-2">
                   <span
-                    className="material-symbols-outlined text-on-tertiary-fixed-variant"
+                    className="material-symbols-outlined text-accent"
                     style={{ fontVariationSettings: "'FILL' 1" }}
                     aria-hidden="true"
                   >
                     verified
                   </span>
-                  <span className="font-manrope font-bold text-primary">
+                  <span className="font-manrope font-bold text-ink">
                     Local Resilience
                   </span>
                 </div>
@@ -116,7 +116,7 @@ export default function HomePage() {
             <div className="flex flex-col md:flex-row gap-16 items-start">
               <div className="md:w-1/3">
                 <div className="w-12 h-1 bg-on-tertiary-container mb-6" />
-                <h2 className="text-4xl font-newsreader text-primary font-bold leading-tight">
+                <h2 className="text-4xl font-newsreader text-ink font-bold leading-tight">
                   Architecture Rooted in Local Ground.
                 </h2>
               </div>
@@ -131,7 +131,7 @@ export default function HomePage() {
                 </p>
                 <div className="grid grid-cols-2 gap-8">
                   <div>
-                    <h3 className="text-primary font-bold text-2xl font-newsreader mb-2">
+                    <h3 className="text-ink font-bold text-2xl font-newsreader mb-2">
                       25+
                     </h3>
                     <p className="text-sm text-on-surface-variant font-manrope">
@@ -139,7 +139,7 @@ export default function HomePage() {
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-primary font-bold text-2xl font-newsreader mb-2">
+                    <h3 className="text-ink font-bold text-2xl font-newsreader mb-2">
                       98%
                     </h3>
                     <p className="text-sm text-on-surface-variant font-manrope">
@@ -156,10 +156,10 @@ export default function HomePage() {
         <section className="py-24 px-6 md:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <span className="text-on-tertiary-fixed-variant font-manrope font-bold text-xs uppercase tracking-widest">
+              <span className="text-accent font-manrope font-bold text-xs uppercase tracking-widest">
                 Our Capabilities
               </span>
-              <h2 className="text-4xl md:text-5xl font-newsreader text-primary font-bold mt-2">
+              <h2 className="text-4xl md:text-5xl font-newsreader text-ink font-bold mt-2">
                 Comprehensive Digital Infrastructure
               </h2>
             </div>
@@ -271,7 +271,7 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-3 gap-12">
               <div className="md:col-span-1">
-                <h2 className="text-4xl font-newsreader text-primary font-bold mb-6">
+                <h2 className="text-4xl font-newsreader text-ink font-bold mb-6">
                   Voice of the Partners.
                 </h2>
                 <p className="text-on-surface-variant font-manrope leading-relaxed">
@@ -286,7 +286,7 @@ export default function HomePage() {
                     key={t.name}
                     className="bg-surface-container-lowest p-8 rounded-xl whisper-shadow border-l-4 border-on-tertiary-container"
                   >
-                    <p className="font-newsreader italic text-lg text-primary mb-6">
+                    <p className="font-newsreader italic text-lg text-ink mb-6">
                       &quot;{t.quote}&quot;
                     </p>
                     <div className="flex items-center gap-4">
@@ -300,7 +300,7 @@ export default function HomePage() {
                         />
                       </div>
                       <div>
-                        <h3 className="font-manrope font-bold text-primary text-sm not-italic">
+                        <h3 className="font-manrope font-bold text-ink text-sm not-italic">
                           {t.name}
                         </h3>
                         <p className="text-xs text-on-surface-variant not-italic">

@@ -40,11 +40,11 @@ export function Sidebar({
       className={`hidden lg:flex fixed left-0 top-0 h-full w-20 xl:w-64 flex-col items-center xl:items-stretch py-8 xl:px-4 bg-surface-container-low z-40 ${className}`}
     >
       <div className="mb-12 flex items-center gap-3 xl:px-2">
-        <span className="material-symbols-outlined text-primary text-3xl" aria-hidden="true">
+        <span className="material-symbols-outlined text-ink text-3xl" aria-hidden="true">
           {brandIcon}
         </span>
         {brandLabel ? (
-          <span className="hidden xl:inline font-newsreader font-bold text-primary text-lg">
+          <span className="hidden xl:inline font-newsreader font-bold text-ink text-lg">
             {brandLabel}
           </span>
         ) : null}

@@ -93,7 +93,7 @@ export function HeroVideo({ mp4Src, webmSrc, poster }: HeroVideoProps) {
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-on-tertiary-container opacity-75" />
           <span className="relative inline-flex rounded-full h-2 w-2 bg-on-tertiary-container" />
         </span>
-        <span className="text-[10px] font-manrope font-bold tracking-widest uppercase text-primary">
+        <span className="text-[10px] font-manrope font-bold tracking-widest uppercase text-ink">
           In Motion
         </span>
       </div>
@@ -109,7 +109,7 @@ export function HeroVideo({ mp4Src, webmSrc, poster }: HeroVideoProps) {
           className="w-9 h-9 rounded-full bg-surface-container-lowest/95 backdrop-blur flex items-center justify-center whisper-shadow hover:scale-105 active:scale-95 transition-transform"
         >
           <span
-            className="material-symbols-outlined text-primary text-lg"
+            className="material-symbols-outlined text-ink text-lg"
             aria-hidden="true"
           >
             {isPlaying ? "pause" : "play_arrow"}
@@ -122,7 +122,7 @@ export function HeroVideo({ mp4Src, webmSrc, poster }: HeroVideoProps) {
           className="w-9 h-9 rounded-full bg-surface-container-lowest/95 backdrop-blur flex items-center justify-center whisper-shadow hover:scale-105 active:scale-95 transition-transform"
         >
           <span
-            className="material-symbols-outlined text-primary text-lg"
+            className="material-symbols-outlined text-ink text-lg"
             aria-hidden="true"
           >
             {isMuted ? "volume_off" : "volume_up"}

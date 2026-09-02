@@ -22,11 +22,11 @@ export default function CookiePolicyPage() {
             aria-label="Back to home"
             className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container transition-colors active:scale-95 duration-200"
           >
-            <span className="material-symbols-outlined text-primary" aria-hidden="true">
+            <span className="material-symbols-outlined text-ink" aria-hidden="true">
               arrow_back
             </span>
           </a>
-          <h1 className="font-newsreader font-semibold text-lg text-primary">Cookie Policy</h1>
+          <h1 className="font-newsreader font-semibold text-lg text-ink">Cookie Policy</h1>
         </div>
       </header>
 
@@ -34,11 +34,11 @@ export default function CookiePolicyPage() {
         {/* Hero/Introduction Section */}
         <section className="space-y-6">
           <div className="inline-block border-l-4 border-on-tertiary-container pl-4">
-            <span className="text-on-tertiary-fixed-variant font-manrope text-xs font-bold uppercase tracking-widest">
+            <span className="text-accent font-manrope text-xs font-bold uppercase tracking-widest">
               Digital Infrastructure
             </span>
           </div>
-          <h2 className="font-newsreader text-5xl md:text-6xl font-extrabold text-primary leading-tight">
+          <h2 className="font-newsreader text-5xl md:text-6xl font-extrabold text-ink leading-tight">
             Architecting your <span className="italic font-normal">digital privacy</span>.
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pt-4">
@@ -78,7 +78,7 @@ export default function CookiePolicyPage() {
         {/* Retention Section */}
         <section className="bg-surface-container rounded-xl p-10 grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <h3 className="font-newsreader text-3xl font-bold text-primary">
+            <h3 className="font-newsreader text-3xl font-bold text-ink">
               Data Retention Lifecycle
             </h3>
             <p className="text-on-surface-variant leading-relaxed">
@@ -107,7 +107,7 @@ export default function CookiePolicyPage() {
 
         {/* Contact Section */}
         <section className="text-center py-8 border-t border-outline-variant/15">
-          <h3 className="font-newsreader text-2xl font-bold text-primary mb-4">
+          <h3 className="font-newsreader text-2xl font-bold text-ink mb-4">
             Inquiries regarding data sovereignty?
           </h3>
           <p className="text-on-surface-variant mb-8 max-w-lg mx-auto">
@@ -129,7 +129,7 @@ export default function CookiePolicyPage() {
       {/* BottomNavBar */}
       <nav
         aria-label="Mobile"
-        className="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center h-20 px-4 bg-white z-50 rounded-t-xl border-t border-outline-variant/15 shadow-[0_-8px_24px_rgba(25,28,30,0.06)]"
+        className="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center h-20 px-4 bg-surface-container-lowest z-50 rounded-t-xl border-t border-outline-variant/15 shadow-[0_-8px_24px_rgba(25,28,30,0.06)]"
       >
         <a
           className="flex flex-col items-center justify-center bg-primary-fixed text-primary rounded-full px-5 py-1 active:scale-90 transition-transform"

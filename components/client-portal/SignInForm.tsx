@@ -79,7 +79,7 @@ export function SignInForm() {
       <div className="mb-5">
         <label
           htmlFor="email"
-          className="block text-sm font-bold text-primary mb-2"
+          className="block text-sm font-bold text-ink mb-2"
         >
           Email
         </label>
@@ -96,7 +96,7 @@ export function SignInForm() {
       <div className="mb-6">
         <label
           htmlFor="password"
-          className="block text-sm font-bold text-primary mb-2"
+          className="block text-sm font-bold text-ink mb-2"
         >
           Password
         </label>

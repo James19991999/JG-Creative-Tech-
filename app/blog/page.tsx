@@ -35,10 +35,10 @@ export default function BlogIndexPage() {
 
       <main id="main-content" className="pt-32 px-6 md:px-12 max-w-5xl mx-auto pb-24">
         <header className="mb-16">
-          <span className="text-on-tertiary-fixed-variant font-medium text-xs tracking-[0.2em] uppercase mb-3 block">
+          <span className="text-accent font-medium text-xs tracking-[0.2em] uppercase mb-3 block">
             Insights
           </span>
-          <h1 className="font-newsreader text-5xl md:text-7xl text-primary leading-[1.1] italic">
+          <h1 className="font-newsreader text-5xl md:text-7xl text-ink leading-[1.1] italic">
             Field notes from the build.
           </h1>
           <p className="text-on-surface-variant mt-6 max-w-2xl text-lg leading-relaxed">
@@ -59,7 +59,7 @@ export default function BlogIndexPage() {
                 className="group block bg-surface-container-lowest p-8 rounded-2xl whisper-shadow ghost-border hover:bg-surface-container transition-colors"
               >
                 <div className="flex items-center gap-3 mb-3 text-xs font-manrope font-bold uppercase tracking-widest">
-                  <span className="text-on-tertiary-fixed-variant">
+                  <span className="text-accent">
                     {post.category}
                   </span>
                   <span className="text-on-surface-variant" aria-hidden="true">
@@ -75,7 +75,7 @@ export default function BlogIndexPage() {
                     {post.readingTimeMinutes} min read
                   </span>
                 </div>
-                <h2 className="font-newsreader text-2xl md:text-3xl text-primary font-semibold mb-3 group-hover:underline">
+                <h2 className="font-newsreader text-2xl md:text-3xl text-ink font-semibold mb-3 group-hover:underline">
                   {post.title}
                 </h2>
                 <p className="text-on-surface-variant leading-relaxed max-w-2xl">

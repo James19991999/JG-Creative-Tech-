@@ -16,9 +16,9 @@ type FeatureCardProps = {
 
 const variantStyles: Record<FeatureCardVariant, string> = {
   light:
-    "bg-surface-container-lowest text-primary whisper-shadow ghost-border hover:bg-surface-container-high",
+    "bg-surface-container-lowest text-ink whisper-shadow ghost-border hover:bg-surface-container-high",
   dark: "bg-primary-container text-on-primary whisper-shadow",
-  muted: "bg-surface-container text-primary ghost-border",
+  muted: "bg-surface-container text-ink ghost-border",
 };
 
 const descriptionVariantStyles: Record<FeatureCardVariant, string> = {

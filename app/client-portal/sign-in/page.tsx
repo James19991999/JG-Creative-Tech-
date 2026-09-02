@@ -14,7 +14,7 @@ export default function ClientPortalSignInPage() {
     >
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="font-newsreader text-3xl font-bold text-primary">
+          <h1 className="font-newsreader text-3xl font-bold text-ink">
             Infrastructure Portal
           </h1>
           <p className="text-on-surface-variant mt-2 text-sm">

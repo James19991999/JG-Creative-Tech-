@@ -46,12 +46,12 @@ export default function DigitalStrategyPage() {
         <section className="relative px-6 md:px-8 py-24 md:py-32 overflow-hidden">
           <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
             <div className="relative z-10">
-              <span className="text-on-tertiary-fixed-variant font-bold tracking-widest uppercase text-xs mb-6 block">
+              <span className="text-accent font-bold tracking-widest uppercase text-xs mb-6 block">
                 Premium Architecture
               </span>
-              <h1 className="font-newsreader text-5xl md:text-7xl text-primary leading-tight mb-8">
+              <h1 className="font-newsreader text-5xl md:text-7xl text-ink leading-tight mb-8">
                 Architecting Your <br />
-                <span className="italic text-primary-container">
+                <span className="italic text-ink">
                   Growth Strategy.
                 </span>
               </h1>
@@ -86,7 +86,7 @@ export default function DigitalStrategyPage() {
                   <div className="w-12 h-12 bg-on-tertiary-container rounded-lg flex items-center justify-center text-white">
                     <span className="material-symbols-outlined" aria-hidden="true">query_stats</span>
                   </div>
-                  <div className="font-bold text-primary text-xl">+124% Growth</div>
+                  <div className="font-bold text-ink text-xl">+124% Growth</div>
                 </div>
                 <p className="text-on-surface-variant text-sm">
                   Average digital ROI for Kenyan SMEs following our
@@ -104,7 +104,7 @@ export default function DigitalStrategyPage() {
               <div className="max-w-2xl">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-1 h-8 bg-on-tertiary-container" />
-                  <h2 className="font-newsreader text-4xl text-primary font-bold">
+                  <h2 className="font-newsreader text-4xl text-ink font-bold">
                     The Strategic Framework
                   </h2>
                 </div>
@@ -123,10 +123,10 @@ export default function DigitalStrategyPage() {
                   <div aria-hidden="true" className="absolute top-0 right-0 p-4 font-newsreader text-6xl text-on-surface-variant/65">
                     {step.number}
                   </div>
-                  <span className="material-symbols-outlined text-4xl text-primary mb-8 block" aria-hidden="true">
+                  <span className="material-symbols-outlined text-4xl text-ink mb-8 block" aria-hidden="true">
                     {step.icon}
                   </span>
-                  <h3 className="text-2xl font-bold text-primary mb-4">{step.title}</h3>
+                  <h3 className="text-2xl font-bold text-ink mb-4">{step.title}</h3>
                   <p className="text-on-surface-variant leading-relaxed">{step.description}</p>
                 </div>
               ))}
@@ -160,7 +160,7 @@ export default function DigitalStrategyPage() {
               <div className="md:col-span-5 grid grid-rows-2 gap-6">
                 <div className="bg-surface-container-high rounded-xl p-8 flex flex-col justify-center">
                   <span className="material-symbols-outlined text-secondary text-4xl mb-4" aria-hidden="true">hub</span>
-                  <h3 className="text-xl font-bold text-primary mb-2">Connected Ecosystems</h3>
+                  <h3 className="text-xl font-bold text-ink mb-2">Connected Ecosystems</h3>
                   <p className="text-on-surface-variant text-sm">
                     Synchronizing your digital touchpoints into one cohesive
                     growth funnel.
@@ -234,7 +234,7 @@ export default function DigitalStrategyPage() {
               <span className="text-secondary font-bold tracking-widest uppercase text-xs mb-6 block">
                 Long-Term Resilience
               </span>
-              <h2 className="font-newsreader text-5xl text-primary leading-tight mb-8">
+              <h2 className="font-newsreader text-5xl text-ink leading-tight mb-8">
                 Engineering <br />
                 <span className="italic">Institutional Stability.</span>
               </h2>
@@ -246,22 +246,22 @@ export default function DigitalStrategyPage() {
               </p>
               <ul className="space-y-6">
                 <li className="flex items-start gap-4">
-                  <span className="material-symbols-outlined text-on-tertiary-fixed-variant" aria-hidden="true">
+                  <span className="material-symbols-outlined text-accent" aria-hidden="true">
                     verified_user
                   </span>
                   <div>
-                    <span className="block font-bold text-primary">Risk Mitigation</span>
+                    <span className="block font-bold text-ink">Risk Mitigation</span>
                     <span className="text-on-surface-variant text-sm">
                       Hardened architectures that protect your brand equity.
                     </span>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
-                  <span className="material-symbols-outlined text-on-tertiary-fixed-variant" aria-hidden="true">
+                  <span className="material-symbols-outlined text-accent" aria-hidden="true">
                     history
                   </span>
                   <div>
-                    <span className="block font-bold text-primary">Future-Proofing</span>
+                    <span className="block font-bold text-ink">Future-Proofing</span>
                     <span className="text-on-surface-variant text-sm">
                       Continuous evolution cycles that keep you ahead of the
                       curve.
@@ -276,7 +276,7 @@ export default function DigitalStrategyPage() {
         {/* CTA */}
         <section className="py-24 px-6 md:px-8">
           <div className="max-w-5xl mx-auto bg-surface-container-low rounded-3xl p-16 text-center">
-            <h2 className="font-newsreader text-4xl md:text-5xl text-primary mb-8">
+            <h2 className="font-newsreader text-4xl md:text-5xl text-ink mb-8">
               Ready to dominate your <br />
               digital landscape?
             </h2>

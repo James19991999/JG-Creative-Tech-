@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { JsonLd } from "@/components/JsonLd";
 import { CookieBanner } from "@/components/CookieBanner";
 import { RouteTransition } from "@/components/RouteTransition";
 import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
+import { themeInitScript } from "@/lib/theme-script";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -54,7 +56,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/*
           NOTE FOR DEPLOYMENT: This project ships with a <link> tag for
@@ -88,6 +90,11 @@ export default function RootLayout({
           rel="stylesheet"
         />
         <JsonLd />
+        <Script
+          id="theme-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: themeInitScript }}
+        />
       </head>
       <body className="bg-background text-on-surface font-body antialiased selection:bg-secondary-container">
         {/* Skip to main content — visible on keyboard focus, hidden otherwise */}

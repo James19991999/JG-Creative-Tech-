@@ -78,7 +78,7 @@ export default function SolutionsPage() {
         <section className="py-24 px-6 max-w-7xl mx-auto">
           <div className="mb-16">
             <div className="w-12 h-1 bg-on-tertiary-container mb-4" />
-            <h2 className="font-headline text-4xl text-primary">
+            <h2 className="font-headline text-4xl text-ink">
               Strategic Solutions
             </h2>
             <p className="text-on-surface-variant mt-2 max-w-md">
@@ -93,7 +93,7 @@ export default function SolutionsPage() {
                 <span className="material-symbols-outlined text-secondary text-4xl mb-6" aria-hidden="true">
                   terminal
                 </span>
-                <h3 className="font-headline text-3xl text-primary mb-4">
+                <h3 className="font-headline text-3xl text-ink mb-4">
                   Web Development
                 </h3>
                 <p className="text-on-surface-variant leading-relaxed max-w-lg mb-8">
@@ -109,7 +109,7 @@ export default function SolutionsPage() {
                   </ul>
                   <Link
                     href="/digital-architecture"
-                    className="inline-flex items-center gap-1 text-sm font-bold text-secondary hover:text-primary transition-colors"
+                    className="inline-flex items-center gap-1 text-sm font-bold text-secondary hover:text-ink transition-colors"
                   >
                     Explore the architecture
                     <span className="material-symbols-outlined text-base" aria-hidden="true">
@@ -153,10 +153,10 @@ export default function SolutionsPage() {
             </div>
             {/* Growth Marketing */}
             <div className="md:col-span-4 bg-surface-container-low p-8 rounded-xl ghost-border">
-              <span className="material-symbols-outlined text-on-tertiary-fixed-variant text-4xl mb-6" aria-hidden="true">
+              <span className="material-symbols-outlined text-accent text-4xl mb-6" aria-hidden="true">
                 query_stats
               </span>
-              <h3 className="font-headline text-3xl text-primary mb-4">
+              <h3 className="font-headline text-3xl text-ink mb-4">
                 Growth Marketing
               </h3>
               <p className="text-on-surface-variant leading-relaxed mb-4">
@@ -165,7 +165,7 @@ export default function SolutionsPage() {
               </p>
               <Link
                 href="/digital-strategy"
-                className="inline-flex items-center gap-1 text-sm font-bold text-secondary hover:text-primary transition-colors"
+                className="inline-flex items-center gap-1 text-sm font-bold text-secondary hover:text-ink transition-colors"
               >
                 View the strategy framework
                 <span className="material-symbols-outlined text-base" aria-hidden="true">
@@ -179,7 +179,7 @@ export default function SolutionsPage() {
                 <span className="material-symbols-outlined text-secondary text-4xl mb-6" aria-hidden="true">
                   psychology
                 </span>
-                <h3 className="font-headline text-3xl text-primary mb-4">
+                <h3 className="font-headline text-3xl text-ink mb-4">
                   Digital Coaching
                 </h3>
                 <p className="text-on-surface-variant leading-relaxed mb-4">
@@ -189,7 +189,7 @@ export default function SolutionsPage() {
                 </p>
                 <Link
                   href="/innovation-lab"
-                  className="inline-flex items-center gap-1 text-sm font-bold text-secondary hover:text-primary transition-colors"
+                  className="inline-flex items-center gap-1 text-sm font-bold text-secondary hover:text-ink transition-colors"
                 >
                   Visit the Innovation Lab
                   <span className="material-symbols-outlined text-base" aria-hidden="true">
@@ -215,7 +215,7 @@ export default function SolutionsPage() {
         <section className="bg-surface-container py-24 px-6">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="font-headline text-4xl text-primary italic">
+              <h2 className="font-headline text-4xl text-ink italic">
                 The Architectural Process
               </h2>
               <p className="text-on-surface-variant mt-2">
@@ -230,10 +230,10 @@ export default function SolutionsPage() {
               <ol className="grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
                 {processSteps.map((step) => (
                   <li key={step.number}>
-                    <div className="bg-white w-12 h-12 rounded-full flex items-center justify-center shadow-md mb-6">
-                      <span className="text-primary font-bold">{step.number}</span>
+                    <div className="bg-surface-container-lowest w-12 h-12 rounded-full flex items-center justify-center shadow-md mb-6">
+                      <span className="text-ink font-bold">{step.number}</span>
                     </div>
-                    <h3 className="font-headline text-2xl text-primary mb-2">
+                    <h3 className="font-headline text-2xl text-ink mb-2">
                       {step.title}
                     </h3>
                     <p className="text-sm text-on-surface-variant leading-relaxed">
@@ -247,9 +247,9 @@ export default function SolutionsPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-24 px-6 text-center bg-white">
+        <section className="py-24 px-6 text-center bg-surface-container-lowest">
           <div className="max-w-2xl mx-auto">
-            <h2 className="font-headline text-5xl text-primary leading-tight mb-8">
+            <h2 className="font-headline text-5xl text-ink leading-tight mb-8">
               Build Your Foundation Today
             </h2>
             <p className="text-on-surface-variant mb-10 text-lg">

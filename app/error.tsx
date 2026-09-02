@@ -22,10 +22,10 @@ export default function GlobalError({ error, reset }: Props) {
     <html lang="en">
       <body className="bg-background min-h-screen flex items-center justify-center px-6">
         <div className="max-w-lg text-center">
-          <span className="text-on-tertiary-fixed-variant font-bold tracking-widest uppercase text-xs mb-6 block">
+          <span className="text-accent font-bold tracking-widest uppercase text-xs mb-6 block">
             Something went wrong
           </span>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-primary"
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-ink"
               style={{ fontFamily: "var(--font-newsreader, Georgia, serif)" }}>
             We hit an unexpected wall.
           </h1>
@@ -44,7 +44,7 @@ export default function GlobalError({ error, reset }: Props) {
             </button>
             <a
               href="/"
-              className="px-8 py-4 rounded-full font-bold border border-outline-variant/40 text-primary hover:bg-surface-container-low transition-colors"
+              className="px-8 py-4 rounded-full font-bold border border-outline-variant/40 text-ink hover:bg-surface-container-low transition-colors"
             >
               Back to Home
             </a>

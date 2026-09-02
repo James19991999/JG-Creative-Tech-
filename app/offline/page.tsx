@@ -19,10 +19,10 @@ export default function OfflinePage() {
         className="min-h-[70vh] flex items-center justify-center px-6 pt-32 pb-24"
       >
         <div className="max-w-lg text-center">
-          <span className="text-on-tertiary-fixed-variant font-bold tracking-widest uppercase text-xs mb-6 block">
+          <span className="text-accent font-bold tracking-widest uppercase text-xs mb-6 block">
             No Connection
           </span>
-          <h1 className="font-newsreader text-6xl md:text-7xl text-primary font-bold mb-6">
+          <h1 className="font-newsreader text-6xl md:text-7xl text-ink font-bold mb-6">
             You&apos;re offline.
           </h1>
           <p className="text-on-surface-variant text-lg mb-10 leading-relaxed">

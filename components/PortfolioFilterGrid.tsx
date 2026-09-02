@@ -118,7 +118,7 @@ export function PortfolioFilterGrid({ projects }: PortfolioFilterGridProps) {
                 <div className="w-1 h-12 bg-on-tertiary-container" />
                 <div>
                   <div className="flex items-center gap-3 mb-2">
-                    <h2 className="font-headline text-2xl md:text-3xl text-primary">
+                    <h2 className="font-headline text-2xl md:text-3xl text-ink">
                       {project.name}
                     </h2>
                     <span

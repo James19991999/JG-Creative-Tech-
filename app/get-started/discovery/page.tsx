@@ -16,10 +16,10 @@ export default function ProjectDiscoveryPage() {
       <header className="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl">
         <div className="flex justify-between items-center px-8 h-20 w-full max-w-screen-2xl mx-auto">
           <div className="flex items-center gap-3">
-            <span className="material-symbols-outlined text-primary text-2xl" aria-hidden="true">
+            <span className="material-symbols-outlined text-ink text-2xl" aria-hidden="true">
               architecture
             </span>
-            <span className="font-newsreader text-2xl font-bold tracking-tight text-primary">
+            <span className="font-newsreader text-2xl font-bold tracking-tight text-ink">
               The Digital Architect
             </span>
           </div>
@@ -39,11 +39,11 @@ export default function ProjectDiscoveryPage() {
         <section className="mb-12">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-1 h-8 bg-on-tertiary-container" />
-            <span className="text-on-tertiary-fixed-variant font-manrope uppercase tracking-widest font-semibold text-xs">
+            <span className="text-accent font-manrope uppercase tracking-widest font-semibold text-xs">
               Initiation Phase
             </span>
           </div>
-          <h1 className="font-newsreader text-4xl md:text-5xl text-primary font-bold mb-4 leading-tight">
+          <h1 className="font-newsreader text-4xl md:text-5xl text-ink font-bold mb-4 leading-tight">
             Project Discovery
           </h1>
           <p className="text-on-surface-variant text-lg max-w-prose">

@@ -70,7 +70,7 @@ export function DiscoveryForm() {
     <form onSubmit={handleSubmit} className="space-y-10">
       {/* Question 1: Primary Goal */}
       <div className="space-y-6">
-        <span className="font-newsreader text-2xl text-primary font-semibold block">
+        <span className="font-newsreader text-2xl text-ink font-semibold block">
           What is your primary goal?
         </span>
         <div className="grid grid-cols-1 gap-4">
@@ -92,7 +92,7 @@ export function DiscoveryForm() {
                   onChange={() => setSelectedGoal(option.value)}
                 />
                 <div className="flex-1">
-                  <span className="block font-bold text-lg text-primary mb-1">
+                  <span className="block font-bold text-lg text-ink mb-1">
                     {option.label}
                   </span>
                   <span className="block text-sm text-on-surface-variant">
@@ -100,7 +100,7 @@ export function DiscoveryForm() {
                   </span>
                 </div>
                 <div className={isChecked ? "opacity-100 transition-opacity" : "opacity-0 transition-opacity"}>
-                  <span className="material-symbols-outlined text-primary" aria-hidden="true">
+                  <span className="material-symbols-outlined text-ink" aria-hidden="true">
                     check_circle
                   </span>
                 </div>
@@ -120,7 +120,7 @@ export function DiscoveryForm() {
       <div className="space-y-4">
         <label
           htmlFor="business-stage"
-          className="font-newsreader text-2xl text-primary font-semibold block"
+          className="font-newsreader text-2xl text-ink font-semibold block"
         >
           Current Business Stage
         </label>
@@ -152,7 +152,7 @@ export function DiscoveryForm() {
       <div className="space-y-4">
         <label
           htmlFor="more-info"
-          className="font-newsreader text-2xl text-primary font-semibold block"
+          className="font-newsreader text-2xl text-ink font-semibold block"
         >
           Tell us more
         </label>

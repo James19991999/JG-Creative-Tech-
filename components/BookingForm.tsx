@@ -81,14 +81,14 @@ export function BookingForm() {
         >
           check_circle
         </span>
-        <h2 className="font-newsreader text-2xl font-bold text-primary mb-2">
+        <h2 className="font-newsreader text-2xl font-bold text-ink mb-2">
           Appointment requested.
         </h2>
         <p className="text-on-surface-variant text-sm mb-6">
           We&apos;ll confirm your November {selectedDay} session at{" "}
           {selectedTime} by email shortly with a calendar invite.
         </p>
-        <a href="/" className="text-sm font-bold text-secondary hover:text-primary transition-colors">
+        <a href="/" className="text-sm font-bold text-secondary hover:text-ink transition-colors">
           ← Back to home
         </a>
       </div>
@@ -112,7 +112,7 @@ export function BookingForm() {
               {/* Date Picker */}
               <div className="p-8 bg-surface-container-lowest">
                 <div className="flex items-center justify-between mb-8">
-                  <h2 className="font-newsreader text-xl text-primary">November 2026</h2>
+                  <h2 className="font-newsreader text-xl text-ink">November 2026</h2>
                   <div className="flex gap-2">
                     <button
                       type="button"
@@ -172,7 +172,7 @@ export function BookingForm() {
               {/* Time Slots */}
               <div className="p-8 lg:border-l border-outline-variant/15 flex flex-col h-full">
                 <div className="mb-6">
-                  <h2 className="font-newsreader text-xl text-primary mb-1">
+                  <h2 className="font-newsreader text-xl text-ink mb-1">
                     {selectedDay ? `November ${selectedDay}, 2026` : "Select a date"}
                   </h2>
                   <p className="text-sm text-on-surface-variant font-medium">
@@ -190,8 +190,8 @@ export function BookingForm() {
                         onClick={() => setSelectedTime(slot)}
                         className={
                           isSelected
-                            ? "w-full py-4 px-6 rounded-full border-2 border-primary bg-primary-container/10 text-primary font-extrabold text-left flex justify-between items-center"
-                            : "w-full py-4 px-6 rounded-full border border-outline-variant/30 text-primary font-bold hover:bg-primary hover:text-white transition-all text-left flex justify-between items-center group"
+                            ? "w-full py-4 px-6 rounded-full border-2 border-primary bg-primary-container/10 text-ink font-extrabold text-left flex justify-between items-center"
+                            : "w-full py-4 px-6 rounded-full border border-outline-variant/30 text-ink font-bold hover:bg-primary hover:text-white transition-all text-left flex justify-between items-center group"
                         }
                       >
                         <span>{slot}</span>
@@ -322,7 +322,7 @@ export function BookingForm() {
           <div className="bg-surface-container-highest p-8 rounded-xl">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 rounded-full bg-surface-container-lowest border border-outline-variant/15 flex items-center justify-center">
-                <span className="material-symbols-outlined text-primary" aria-hidden="true">
+                <span className="material-symbols-outlined text-ink" aria-hidden="true">
                   verified_user
                 </span>
               </div>
@@ -330,7 +330,7 @@ export function BookingForm() {
                 <p className="text-xs uppercase tracking-widest text-on-surface-variant font-bold">
                   Privacy Guaranteed
                 </p>
-                <p className="text-sm font-medium text-primary">
+                <p className="text-sm font-medium text-ink">
                   All sessions are covered by a standard NDA.
                 </p>
               </div>

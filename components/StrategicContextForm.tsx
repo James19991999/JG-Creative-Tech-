@@ -99,7 +99,7 @@ export function StrategicContextForm() {
         <span className="material-symbols-outlined text-4xl text-secondary mb-4 block" aria-hidden="true">
           check_circle
         </span>
-        <h2 className="font-newsreader text-2xl font-bold text-primary mb-2">Strategy finalized.</h2>
+        <h2 className="font-newsreader text-2xl font-bold text-ink mb-2">Strategy finalized.</h2>
         <p className="text-on-surface-variant text-sm">
           Our architects will review your context and follow up within one
           business day.
@@ -118,7 +118,7 @@ export function StrategicContextForm() {
 
       {/* Question 1: Primary KPI */}
       <div className="space-y-6">
-        <span className="font-newsreader text-2xl text-primary block">
+        <span className="font-newsreader text-2xl text-ink block">
           What is your primary KPI for this project?
         </span>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -139,7 +139,7 @@ export function StrategicContextForm() {
                 <span
                   className={
                     isSelected
-                      ? "font-manrope font-semibold text-primary"
+                      ? "font-manrope font-semibold text-ink"
                       : "font-manrope font-semibold text-on-surface"
                   }
                 >
@@ -148,8 +148,8 @@ export function StrategicContextForm() {
                 <span
                   className={
                     isSelected
-                      ? "material-symbols-outlined text-primary"
-                      : "material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors"
+                      ? "material-symbols-outlined text-ink"
+                      : "material-symbols-outlined text-on-surface-variant group-hover:text-ink transition-colors"
                   }
                   aria-hidden="true"
                   style={isSelected ? { fontVariationSettings: "'FILL' 1" } : undefined}
@@ -166,7 +166,7 @@ export function StrategicContextForm() {
       <div className="space-y-6">
         <label
           htmlFor="infrastructure-description"
-          className="font-newsreader text-2xl text-primary block"
+          className="font-newsreader text-2xl text-ink block"
         >
           Current Infrastructure Description
         </label>
@@ -180,7 +180,7 @@ export function StrategicContextForm() {
 
       {/* Technical Priorities */}
       <div className="space-y-6">
-        <span className="font-newsreader text-2xl text-primary block">Technical Priorities</span>
+        <span className="font-newsreader text-2xl text-ink block">Technical Priorities</span>
         <div className="flex flex-wrap gap-4">
           {priorityOptions.map((priority) => (
             <label
@@ -193,7 +193,7 @@ export function StrategicContextForm() {
                 className="w-5 h-5 rounded text-secondary border-none bg-white focus:ring-0"
                 type="checkbox"
               />
-              <span className="font-manrope font-medium text-primary">{priority.label}</span>
+              <span className="font-manrope font-medium text-ink">{priority.label}</span>
             </label>
           ))}
         </div>
@@ -220,7 +220,7 @@ export function StrategicContextForm() {
       <div className="pt-8 flex items-center justify-between">
         <a
           href="/digital-architecture"
-          className="flex items-center gap-2 font-manrope font-bold text-primary hover:text-secondary transition-colors group"
+          className="flex items-center gap-2 font-manrope font-bold text-ink hover:text-secondary transition-colors group"
         >
           <span className="material-symbols-outlined group-hover:-translate-x-1 transition-transform" aria-hidden="true">
             arrow_back

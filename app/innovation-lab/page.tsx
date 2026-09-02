@@ -74,10 +74,10 @@ export default function InnovationLabPage() {
       <header className="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl">
         <div className="flex justify-between items-center px-8 py-4 w-full max-w-7xl mx-auto">
           <div className="flex items-center gap-4">
-            <a href="/" aria-label="Back to home" className="material-symbols-outlined text-primary">
+            <a href="/" aria-label="Back to home" className="material-symbols-outlined text-ink">
               menu
             </a>
-            <h1 className="font-newsreader text-xl font-bold text-primary">Innovation</h1>
+            <h1 className="font-newsreader text-xl font-bold text-ink">Innovation</h1>
           </div>
           <a href="/about" aria-label="About JG Creative Tech" className="w-10 h-10 rounded-full overflow-hidden block">
             <Image
@@ -123,7 +123,7 @@ export default function InnovationLabPage() {
         <section className="px-6 py-16 bg-surface-container-low">
           <div className="flex items-center gap-3 mb-10">
             <div className="w-1 h-8 bg-on-tertiary-container" />
-            <h3 className="font-newsreader text-2xl font-bold text-primary">Active Experiments</h3>
+            <h3 className="font-newsreader text-2xl font-bold text-ink">Active Experiments</h3>
           </div>
           <div className="grid grid-cols-1 gap-6">
             {experiments.map((exp) => (
@@ -139,7 +139,7 @@ export default function InnovationLabPage() {
                     {exp.icon}
                   </span>
                 </div>
-                <h4 className="font-newsreader text-xl font-bold text-primary mb-3">{exp.title}</h4>
+                <h4 className="font-newsreader text-xl font-bold text-ink mb-3">{exp.title}</h4>
                 <p className={exp.image ? "text-on-surface-variant text-sm mb-6" : "text-on-surface-variant text-sm"}>
                   {exp.description}
                 </p>
@@ -155,7 +155,7 @@ export default function InnovationLabPage() {
 
         {/* Tech Stack Deep Dive */}
         <section className="px-6 py-16">
-          <h3 className="font-newsreader text-2xl font-bold text-primary mb-8 text-center italic">
+          <h3 className="font-newsreader text-2xl font-bold text-ink mb-8 text-center italic">
             The Architecture of Performance
           </h3>
           <div className="flex flex-col gap-8 max-w-2xl mx-auto">
@@ -167,7 +167,7 @@ export default function InnovationLabPage() {
                   </span>
                 </div>
                 <div>
-                  <h4 className="font-manrope font-bold text-primary mb-1">{item.title}</h4>
+                  <h4 className="font-manrope font-bold text-ink mb-1">{item.title}</h4>
                   <p className="text-on-surface-variant text-sm">{item.description}</p>
                 </div>
               </div>
@@ -196,7 +196,7 @@ export default function InnovationLabPage() {
 
         {/* CTA Section */}
         <section className="px-6 py-16 text-center">
-          <h3 className="font-newsreader text-3xl font-bold text-primary mb-4">Ready to pioneer?</h3>
+          <h3 className="font-newsreader text-3xl font-bold text-ink mb-4">Ready to pioneer?</h3>
           <p className="font-body text-on-surface-variant mb-10 max-w-xs mx-auto">
             Join our ecosystem and co-create the next standard of
             enterprise technology.
