@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { primaryNavLinks } from "@/lib/site-config";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { SearchTriggerButton } from "@/components/SearchTriggerButton";
 
 type SiteHeaderProps = {
   activeHref?: string;
@@ -83,6 +84,7 @@ export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
           </div>
 
           <div className="flex items-center gap-3">
+            <SearchTriggerButton />
             <ThemeToggle />
 
             {/* CTA — always visible */}

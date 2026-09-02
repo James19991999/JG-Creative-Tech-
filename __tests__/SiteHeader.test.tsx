@@ -2,10 +2,20 @@ import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { usePathname } from "next/navigation";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { CommandPaletteProvider } from "@/components/CommandPalette";
 
 jest.mock("next/navigation", () => ({
   usePathname: jest.fn(),
+  useRouter: () => ({ push: jest.fn() }),
 }));
+
+function renderHeader(props: React.ComponentProps<typeof SiteHeader> = {}) {
+  return render(
+    <CommandPaletteProvider items={[]}>
+      <SiteHeader {...props} />
+    </CommandPaletteProvider>
+  );
+}
 
 describe("SiteHeader", () => {
   beforeEach(() => {
@@ -13,14 +23,14 @@ describe("SiteHeader", () => {
   });
 
   it("renders the wordmark linking to home", () => {
-    render(<SiteHeader />);
+    renderHeader();
 
     const wordmark = screen.getByRole("link", { name: "JG Creative Tech" });
     expect(wordmark).toHaveAttribute("href", "/");
   });
 
   it("renders all primary navigation links in the desktop nav", () => {
-    render(<SiteHeader />);
+    renderHeader();
 
     const desktopNav = screen.getByRole("navigation", { name: "Primary" });
     expect(within(desktopNav).getByRole("link", { name: "Solutions" })).toBeInTheDocument();
@@ -30,14 +40,14 @@ describe("SiteHeader", () => {
   });
 
   it("renders the primary call to action", () => {
-    render(<SiteHeader />);
+    renderHeader();
 
     const cta = screen.getByRole("link", { name: "Get Started" });
     expect(cta).toHaveAttribute("href", "/schedule-consultation");
   });
 
   it("marks the active link with aria-current in the desktop nav", () => {
-    render(<SiteHeader activeHref="/about" />);
+    renderHeader({ activeHref: "/about" });
 
     const desktopNav = screen.getByRole("navigation", { name: "Primary" });
     const aboutLink = within(desktopNav).getByRole("link", { name: "About" });
@@ -45,7 +55,7 @@ describe("SiteHeader", () => {
   });
 
   it("does not mark inactive links with aria-current in the desktop nav", () => {
-    render(<SiteHeader activeHref="/about" />);
+    renderHeader({ activeHref: "/about" });
 
     const desktopNav = screen.getByRole("navigation", { name: "Primary" });
     const solutionsLink = within(desktopNav).getByRole("link", { name: "Solutions" });
@@ -53,13 +63,13 @@ describe("SiteHeader", () => {
   });
 
   it("exposes a labeled navigation landmark", () => {
-    render(<SiteHeader />);
+    renderHeader();
 
     expect(screen.getByRole("navigation", { name: "Primary" })).toBeInTheDocument();
   });
 
   it("hides the mobile drawer by default", () => {
-    const { container } = render(<SiteHeader />);
+    const { container } = renderHeader();
 
     const drawer = container.querySelector("#mobile-nav-drawer");
     expect(drawer).toHaveAttribute("aria-hidden", "true");
@@ -67,7 +77,7 @@ describe("SiteHeader", () => {
 
   it("opens the mobile drawer when the hamburger button is clicked", async () => {
     const user = userEvent.setup();
-    const { container } = render(<SiteHeader />);
+    const { container } = renderHeader();
 
     await user.click(screen.getByRole("button", { name: "Open navigation menu" }));
 
@@ -77,7 +87,7 @@ describe("SiteHeader", () => {
 
   it("exposes pages not reachable from the bottom nav inside the drawer", async () => {
     const user = userEvent.setup();
-    render(<SiteHeader />);
+    renderHeader();
 
     await user.click(screen.getByRole("button", { name: "Open navigation menu" }));
 
@@ -98,7 +108,7 @@ describe("SiteHeader", () => {
 
   it("closes the drawer when the hamburger is toggled again", async () => {
     const user = userEvent.setup();
-    const { container } = render(<SiteHeader />);
+    const { container } = renderHeader();
 
     const toggle = screen.getByRole("button", { name: "Open navigation menu" });
     await user.click(toggle);

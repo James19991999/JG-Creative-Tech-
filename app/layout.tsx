@@ -5,6 +5,8 @@ import { JsonLd } from "@/components/JsonLd";
 import { CookieBanner } from "@/components/CookieBanner";
 import { RouteTransition } from "@/components/RouteTransition";
 import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
+import { CommandPaletteProvider } from "@/components/CommandPalette";
+import { getSearchIndex } from "@/lib/search-index";
 import { themeInitScript } from "@/lib/theme-script";
 
 export const viewport: Viewport = {
@@ -104,9 +106,11 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <RouteTransition>{children}</RouteTransition>
-        <CookieBanner />
-        <ServiceWorkerRegistration />
+        <CommandPaletteProvider items={getSearchIndex()}>
+          <RouteTransition>{children}</RouteTransition>
+          <CookieBanner />
+          <ServiceWorkerRegistration />
+        </CommandPaletteProvider>
       </body>
     </html>
   );
