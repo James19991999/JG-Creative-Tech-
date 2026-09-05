@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import {
   footerCompanyLinks,
   footerLegalLinks,
@@ -14,6 +15,8 @@ import { NewsletterSignup } from "@/components/NewsletterSignup";
  */
 export function SiteFooter() {
   const year = new Date().getFullYear();
+  const t = useTranslations("footer");
+  const tNav = useTranslations("nav");
 
   return (
     <footer className="bg-primary-container text-on-primary-container py-16 px-6 md:px-12">
@@ -23,25 +26,22 @@ export function SiteFooter() {
             JG Creative Tech
           </div>
           <p className="font-manrope text-sm text-white/80 leading-relaxed mb-6">
-            Building the digital foundations for Kenya&apos;s most ambitious
-            businesses. We specialize in digital infrastructure that is both
-            resilient and elegant.
+            {t("blurb")}
           </p>
           <div className="mb-6">
             <p className="text-white font-bold font-newsreader text-sm mb-3">
-              Stay in the loop
+              {t("stayInLoop")}
             </p>
             <NewsletterSignup />
           </div>
           <p className="font-manrope text-sm text-white/80">
-            © {year} JG Creative Tech Solution. Digital Infrastructure as a
-            Premium Craft.
+            {t("copyright", { year })}
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-12">
-          <nav aria-label="Services">
+          <nav aria-label={t("servicesLandmark")}>
             <h2 className="text-white font-bold font-newsreader text-lg mb-6">
-              Services
+              {t("services")}
             </h2>
             <ul className="space-y-4 font-manrope text-sm">
               {footerServiceLinks.map((link) => (
@@ -50,15 +50,15 @@ export function SiteFooter() {
                     href={link.href}
                     className="text-white/70 hover:text-white transition-colors"
                   >
-                    {link.label}
+                    {tNav(link.key)}
                   </Link>
                 </li>
               ))}
             </ul>
           </nav>
-          <nav aria-label="Company">
+          <nav aria-label={t("companyLandmark")}>
             <h2 className="text-white font-bold font-newsreader text-lg mb-6">
-              Company
+              {t("company")}
             </h2>
             <ul className="space-y-4 font-manrope text-sm">
               {footerCompanyLinks.map((link) => (
@@ -67,7 +67,7 @@ export function SiteFooter() {
                     href={link.href}
                     className="text-white/70 hover:text-white transition-colors"
                   >
-                    {link.label}
+                    {tNav(link.key)}
                   </Link>
                 </li>
               ))}
@@ -75,14 +75,14 @@ export function SiteFooter() {
           </nav>
           <div className="col-span-2 md:col-span-1">
             <h2 className="text-white font-bold font-newsreader text-lg mb-6">
-              Connect
+              {t("connect")}
             </h2>
             <div className="flex gap-4">
               <a
                 href={siteConfig.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="JG Creative Tech on LinkedIn (opens in a new tab)"
+                aria-label={t("linkedinLabel")}
                 className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors"
               >
                 <svg
@@ -97,7 +97,7 @@ export function SiteFooter() {
                 href={siteConfig.social.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="JG Creative Tech on GitHub (opens in a new tab)"
+                aria-label={t("githubLabel")}
                 className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors"
               >
                 <svg
@@ -110,7 +110,7 @@ export function SiteFooter() {
               </a>
               <a
                 href={`mailto:${siteConfig.contact.email}`}
-                aria-label="Email JG Creative Tech"
+                aria-label={t("emailLabel")}
                 className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors"
               >
                 <span className="material-symbols-outlined text-sm" aria-hidden="true">
@@ -125,12 +125,12 @@ export function SiteFooter() {
         <div className="flex flex-wrap gap-8 text-xs font-manrope text-white/70">
           {footerLegalLinks.map((link) => (
             <Link key={link.href} href={link.href} className="hover:underline font-bold">
-              {link.label}
+              {tNav(link.key)}
             </Link>
           ))}
         </div>
         <div className="text-xs font-manrope text-white/70 italic">
-          Crafted in Nairobi for the Global Stage.
+          {t("craftedIn")}
         </div>
       </div>
     </footer>

@@ -1,46 +1,43 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Button } from "@/components/ui/Button";
 
-export const metadata: Metadata = {
-  title: "About Us",
-  description:
-    "The Digital Architect philosophy: how JG Creative Tech builds resilient, editorial-grade digital infrastructure for Kenyan SMEs.",
-  alternates: { canonical: "/about" },
+type Props = {
+  params: Promise<{ locale: string }>;
 };
 
-const coreValues = [
-  {
-    icon: "verified",
-    title: "Integrity",
-    description: "Transparent engineering and honest timelines, every project.",
-  },
-  {
-    icon: "bolt",
-    title: "Innovation",
-    description: "Agile-minded infrastructure that anticipates what's next, not just what's now.",
-  },
-  {
-    icon: "shield_person",
-    title: "Resilience",
-    description: "Systems built to withstand market shifts and rapid scaling.",
-  },
-  {
-    icon: "design_services",
-    title: "Craftsmanship",
-    description: "Editorial-grade attention to detail in every interface we ship.",
-  },
-];
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "about" });
+  return {
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+    alternates: { canonical: "/about" },
+  };
+}
+
+const coreValueIcons = ["verified", "bolt", "shield_person", "design_services"];
 
 const team = [
-  { name: "James Gathuru", role: "Founding Architect" },
-  { name: "Sarah Kamau", role: "Strategy Lead" },
-  { name: "David Mwangi", role: "Design Collective Lead" },
+  { name: "James Gathuru", roleKey: "role1" },
+  { name: "Sarah Kamau", roleKey: "role2" },
+  { name: "David Mwangi", roleKey: "role3" },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "about" });
+
+  const coreValues = [
+    { icon: coreValueIcons[0], title: t("value1Title"), description: t("value1Desc") },
+    { icon: coreValueIcons[1], title: t("value2Title"), description: t("value2Desc") },
+    { icon: coreValueIcons[2], title: t("value3Title"), description: t("value3Desc") },
+    { icon: coreValueIcons[3], title: t("value4Title"), description: t("value4Desc") },
+  ];
+
   return (
     <>
       <SiteHeader activeHref="/about" />
@@ -49,10 +46,10 @@ export default function AboutPage() {
         {/* Hero */}
         <section className="px-6 md:px-8 max-w-4xl mx-auto text-center mb-24">
           <span className="text-accent font-manrope font-bold text-xs uppercase tracking-widest mb-4 block">
-            The Digital Architect
+            {t("heroKicker")}
           </span>
           <h1 className="text-5xl md:text-6xl font-newsreader text-ink font-bold leading-tight mb-8">
-            Architecture Rooted in Purpose.
+            {t("heroTitle")}
           </h1>
           <div className="relative aspect-video rounded-xl overflow-hidden whisper-shadow ghost-border max-w-2xl mx-auto">
             <Image
@@ -69,25 +66,20 @@ export default function AboutPage() {
         {/* Story */}
         <section className="px-6 md:px-8 max-w-3xl mx-auto mb-24">
           <h2 className="text-3xl font-newsreader text-ink font-bold mb-6 italic">
-            The Story of the Architect
+            {t("storyTitle")}
           </h2>
           <p className="text-lg text-on-surface-variant leading-relaxed mb-4">
-            JG Creative Tech systems are the cornerstone and soul of the
-            modern marketplace. Without an intentionally crafted digital
-            foundation, businesses are merely treading water.
+            {t("storyPara1")}
           </p>
           <p className="text-lg text-on-surface-variant leading-relaxed">
-            At JG Creative Tech, we engineer experiences that combine the
-            authority of editorial craft with the rigor of enterprise-grade
-            infrastructure, ensuring our partners are equipped for global
-            performance from a Kenyan foundation.
+            {t("storyPara2")}
           </p>
         </section>
 
         {/* Core Values */}
         <section className="px-6 md:px-8 max-w-6xl mx-auto mb-24">
           <h2 className="text-center font-newsreader italic text-3xl text-ink mb-12">
-            Our Core Values
+            {t("coreValuesTitle")}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {coreValues.map((value, index) => (
@@ -129,7 +121,7 @@ export default function AboutPage() {
         {/* Team */}
         <section className="px-6 md:px-8 max-w-6xl mx-auto mb-24">
           <h2 className="text-center font-newsreader italic text-3xl text-ink mb-12">
-            The Minds Behind the Blueprint
+            {t("teamTitle")}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {team.map((member) => (
@@ -142,7 +134,7 @@ export default function AboutPage() {
                 <h3 className="font-newsreader font-bold text-ink text-lg">
                   {member.name}
                 </h3>
-                <p className="text-sm text-on-surface-variant">{member.role}</p>
+                <p className="text-sm text-on-surface-variant">{t(member.roleKey)}</p>
               </div>
             ))}
           </div>
@@ -152,14 +144,13 @@ export default function AboutPage() {
         <section className="px-6 md:px-8">
           <div className="max-w-4xl mx-auto bg-primary rounded-3xl p-12 text-center">
             <h2 className="text-3xl md:text-4xl font-newsreader text-white font-bold mb-4">
-              Join the Evolution.
+              {t("ctaTitle")}
             </h2>
             <p className="text-on-primary-container mb-8 max-w-md mx-auto">
-              Ready to architect your future? Let&apos;s talk about your
-              digital infrastructure.
+              {t("ctaBody")}
             </p>
             <Button href="/schedule-consultation" size="lg">
-              Book Your Slot
+              {t("ctaButton")}
             </Button>
           </div>
         </section>

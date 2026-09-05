@@ -1,4 +1,5 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
+import { renderWithIntl as render } from "@/test-support/test-utils";
 import userEvent from "@testing-library/user-event";
 import { CommandPaletteProvider } from "@/components/CommandPalette";
 import { SearchTriggerButton } from "@/components/SearchTriggerButton";
@@ -6,6 +7,8 @@ import { SearchTriggerButton } from "@/components/SearchTriggerButton";
 const push = jest.fn();
 jest.mock("next/navigation", () => ({
   useRouter: () => ({ push }),
+  usePathname: jest.fn(() => "/"),
+  useParams: jest.fn(() => ({})),
 }));
 
 const items = [

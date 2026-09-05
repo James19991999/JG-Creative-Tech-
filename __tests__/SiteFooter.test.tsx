@@ -1,4 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import { renderWithIntl as render } from "@/test-support/test-utils";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import {
   footerCompanyLinks,

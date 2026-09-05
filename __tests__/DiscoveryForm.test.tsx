@@ -1,10 +1,13 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
+import { renderWithIntl as render } from "@/test-support/test-utils";
 import userEvent from "@testing-library/user-event";
 import { useRouter } from "next/navigation";
 import { DiscoveryForm } from "@/components/DiscoveryForm";
 
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(),
+  usePathname: jest.fn(() => "/get-started/discovery"),
+  useParams: jest.fn(() => ({})),
 }));
 
 describe("DiscoveryForm", () => {

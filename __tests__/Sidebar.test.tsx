@@ -1,4 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import { renderWithIntl as render } from "@/test-support/test-utils";
 import { Sidebar, type SidebarItem } from "@/components/layout/Sidebar";
 
 const items: SidebarItem[] = [

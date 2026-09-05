@@ -1,46 +1,37 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { getTranslations } from "next-intl/server";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { Button } from "@/components/ui/Button";
 
-export const metadata: Metadata = {
-  title: "Solutions",
-  description:
-    "We engineer premium digital infrastructure for ambitious SMEs, bridging the gap between legacy operations and future-proof innovation.",
-  alternates: { canonical: "/solutions" },
+type Props = {
+  params: Promise<{ locale: string }>;
 };
 
-const processSteps = [
-  {
-    number: "01",
-    title: "Discovery",
-    description:
-      "Defining project scope through intensive auditing and market positioning analysis.",
-  },
-  {
-    number: "02",
-    title: "Design",
-    description:
-      "Crafting high-fidelity prototypes and visual systems tailored for editorial authority.",
-  },
-  {
-    number: "03",
-    title: "Development",
-    description:
-      "Engineering the foundation using clean code and scalable cloud infrastructure.",
-  },
-  {
-    number: "04",
-    title: "Deployment",
-    description:
-      "Launching with precision and optimizing for peak performance and global reach.",
-  },
-];
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "solutions" });
+  return {
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+    alternates: { canonical: "/solutions" },
+  };
+}
 
-export default function SolutionsPage() {
+export default async function SolutionsPage({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "solutions" });
+
+  const processSteps = [
+    { number: "01", title: t("step1Title"), description: t("step1Desc") },
+    { number: "02", title: t("step2Title"), description: t("step2Desc") },
+    { number: "03", title: t("step3Title"), description: t("step3Desc") },
+    { number: "04", title: t("step4Title"), description: t("step4Desc") },
+  ];
+
   return (
     <>
       <SiteHeader activeHref="/solutions" />
@@ -60,16 +51,14 @@ export default function SolutionsPage() {
           <div className="relative z-10 max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tertiary-container text-on-tertiary-container mb-6">
               <span className="text-[10px] font-bold uppercase tracking-widest">
-                Global Expertise
+                {t("heroKicker")}
               </span>
             </div>
             <h1 className="font-headline text-5xl md:text-7xl text-white italic tracking-tight leading-tight mb-8">
-              Architecting Digital Excellence
+              {t("heroTitle")}
             </h1>
             <p className="text-primary-fixed-dim text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-light">
-              We engineer premium digital infrastructure for ambitious SMEs,
-              bridging the gap between legacy operations and future-proof
-              innovation.
+              {t("heroSubtitle")}
             </p>
           </div>
         </section>
@@ -79,11 +68,10 @@ export default function SolutionsPage() {
           <div className="mb-16">
             <div className="w-12 h-1 bg-on-tertiary-container mb-4" />
             <h2 className="font-headline text-4xl text-ink">
-              Strategic Solutions
+              {t("gridTitle")}
             </h2>
             <p className="text-on-surface-variant mt-2 max-w-md">
-              Comprehensive craftsmanship for every stage of your digital
-              evolution.
+              {t("gridSubtitle")}
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
@@ -94,12 +82,10 @@ export default function SolutionsPage() {
                   terminal
                 </span>
                 <h3 className="font-headline text-3xl text-ink mb-4">
-                  Web Development
+                  {t("webDevTitle")}
                 </h3>
                 <p className="text-on-surface-variant leading-relaxed max-w-lg mb-8">
-                  High-performance, scalable web apps engineered with
-                  precision. We don&apos;t just build sites; we architect
-                  digital engines that power your business growth.
+                  {t("webDevDesc")}
                 </p>
                 <div className="mt-auto">
                   <ul className="flex flex-wrap gap-3 text-xs font-bold uppercase tracking-tighter text-on-surface-variant mb-6">
@@ -111,7 +97,7 @@ export default function SolutionsPage() {
                     href="/digital-architecture"
                     className="inline-flex items-center gap-1 text-sm font-bold text-secondary hover:text-ink transition-colors"
                   >
-                    Explore the architecture
+                    {t("exploreArchitecture")}
                     <span className="material-symbols-outlined text-base" aria-hidden="true">
                       arrow_forward
                     </span>
@@ -126,17 +112,16 @@ export default function SolutionsPage() {
                   auto_stories
                 </span>
                 <h3 className="font-headline text-3xl mb-4 italic">
-                  Editorial Design
+                  {t("editorialTitle")}
                 </h3>
                 <p className="text-primary-fixed-dim leading-relaxed mb-4">
-                  Elevating brand identity through sophisticated visual
-                  systems that speak with authority.
+                  {t("editorialDesc")}
                 </p>
                 <Link
                   href="/portfolio"
                   className="inline-flex items-center gap-1 text-sm font-bold text-secondary-fixed hover:text-white transition-colors"
                 >
-                  See design work
+                  {t("seeDesignWork")}
                   <span className="material-symbols-outlined text-base" aria-hidden="true">
                     arrow_forward
                   </span>
@@ -157,17 +142,16 @@ export default function SolutionsPage() {
                 query_stats
               </span>
               <h3 className="font-headline text-3xl text-ink mb-4">
-                Growth Marketing
+                {t("growthTitle")}
               </h3>
               <p className="text-on-surface-variant leading-relaxed mb-4">
-                Data-driven strategies designed to expand your digital
-                footprint and capture high-intent traffic.
+                {t("growthDesc")}
               </p>
               <Link
                 href="/digital-strategy"
                 className="inline-flex items-center gap-1 text-sm font-bold text-secondary hover:text-ink transition-colors"
               >
-                View the strategy framework
+                {t("viewStrategyFramework")}
                 <span className="material-symbols-outlined text-base" aria-hidden="true">
                   arrow_forward
                 </span>
@@ -180,18 +164,16 @@ export default function SolutionsPage() {
                   psychology
                 </span>
                 <h3 className="font-headline text-3xl text-ink mb-4">
-                  Digital Coaching
+                  {t("coachingTitle")}
                 </h3>
                 <p className="text-on-surface-variant leading-relaxed mb-4">
-                  Empowering teams to master their own infrastructure. We
-                  translate technical complexity into actionable internal
-                  wisdom.
+                  {t("coachingDesc")}
                 </p>
                 <Link
                   href="/innovation-lab"
                   className="inline-flex items-center gap-1 text-sm font-bold text-secondary hover:text-ink transition-colors"
                 >
-                  Visit the Innovation Lab
+                  {t("visitInnovationLab")}
                   <span className="material-symbols-outlined text-base" aria-hidden="true">
                     arrow_forward
                   </span>
@@ -216,10 +198,10 @@ export default function SolutionsPage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="font-headline text-4xl text-ink italic">
-                The Architectural Process
+                {t("processTitle")}
               </h2>
               <p className="text-on-surface-variant mt-2">
-                A methodical journey from concept to global scale.
+                {t("processSubtitle")}
               </p>
             </div>
             <div className="relative">
@@ -250,14 +232,13 @@ export default function SolutionsPage() {
         <section className="py-24 px-6 text-center bg-surface-container-lowest">
           <div className="max-w-2xl mx-auto">
             <h2 className="font-headline text-5xl text-ink leading-tight mb-8">
-              Build Your Foundation Today
+              {t("ctaTitle")}
             </h2>
             <p className="text-on-surface-variant mb-10 text-lg">
-              Ready to transform your business into a high-performance
-              digital entity? Let&apos;s discuss your next move.
+              {t("ctaBody")}
             </p>
             <Button href="/schedule-consultation" size="lg">
-              Book a Consultation
+              {t("ctaButton")}
             </Button>
           </div>
         </section>

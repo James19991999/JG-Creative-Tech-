@@ -1,19 +1,30 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { ContactForm } from "@/components/ContactForm";
 import { siteConfig } from "@/lib/site-config";
 
-export const metadata: Metadata = {
-  title: "Contact Our Team",
-  description:
-    "Let's architect your digital future. Reach out to discuss infrastructure, strategy, or creative solutions for your business.",
-  alternates: { canonical: "/contact" },
+type Props = {
+  params: Promise<{ locale: string }>;
 };
 
-export default function ContactPage() {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "contact" });
+  return {
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+    alternates: { canonical: "/contact" },
+  };
+}
+
+export default async function ContactPage({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "contact" });
+
   return (
     <>
       <SiteHeader activeHref="/contact" />
@@ -22,18 +33,16 @@ export default function ContactPage() {
         {/* Editorial Header */}
         <section className="mb-10">
           <span className="text-accent font-label text-[10px] uppercase tracking-[0.2em] font-bold mb-2 block">
-            Connect With Us
+            {t("kicker")}
           </span>
           <div className="flex items-start">
             <div className="w-1 h-12 bg-on-tertiary-container mr-4 rounded-full" />
             <div>
               <h1 className="font-newsreader headline-md font-bold tracking-tight text-ink leading-tight">
-                Contact Our Team
+                {t("title")}
               </h1>
               <p className="mt-3 text-on-surface-variant leading-relaxed opacity-90">
-                Let&apos;s architect your digital future. Reach out to
-                discuss infrastructure, strategy, or creative solutions for
-                your business.
+                {t("subtitle")}
               </p>
             </div>
           </div>
@@ -56,7 +65,7 @@ export default function ContactPage() {
               </span>
             </div>
             <h2 className="font-manrope font-bold text-sm text-ink mb-1">
-              Email Us
+              {t("emailUs")}
             </h2>
             <p className="text-[11px] text-on-surface-variant break-all">
               {siteConfig.contact.email}
@@ -76,10 +85,10 @@ export default function ContactPage() {
               </span>
             </div>
             <h2 className="font-manrope font-bold text-sm text-ink mb-1">
-              Visit Us
+              {t("visitUs")}
             </h2>
             <p className="text-[11px] text-on-surface-variant">
-              Nairobi, Kenya
+              {t("nairobiKenya")}
             </p>
           </a>
         </section>
@@ -96,10 +105,10 @@ export default function ContactPage() {
           <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
           <div className="absolute bottom-4 left-4 text-white">
             <p className="text-[10px] font-bold tracking-widest uppercase mb-1">
-              Regional Hub
+              {t("regionalHub")}
             </p>
             <h2 className="font-newsreader italic text-lg">
-              East Africa Headquarters
+              {t("eastAfricaHq")}
             </h2>
           </div>
         </div>

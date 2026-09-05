@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { screen, fireEvent } from "@testing-library/react";
+import { renderWithIntl as render } from "@/test-support/test-utils";
 import { Button } from "@/components/ui/Button";
 
 describe("Button", () => {

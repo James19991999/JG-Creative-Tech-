@@ -1,11 +1,13 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { primaryNavLinks } from "@/lib/site-config";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { SearchTriggerButton } from "@/components/SearchTriggerButton";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 type SiteHeaderProps = {
   activeHref?: string;
@@ -22,6 +24,7 @@ type SiteHeaderProps = {
 export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const pathname = usePathname();
+  const t = useTranslations("nav");
 
   // Close drawer on route change
   useEffect(() => {
@@ -38,11 +41,11 @@ export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
 
   const allNavLinks = [
     ...primaryNavLinks,
-    { label: "Digital Architecture", href: "/digital-architecture" },
-    { label: "Digital Strategy", href: "/digital-strategy" },
-    { label: "Innovation Lab", href: "/innovation-lab" },
-    { label: "Client Portal", href: "/client-portal" },
-    { label: "Privacy Policy", href: "/legal/privacy" },
+    { key: "digitalArchitecture", label: "Digital Architecture", href: "/digital-architecture" },
+    { key: "digitalStrategy", label: "Digital Strategy", href: "/digital-strategy" },
+    { key: "innovationLab", label: "Innovation Lab", href: "/innovation-lab" },
+    { key: "clientPortal", label: "Client Portal", href: "/client-portal" },
+    { key: "privacyPolicy", label: "Privacy Policy", href: "/legal/privacy" },
   ];
 
   return (
@@ -51,7 +54,7 @@ export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
         className={`fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md glass-nav ${className}`}
       >
         <nav
-          aria-label="Primary"
+          aria-label={t("primaryLandmark")}
           className="flex justify-between items-center px-6 md:px-8 py-4 max-w-7xl mx-auto"
         >
           {/* Wordmark */}
@@ -77,7 +80,7 @@ export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
                       : "text-on-surface-variant font-manrope hover:text-ink transition-colors duration-300"
                   }
                 >
-                  {link.label}
+                  {t(link.key)}
                 </Link>
               );
             })}
@@ -85,6 +88,7 @@ export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
 
           <div className="flex items-center gap-3">
             <SearchTriggerButton />
+            <LanguageSwitcher />
             <ThemeToggle />
 
             {/* CTA — always visible */}
@@ -92,13 +96,13 @@ export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
               href="/schedule-consultation"
               className="gradient-primary text-on-primary px-5 py-2.5 rounded-full font-manrope font-bold text-sm hover:opacity-90 transition-all active:scale-95"
             >
-              Get Started
+              {t("getStarted")}
             </Link>
 
             {/* Hamburger — mobile only */}
             <button
               type="button"
-              aria-label={drawerOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-label={drawerOpen ? t("closeMenu") : t("openMenu")}
               aria-expanded={drawerOpen}
               aria-controls="mobile-nav-drawer"
               onClick={() => setDrawerOpen((prev) => !prev)}
@@ -128,7 +132,7 @@ export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
       <div
         id="mobile-nav-drawer"
         role="dialog"
-        aria-label="Navigation menu"
+        aria-label={t("menuLandmark")}
         aria-modal="true"
         aria-hidden={!drawerOpen}
         className={`md:hidden fixed inset-0 z-40 transition-opacity duration-300 ${
@@ -144,7 +148,7 @@ export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
 
         {/* Panel */}
         <nav
-          aria-label="Mobile"
+          aria-label={t("mobileLandmark")}
           className={`absolute top-0 right-0 h-full w-4/5 max-w-xs bg-surface shadow-2xl flex flex-col pt-24 pb-8 px-6 transition-transform duration-300 ${
             drawerOpen ? "translate-x-0" : "translate-x-full"
           }`}
@@ -164,7 +168,7 @@ export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
                         : "text-on-surface-variant hover:bg-surface-container-low hover:text-ink"
                     }`}
                   >
-                    {link.label}
+                    {t(link.key)}
                     {isActive && (
                       <span
                         className="ml-auto w-1.5 h-1.5 rounded-full bg-primary"
@@ -183,7 +187,7 @@ export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
               href="/schedule-consultation"
               className="block w-full text-center gradient-primary text-on-primary px-6 py-3 rounded-full font-manrope font-bold hover:opacity-90 transition-all"
             >
-              Book a Consultation
+              {t("bookConsultation")}
             </Link>
           </div>
         </nav>

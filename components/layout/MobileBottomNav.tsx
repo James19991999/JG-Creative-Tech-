@@ -1,19 +1,20 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link } from "@/i18n/navigation";
+import { usePathname } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 type MobileNavItem = {
-  label: string;
+  key: string;
   href: string;
   icon: string;
 };
 
 const items: MobileNavItem[] = [
-  { label: "Home", href: "/", icon: "home" },
-  { label: "Solutions", href: "/solutions", icon: "grid_view" },
-  { label: "Portfolio", href: "/portfolio", icon: "auto_stories" },
-  { label: "Contact", href: "/contact", icon: "mail" },
+  { key: "home", href: "/", icon: "home" },
+  { key: "solutions", href: "/solutions", icon: "grid_view" },
+  { key: "portfolio", href: "/portfolio", icon: "auto_stories" },
+  { key: "contact", href: "/contact", icon: "mail" },
 ];
 
 /**
@@ -23,6 +24,7 @@ const items: MobileNavItem[] = [
  */
 export function MobileBottomNav() {
   const pathname = usePathname();
+  const t = useTranslations("nav");
 
   return (
     <nav
@@ -50,7 +52,7 @@ export function MobileBottomNav() {
               {item.icon}
             </span>
             <span className="font-manrope text-[11px] uppercase tracking-wider font-bold">
-              {item.label}
+              {t(item.key)}
             </span>
           </Link>
         );

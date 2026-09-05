@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { getTranslations } from "next-intl/server";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Button } from "@/components/ui/Button";
@@ -8,25 +9,30 @@ import { FeatureCard } from "@/components/ui/FeatureCard";
 import { HeroVideo } from "@/components/HeroVideo";
 import { portfolioProjects } from "@/lib/portfolio";
 
-export const metadata: Metadata = {
-  title: "JG Creative Tech Solution | Digital Infrastructure for Kenyan SMEs",
-  description:
-    "We build the digital foundations that allow local resilience to scale globally. Premium architecture for businesses that demand excellence.",
-  alternates: { canonical: "/" },
+type Props = {
+  params: Promise<{ locale: string }>;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "home" });
+  return {
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+    alternates: { canonical: "/" },
+  };
+}
 
 const testimonials = [
   {
-    quote:
-      "JG Creative Tech transformed our messy legacy systems into a streamlined powerhouse. The reliability is unmatched.",
+    quoteKey: "testimonial1Quote",
     name: "Samuel D.",
     role: "CEO, Sammy Dylax",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuCwHcbZ6nRx4bM_SmdThxrWHEQ0Wt-ZQx03jtj3TstvuAJTJjAdf8bnffaG2e2s4acz8gyZEhCjwvZ8-B99b_n6jBOWnF7c2UNwg8nLcGlGiyliMJuLwsExOjIwx0RpE4xIxuBqY0oZje-p2hS-c_PGIT3rBfyZ7HCJGQQtBe9KKh5ZsFKmSgNeo1Na4uD_bkH5ejOP6jqp7oIpR8BoyqMwxFjwSZX-ZvNBLw6E8CozNhTs6veBHQcePM4pZh0gTmj-UkJbJUI9KA",
   },
   {
-    quote:
-      "Their eye for design and performance is world-class. We finally have a digital presence that reflects our stature.",
+    quoteKey: "testimonial2Quote",
     name: "Grace M.",
     role: "Managing Director, GM Global",
     image:
@@ -39,7 +45,10 @@ const testimonials = [
 // thumbnails in sync with the real case study pages.
 const portfolioPreview = portfolioProjects.slice(0, 2);
 
-export default function HomePage() {
+export default async function HomePage({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "home" });
+
   return (
     <>
       <SiteHeader activeHref="/solutions" />
@@ -53,32 +62,31 @@ export default function HomePage() {
                 className="hero-reveal inline-block text-on-tertiary-fixed-variant font-manrope font-bold tracking-widest text-xs uppercase mb-4 px-3 py-1 bg-tertiary-fixed rounded-full"
                 style={{ animationDelay: "0ms" }}
               >
-                Digital Infrastructure as a Craft
+                {t("heroKicker")}
               </span>
               <h1
                 className="hero-reveal text-5xl md:text-7xl font-newsreader text-ink leading-tight font-bold mb-6"
                 style={{ animationDelay: "100ms" }}
               >
-                Empowering Kenyan SMEs with{" "}
-                <span className="italic">Future-Ready</span> Technology.
+                {t("heroTitlePart1")}{" "}
+                <span className="italic">{t("heroTitleItalic")}</span>{" "}
+                {t("heroTitlePart3")}
               </h1>
               <p
                 className="hero-reveal text-lg md:text-xl text-on-surface-variant max-w-lg mb-10 leading-relaxed"
                 style={{ animationDelay: "220ms" }}
               >
-                We build the digital foundations that allow local resilience
-                to scale globally. Premium architecture for businesses that
-                demand excellence.
+                {t("heroSubtitle")}
               </p>
               <div
                 className="hero-reveal flex flex-wrap gap-4"
                 style={{ animationDelay: "340ms" }}
               >
                 <Button href="/schedule-consultation" size="lg" icon="arrow_forward">
-                  Start Your Evolution
+                  {t("ctaStartEvolution")}
                 </Button>
                 <Button href="/solutions" variant="secondary" size="lg">
-                  View Solutions
+                  {t("ctaViewSolutions")}
                 </Button>
               </div>
             </div>
@@ -98,12 +106,11 @@ export default function HomePage() {
                     verified
                   </span>
                   <span className="font-manrope font-bold text-ink">
-                    Local Resilience
+                    {t("localResilienceLabel")}
                   </span>
                 </div>
                 <p className="text-xs text-on-surface-variant font-manrope">
-                  Engineered for the unique demands of the East African
-                  digital landscape.
+                  {t("localResilienceDesc")}
                 </p>
               </div>
             </div>
@@ -117,33 +124,28 @@ export default function HomePage() {
               <div className="md:w-1/3">
                 <div className="w-12 h-1 bg-on-tertiary-container mb-6" />
                 <h2 className="text-4xl font-newsreader text-ink font-bold leading-tight">
-                  Architecture Rooted in Local Ground.
+                  {t("statsTitle")}
                 </h2>
               </div>
               <div className="md:w-2/3">
                 <p className="text-xl font-manrope text-on-surface-variant mb-8 leading-relaxed italic">
-                  At JG Creative Tech, we believe that digital infrastructure
-                  is more than just code—it is the skeletal system of modern
-                  business. We focus on &quot;Local Resilience,&quot;
-                  ensuring every solution we build is robust enough to
-                  handle the complexities of the Kenyan market while
-                  maintaining a global aesthetic.
+                  {t("statsBody")}
                 </p>
                 <div className="grid grid-cols-2 gap-8">
                   <div>
                     <h3 className="text-ink font-bold text-2xl font-newsreader mb-2">
-                      25+
+                      {t("stat1Number")}
                     </h3>
                     <p className="text-sm text-on-surface-variant font-manrope">
-                      Solutions Delivered across East Africa
+                      {t("stat1Label")}
                     </p>
                   </div>
                   <div>
                     <h3 className="text-ink font-bold text-2xl font-newsreader mb-2">
-                      98%
+                      {t("stat2Number")}
                     </h3>
                     <p className="text-sm text-on-surface-variant font-manrope">
-                      Client Retention &amp; Ecosystem Growth
+                      {t("stat2Label")}
                     </p>
                   </div>
                 </div>
@@ -157,38 +159,38 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <span className="text-accent font-manrope font-bold text-xs uppercase tracking-widest">
-                Our Capabilities
+                {t("capabilitiesKicker")}
               </span>
               <h2 className="text-4xl md:text-5xl font-newsreader text-ink font-bold mt-2">
-                Comprehensive Digital Infrastructure
+                {t("capabilitiesTitle")}
               </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
               <FeatureCard
                 span="md:col-span-4"
                 icon="developer_mode"
-                title="Web Development"
-                description="Scalable, high-performance web applications built with modern frameworks for seamless user journeys."
+                title={t("serviceWebDevTitle")}
+                description={t("serviceWebDevDesc")}
               />
               <FeatureCard
                 span="md:col-span-2"
                 variant="dark"
                 icon="architecture"
-                title="Editorial Design"
-                description="Elevating brand identity through sophisticated visual systems."
+                title={t("serviceEditorialTitle")}
+                description={t("serviceEditorialDesc")}
               />
               <FeatureCard
                 span="md:col-span-2"
                 variant="muted"
                 icon="campaign"
-                title="Growth Marketing"
-                description="Data-driven strategies to amplify your digital footprint."
+                title={t("serviceGrowthTitle")}
+                description={t("serviceGrowthDesc")}
               />
               <FeatureCard
                 span="md:col-span-4"
                 icon="psychology"
-                title="Digital Coaching"
-                description="Empowering your team to master the infrastructure we build. Knowledge transfer is our core value."
+                title={t("serviceCoachingTitle")}
+                description={t("serviceCoachingDesc")}
                 decoration={
                   <span className="material-symbols-outlined text-[200px]" aria-hidden="true">
                     hub
@@ -205,17 +207,17 @@ export default function HomePage() {
             <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
               <div>
                 <h2 className="text-4xl md:text-5xl font-newsreader text-on-primary font-bold">
-                  The Archive of Excellence
+                  {t("portfolioTitle")}
                 </h2>
                 <p className="text-on-primary-container mt-4 text-lg">
-                  Curated projects that define modern Kenyan business.
+                  {t("portfolioSubtitle")}
                 </p>
               </div>
               <Link
                 href="/portfolio"
                 className="text-on-primary-container font-manrope font-bold flex items-center gap-2 hover:text-white transition-colors"
               >
-                View All Case Studies
+                {t("viewAllCaseStudies")}
                 <span className="material-symbols-outlined" aria-hidden="true">
                   arrow_outward
                 </span>
@@ -272,28 +274,26 @@ export default function HomePage() {
             <div className="grid md:grid-cols-3 gap-12">
               <div className="md:col-span-1">
                 <h2 className="text-4xl font-newsreader text-ink font-bold mb-6">
-                  Voice of the Partners.
+                  {t("testimonialsTitle")}
                 </h2>
                 <p className="text-on-surface-variant font-manrope leading-relaxed">
-                  Our success is measured by the growth of our clients. We
-                  don&apos;t just deliver products; we build long-term
-                  digital partnerships.
+                  {t("testimonialsBody")}
                 </p>
               </div>
               <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
-                {testimonials.map((t) => (
+                {testimonials.map((item) => (
                   <blockquote
-                    key={t.name}
+                    key={item.name}
                     className="bg-surface-container-lowest p-8 rounded-xl whisper-shadow border-l-4 border-on-tertiary-container"
                   >
                     <p className="font-newsreader italic text-lg text-ink mb-6">
-                      &quot;{t.quote}&quot;
+                      &quot;{t(item.quoteKey)}&quot;
                     </p>
                     <div className="flex items-center gap-4">
                       <div className="relative w-10 h-10 rounded-full bg-surface-container-high overflow-hidden">
                         <Image
-                          src={t.image}
-                          alt={`Portrait of ${t.name}`}
+                          src={item.image}
+                          alt={`Portrait of ${item.name}`}
                           fill
                           sizes="40px"
                           className="object-cover"
@@ -301,10 +301,10 @@ export default function HomePage() {
                       </div>
                       <div>
                         <h3 className="font-manrope font-bold text-ink text-sm not-italic">
-                          {t.name}
+                          {item.name}
                         </h3>
                         <p className="text-xs text-on-surface-variant not-italic">
-                          {t.role}
+                          {item.role}
                         </p>
                       </div>
                     </div>
@@ -320,24 +320,23 @@ export default function HomePage() {
           <div className="max-w-5xl mx-auto gradient-primary rounded-3xl p-12 md:p-20 text-center relative overflow-hidden">
             <div className="relative z-10">
               <h2 className="text-4xl md:text-6xl font-newsreader text-white font-bold mb-8">
-                Ready to transform?
+                {t("finalCtaTitle")}
               </h2>
               <p className="text-on-primary-container text-lg md:text-xl max-w-2xl mx-auto mb-12">
-                Join the elite network of Kenyan SMEs scaling with premium
-                digital infrastructure. Let&apos;s craft your future today.
+                {t("finalCtaBody")}
               </p>
               <div className="flex flex-wrap justify-center gap-6">
                 <Link
                   href="/schedule-consultation"
                   className="bg-on-tertiary-fixed-variant text-white px-10 py-5 rounded-full font-bold whisper-shadow hover:scale-105 transition-transform active:scale-95"
                 >
-                  Book a Consultation
+                  {t("bookConsultation")}
                 </Link>
                 <Link
                   href="/contact"
                   className="border border-white/20 text-white px-10 py-5 rounded-full font-bold hover:bg-white/10 transition-colors"
                 >
-                  Contact Our Team
+                  {t("contactOurTeam")}
                 </Link>
               </div>
             </div>

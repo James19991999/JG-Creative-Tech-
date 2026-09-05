@@ -24,34 +24,35 @@ export const siteConfig = {
 } as const;
 
 export type NavLink = {
+  key: string;
   label: string;
   href: string;
 };
 
 export const primaryNavLinks: NavLink[] = [
-  { label: "Solutions", href: "/solutions" },
-  { label: "About", href: "/about" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Insights", href: "/blog" },
-  { label: "Contact", href: "/contact" },
+  { key: "solutions", label: "Solutions", href: "/solutions" },
+  { key: "about", label: "About", href: "/about" },
+  { key: "portfolio", label: "Portfolio", href: "/portfolio" },
+  { key: "insights", label: "Insights", href: "/blog" },
+  { key: "contact", label: "Contact", href: "/contact" },
 ];
 
 export const footerServiceLinks: NavLink[] = [
-  { label: "Web Development", href: "/solutions" },
-  { label: "Digital Architecture", href: "/digital-architecture" },
-  { label: "Digital Strategy", href: "/digital-strategy" },
-  { label: "Innovation Lab", href: "/innovation-lab" },
+  { key: "webDevelopment", label: "Web Development", href: "/solutions" },
+  { key: "digitalArchitecture", label: "Digital Architecture", href: "/digital-architecture" },
+  { key: "digitalStrategy", label: "Digital Strategy", href: "/digital-strategy" },
+  { key: "innovationLab", label: "Innovation Lab", href: "/innovation-lab" },
 ];
 
 export const footerCompanyLinks: NavLink[] = [
-  { label: "About", href: "/about" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Contact", href: "/contact" },
-  { label: "Client Portal", href: "/client-portal" },
+  { key: "about", label: "About", href: "/about" },
+  { key: "portfolio", label: "Portfolio", href: "/portfolio" },
+  { key: "contact", label: "Contact", href: "/contact" },
+  { key: "clientPortal", label: "Client Portal", href: "/client-portal" },
 ];
 
 export const footerLegalLinks: NavLink[] = [
-  { label: "Privacy Policy", href: "/legal/privacy" },
-  { label: "Terms of Service", href: "/legal/terms" },
-  { label: "Cookie Policy", href: "/legal/cookies" },
+  { key: "privacyPolicy", label: "Privacy Policy", href: "/legal/privacy" },
+  { key: "termsOfService", label: "Terms of Service", href: "/legal/terms" },
+  { key: "cookiePolicy", label: "Cookie Policy", href: "/legal/cookies" },
 ];

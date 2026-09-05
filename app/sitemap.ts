@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { portfolioProjects } from "@/lib/portfolio";
 import { getAllPosts } from "@/lib/blog";
+import { routing } from "@/i18n/routing";
 
 const baseUrl = "https://www.jgcreativetech.solutions";
 
@@ -8,7 +9,20 @@ const baseUrl = "https://www.jgcreativetech.solutions";
  * Generates /sitemap.xml at build/request time. Excludes pages marked
  * noindex (client portal, consultation funnel steps) since those
  * shouldn't be discovered by search engines.
+ *
+ * Every route gets an entry for each locale (English at its existing
+ * unprefixed URL, Swahili at /sw/...), with alternates.languages
+ * cross-linking the two versions of each page - this is what tells
+ * search engines "these are the same page in different languages"
+ * rather than two unrelated pages, and is the actual mechanism that
+ * makes the Swahili content discoverable/indexable in the first
+ * place, not just reachable by URL.
  */
+function localizedPath(path: string, locale: string): string {
+  if (locale === routing.defaultLocale) return path;
+  return `/${locale}${path}`;
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     { path: "/", priority: 1, changeFrequency: "weekly" as const },
@@ -38,10 +52,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
   }));
 
-  return [...routes, ...portfolioRoutes, ...blogRoutes].map((route) => ({
-    url: `${baseUrl}${route.path}`,
-    lastModified: new Date(),
-    changeFrequency: route.changeFrequency,
-    priority: route.priority,
-  }));
+  const allRoutes = [...routes, ...portfolioRoutes, ...blogRoutes];
+
+  return allRoutes.flatMap((route) => {
+    const languageAlternates: Record<string, string> = {};
+    for (const locale of routing.locales) {
+      languageAlternates[locale] = `${baseUrl}${localizedPath(route.path, locale)}`;
+    }
+
+    // Google's sitemap i18n guidance: every language version gets its
+    // own <url> entry (not just an alternate reference hanging off the
+    // default-locale entry), and each entry lists every version
+    // (including itself) in its alternates - so Swahili pages are
+    // independently discoverable, not just linked from the English one.
+    return routing.locales.map((locale) => ({
+      url: `${baseUrl}${localizedPath(route.path, locale)}`,
+      lastModified: new Date(),
+      changeFrequency: route.changeFrequency,
+      priority: route.priority,
+      alternates: { languages: languageAlternates },
+    }));
+  });
 }

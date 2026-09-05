@@ -1,5 +1,24 @@
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Lets next/jest transform next-intl's ESM-only build during tests
+  // instead of skipping it - without this, every component that
+  // imports i18n/navigation.ts fails to load under Jest with a
+  // "Unexpected token 'export'" error (next/jest defaults to ignoring
+  // all of node_modules unless a package is explicitly listed here).
+  transpilePackages: [
+    "next-intl",
+    "use-intl",
+    "@formatjs/fast-memoize",
+    "@formatjs/icu-messageformat-parser",
+    "@formatjs/icu-skeleton-parser",
+    "@schummar/icu-type-parser",
+    "icu-minify",
+    "intl-messageformat",
+  ],
   images: {
     remotePatterns: [
       {
@@ -74,4 +93,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

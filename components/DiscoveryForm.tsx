@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { useEffect, useState, type FormEvent } from "react";
 import { useFunnelStorage } from "@/lib/use-funnel-storage";
 

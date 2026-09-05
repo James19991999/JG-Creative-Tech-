@@ -11,7 +11,7 @@ import {
   type KeyboardEvent,
   type ReactNode,
 } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { fuzzySearch } from "@/lib/fuzzy-search";
 import type { SearchItem } from "@/lib/search-index";
 

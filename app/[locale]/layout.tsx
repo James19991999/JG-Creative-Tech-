@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from "next";
+import { hasLocale } from "next-intl";
+import { NextIntlClientProvider } from "next-intl";
+import { notFound } from "next/navigation";
 import Script from "next/script";
-import "./globals.css";
+import "../globals.css";
+import { routing } from "@/i18n/routing";
 import { JsonLd } from "@/components/JsonLd";
 import { CookieBanner } from "@/components/CookieBanner";
 import { RouteTransition } from "@/components/RouteTransition";
@@ -8,6 +12,10 @@ import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistratio
 import { CommandPaletteProvider } from "@/components/CommandPalette";
 import { getSearchIndex } from "@/lib/search-index";
 import { themeInitScript } from "@/lib/theme-script";
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -52,13 +60,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function LocaleLayout({
   children,
-}: Readonly<{
+  params,
+}: {
   children: React.ReactNode;
-}>) {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         {/*
           NOTE FOR DEPLOYMENT: This project ships with a <link> tag for
@@ -106,11 +121,13 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <CommandPaletteProvider items={getSearchIndex()}>
-          <RouteTransition>{children}</RouteTransition>
-          <CookieBanner />
-          <ServiceWorkerRegistration />
-        </CommandPaletteProvider>
+        <NextIntlClientProvider>
+          <CommandPaletteProvider items={getSearchIndex()}>
+            <RouteTransition>{children}</RouteTransition>
+            <CookieBanner />
+            <ServiceWorkerRegistration />
+          </CommandPaletteProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

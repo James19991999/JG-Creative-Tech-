@@ -297,7 +297,45 @@ side on purpose.** Those are set by you.
 ## 9. SEO
 
 - Per-page `metadata` with title, description, canonical URL
-- Root Open Graph + Twitter card pointing to real `/public/og-image.png`
-- Organization JSON-LD structured data site-wide
-- Dynamic `sitemap.xml` including all portfolio case study URLs
+- Dynamic per-page Open Graph images (`opengraph-image.tsx` under each route) + Twitter cards
+- Organization JSON-LD structured data site-wide, Article + BreadcrumbList JSON-LD on blog posts
+- Dynamic `sitemap.xml` including all portfolio case studies, blog posts, and both language versions of every page with proper `hreflang` alternates (see §10)
 - `robots.txt` disallows the client portal and consultation funnel
+
+---
+
+## 10. Internationalization (English / Swahili)
+
+Real, SEO-indexable bilingual support via [next-intl](https://next-intl.dev) — not a client-side text swap. Swahili gets its own real, crawlable URLs (`/sw/...`), not just a toggle that changes text after the page loads.
+
+### Architecture
+
+- **"as-needed" URL prefix**: English keeps every existing URL exactly as it was (`/about`, `/solutions`, ...) — no SEO regression on already-indexed pages. Swahili is available at the same paths under `/sw/` (`/sw/about`, `/sw/solutions`, ...).
+- **`middleware.ts`** handles locale detection and the prefix rewriting. It explicitly excludes `/api/*` and `/client-portal/*` — see below.
+- **Two separate root layouts** (`app/[locale]/layout.tsx` for the locale-aware marketing site, `app/client-portal/layout.tsx` for the portal) rather than one shared `app/layout.tsx`. This is a deliberate, Next.js-supported pattern ("multiple root layouts") — it's the only way to get a dynamic `<html lang="...">` for marketing pages while keeping the client portal's `lang="en"` fixed and entirely outside the locale system.
+- **`/client-portal` is deliberately excluded from the locale system entirely** — it's an authenticated internal tool, not public marketing content that needs multilingual SEO reach. `/sw/client-portal` correctly 404s.
+- Translation strings live in `messages/en.json` / `messages/sw.json`, one matching key set per namespace (`nav`, `footer`, `home`, `about`, `solutions`, `contact`). Every namespace has **exact key parity** between the two files — a missing key in one throws immediately rather than silently falling back, so an incomplete translation is loud, not silent.
+
+### What's translated right now
+
+The parts of the site with the most traffic/conversion weight, plus every shared layout piece so the language toggle has visible effect everywhere immediately:
+
+| Covered | Not yet |
+|---|---|
+| Header nav, footer, mobile bottom nav | Digital Architecture, Digital Strategy, Innovation Lab |
+| Homepage | Schedule Consultation, Discovery/Strategic Context funnel |
+| About | Legal pages (Terms, Privacy, Cookies) |
+| Solutions | Blog posts, Portfolio case studies |
+| Contact | `ContactForm`'s own internal labels/validation/success messages |
+
+Pages not yet translated still render correctly at their `/sw/...` URL — they just show their original English content there, since their `page.tsx` hasn't been converted to pull from the message dictionaries yet. This is a real, functional fallback (nothing breaks), not a placeholder — extending coverage is additive engineering work on already-working infrastructure, not a redesign.
+
+### Adding a translation to another page
+
+1. Add a `getTranslations({ locale, namespace: "<pageName>" })` call in the page's `page.tsx` (see `app/[locale]/about/page.tsx` for the pattern) and swap hardcoded strings for `t("keyName")`.
+2. Add a matching `"<pageName>": { ... }` block to **both** `messages/en.json` and `messages/sw.json` with identical keys.
+3. `npm test` — a key mismatch between the two files will surface immediately as a thrown error in any test that renders the page.
+
+### Verified
+
+154 route/locale combinations checked in a real browser (every page × both languages), 0 axe-core violations in either language, real Swahili content confirmed server-rendered (not just present in the JSON files) including translated `<title>` metadata, and the language switcher confirmed working both directions (`/about` → `/sw/about` → `/about`) without losing the current page.

@@ -1,8 +1,9 @@
-import { render, screen, within } from "@testing-library/react";
+import { screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { usePathname } from "next/navigation";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { CommandPaletteProvider } from "@/components/CommandPalette";
+import { renderWithIntl } from "@/test-support/test-utils";
 
 jest.mock("next/navigation", () => ({
   usePathname: jest.fn(),
@@ -10,7 +11,7 @@ jest.mock("next/navigation", () => ({
 }));
 
 function renderHeader(props: React.ComponentProps<typeof SiteHeader> = {}) {
-  return render(
+  return renderWithIntl(
     <CommandPaletteProvider items={[]}>
       <SiteHeader {...props} />
     </CommandPaletteProvider>
