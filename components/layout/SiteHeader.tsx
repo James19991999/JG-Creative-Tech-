@@ -88,8 +88,10 @@ export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
 
           <div className="flex items-center gap-3">
             <SearchTriggerButton />
-            <LanguageSwitcher />
-            <ThemeToggle />
+            <div className="hidden md:flex items-center gap-3">
+              <LanguageSwitcher />
+              <ThemeToggle />
+            </div>
 
             {/* CTA — always visible */}
             <Link
@@ -183,6 +185,10 @@ export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
 
           {/* Footer inside drawer */}
           <div className="border-t border-outline-variant/20 pt-6">
+            <div className="flex items-center justify-between mb-6">
+              <LanguageSwitcher />
+              <ThemeToggle />
+            </div>
             <Link
               href="/schedule-consultation"
               className="block w-full text-center gradient-primary text-on-primary px-6 py-3 rounded-full font-manrope font-bold hover:opacity-90 transition-all"

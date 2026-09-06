@@ -54,26 +54,30 @@ export default async function HomePage({ params }: Props) {
       <SiteHeader activeHref="/solutions" />
 
       <main id="main-content">
-        {/* Hero Section */}
-        <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 md:px-8 overflow-hidden">
-          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative z-10">
+        {/* Hero Section — full-bleed video, content overlaid */}
+        <section className="relative min-h-[92vh] md:min-h-screen flex items-end md:items-center overflow-hidden">
+          <HeroVideo
+            mp4Src="/videos/hero-showcase.mp4"
+            webmSrc="/videos/hero-showcase.webm"
+            poster="/videos/hero-poster.jpg"
+          />
+          <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 pb-16 pt-32 md:py-0 w-full">
+            <div className="max-w-2xl">
               <span
-                className="hero-reveal inline-block text-on-tertiary-fixed-variant font-manrope font-bold tracking-widest text-xs uppercase mb-4 px-3 py-1 bg-tertiary-fixed rounded-full"
+                className="hero-reveal inline-block text-on-tertiary-fixed-variant font-manrope font-bold tracking-widest text-xs uppercase mb-5 px-3 py-1 bg-tertiary-fixed rounded-full"
                 style={{ animationDelay: "0ms" }}
               >
                 {t("heroKicker")}
               </span>
               <h1
-                className="hero-reveal text-5xl md:text-7xl font-newsreader text-ink leading-tight font-bold mb-6"
+                className="hero-reveal text-5xl md:text-7xl font-newsreader text-white leading-[1.05] font-bold mb-6"
                 style={{ animationDelay: "100ms" }}
               >
                 {t("heroTitlePart1")}{" "}
-                <span className="italic">{t("heroTitleItalic")}</span>{" "}
-                {t("heroTitlePart3")}
+                <span className="italic">{t("heroTitleItalic")}</span>
               </h1>
               <p
-                className="hero-reveal text-lg md:text-xl text-on-surface-variant max-w-lg mb-10 leading-relaxed"
+                className="hero-reveal text-lg md:text-xl text-white/85 max-w-lg mb-10 leading-relaxed"
                 style={{ animationDelay: "220ms" }}
               >
                 {t("heroSubtitle")}
@@ -85,33 +89,14 @@ export default async function HomePage({ params }: Props) {
                 <Button href="/schedule-consultation" size="lg" icon="arrow_forward">
                   {t("ctaStartEvolution")}
                 </Button>
-                <Button href="/solutions" variant="secondary" size="lg">
+                <Button
+                  href="/solutions"
+                  variant="secondary"
+                  size="lg"
+                  className="!border-white/40 !text-white hover:!bg-white/10"
+                >
                   {t("ctaViewSolutions")}
                 </Button>
-              </div>
-            </div>
-            <div className="relative">
-              <HeroVideo
-                mp4Src="/videos/hero-showcase.mp4"
-                webmSrc="/videos/hero-showcase.webm"
-                poster="/videos/hero-poster.jpg"
-              />
-              <div className="absolute -bottom-8 -left-8 bg-surface-container-lowest p-6 rounded-xl whisper-shadow z-20 ghost-border md:block hidden max-w-[240px]">
-                <div className="flex items-center gap-3 mb-2">
-                  <span
-                    className="material-symbols-outlined text-accent"
-                    style={{ fontVariationSettings: "'FILL' 1" }}
-                    aria-hidden="true"
-                  >
-                    verified
-                  </span>
-                  <span className="font-manrope font-bold text-ink">
-                    {t("localResilienceLabel")}
-                  </span>
-                </div>
-                <p className="text-xs text-on-surface-variant font-manrope">
-                  {t("localResilienceDesc")}
-                </p>
               </div>
             </div>
           </div>
