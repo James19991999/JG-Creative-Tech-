@@ -8,6 +8,7 @@ import { primaryNavLinks } from "@/lib/site-config";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { SearchTriggerButton } from "@/components/SearchTriggerButton";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { Logo } from "@/components/Logo";
 
 type SiteHeaderProps = {
   activeHref?: string;
@@ -57,12 +58,13 @@ export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
           aria-label={t("primaryLandmark")}
           className="flex justify-between items-center px-6 md:px-8 py-4 max-w-7xl mx-auto"
         >
-          {/* Wordmark */}
-          <Link
-            href="/"
-            className="text-2xl font-newsreader font-bold text-ink"
-          >
-            JG Creative Tech
+          {/* Logo mark - compact "JG" badge instead of the full
+              wordmark, so mobile doesn't have to wrap a long
+              title across multiple lines next to the other header
+              controls. aria-label carries the full name for screen
+              readers since the visible mark alone doesn't convey it. */}
+          <Link href="/" aria-label="JG Creative Tech — Home" className="shrink-0">
+            <Logo className="w-10 h-10 text-lg" />
           </Link>
 
           {/* Desktop nav */}

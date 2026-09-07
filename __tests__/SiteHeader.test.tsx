@@ -23,11 +23,11 @@ describe("SiteHeader", () => {
     (usePathname as jest.Mock).mockReturnValue("/");
   });
 
-  it("renders the wordmark linking to home", () => {
+  it("renders the logo mark linking to home", () => {
     renderHeader();
 
-    const wordmark = screen.getByRole("link", { name: "JG Creative Tech" });
-    expect(wordmark).toHaveAttribute("href", "/");
+    const logoLink = screen.getByRole("link", { name: "JG Creative Tech — Home" });
+    expect(logoLink).toHaveAttribute("href", "/");
   });
 
   it("renders all primary navigation links in the desktop nav", () => {
