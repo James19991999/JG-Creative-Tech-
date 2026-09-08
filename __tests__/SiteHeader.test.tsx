@@ -86,25 +86,39 @@ describe("SiteHeader", () => {
     expect(drawer).toHaveAttribute("aria-hidden", "false");
   });
 
-  it("exposes pages not reachable from the bottom nav inside the drawer", async () => {
+  it("exposes Client Portal alongside the primary pages inside the drawer", async () => {
     const user = userEvent.setup();
     renderHeader();
 
     await user.click(screen.getByRole("button", { name: "Open navigation menu" }));
 
     const drawer = screen.getByRole("navigation", { name: "Mobile" });
-    expect(within(drawer).getByRole("link", { name: "Digital Architecture" })).toHaveAttribute(
+    expect(within(drawer).getByRole("link", { name: "Client Portal" })).toHaveAttribute(
       "href",
-      "/digital-architecture"
+      "/client-portal"
     );
-    expect(within(drawer).getByRole("link", { name: "Innovation Lab" })).toHaveAttribute(
-      "href",
-      "/innovation-lab"
-    );
-    expect(within(drawer).getByRole("link", { name: "Privacy Policy" })).toHaveAttribute(
-      "href",
-      "/legal/privacy"
-    );
+  });
+
+  it("keeps the mobile drawer to a short, curated list", async () => {
+    const user = userEvent.setup();
+    renderHeader();
+
+    await user.click(screen.getByRole("button", { name: "Open navigation menu" }));
+
+    const drawer = screen.getByRole("navigation", { name: "Mobile" });
+    const linkNames = within(drawer)
+      .getAllByRole("link")
+      .map((link) => link.textContent);
+
+    expect(linkNames).toEqual([
+      "Solutions",
+      "About",
+      "Portfolio",
+      "Insights",
+      "Contact",
+      "Client Portal",
+      "Book a Consultation",
+    ]);
   });
 
   it("closes the drawer when the hamburger is toggled again", async () => {

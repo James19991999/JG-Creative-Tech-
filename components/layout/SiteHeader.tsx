@@ -17,10 +17,12 @@ type SiteHeaderProps = {
 
 /**
  * Top navigation bar. On desktop: horizontal link row + CTA.
- * On mobile: wordmark + CTA visible at all times; tapping the menu
- * icon slides in a full-screen drawer covering all primary nav links,
- * including pages not reachable from MobileBottomNav (About, Digital
- * Architecture, Digital Strategy, Innovation Lab, Legal).
+ * On mobile: logo mark + CTA visible at all times; tapping the menu
+ * icon slides in a drawer with a short, curated list (Solutions,
+ * About, Portfolio, Insights, Contact, Client Portal) - kept
+ * deliberately short so it stays scannable on a small screen.
+ * Digital Architecture, Digital Strategy, Innovation Lab, and legal
+ * pages are reachable via the footer instead.
  */
 export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -40,13 +42,14 @@ export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
     };
   }, [drawerOpen]);
 
+  // Deliberately a short, curated list for the mobile drawer - just
+  // the primary nav plus Client Portal. Digital Architecture, Digital
+  // Strategy, Innovation Lab, and Privacy Policy are still reachable
+  // via the footer (visible on every page) - keeping them out here
+  // is what keeps this list scannable on a small screen.
   const allNavLinks = [
     ...primaryNavLinks,
-    { key: "digitalArchitecture", label: "Digital Architecture", href: "/digital-architecture" },
-    { key: "digitalStrategy", label: "Digital Strategy", href: "/digital-strategy" },
-    { key: "innovationLab", label: "Innovation Lab", href: "/innovation-lab" },
     { key: "clientPortal", label: "Client Portal", href: "/client-portal" },
-    { key: "privacyPolicy", label: "Privacy Policy", href: "/legal/privacy" },
   ];
 
   return (
