@@ -55,45 +55,50 @@ export default async function HomePage({ params }: Props) {
 
       <main id="main-content">
         {/* Hero Section — full-bleed video, content overlaid */}
-        <section className="relative min-h-[92vh] md:min-h-screen flex items-end md:items-center overflow-hidden">
+        <section className="relative min-h-[100dvh] md:min-h-screen flex items-end md:items-center overflow-hidden">
           <HeroVideo
             mp4Src="/videos/hero-showcase.mp4"
             webmSrc="/videos/hero-showcase.webm"
             poster="/videos/hero-poster.jpg"
           />
-          <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 pb-16 pt-32 md:py-0 w-full">
+          <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 pb-10 pt-28 md:py-0 w-full">
             <div className="max-w-2xl">
               <span
-                className="hero-reveal inline-block text-on-tertiary-fixed-variant font-manrope font-bold tracking-widest text-xs uppercase mb-5 px-3 py-1 bg-tertiary-fixed rounded-full"
+                className="hero-reveal inline-block text-on-tertiary-fixed-variant font-manrope font-bold tracking-widest text-xs uppercase mb-4 px-3 py-1 bg-tertiary-fixed rounded-full"
                 style={{ animationDelay: "0ms" }}
               >
                 {t("heroKicker")}
               </span>
               <h1
-                className="hero-reveal text-5xl md:text-7xl font-newsreader text-white leading-[1.05] font-bold mb-6"
+                className="hero-reveal text-4xl md:text-7xl font-newsreader text-white leading-[1.1] md:leading-[1.05] font-bold mb-4 md:mb-6"
                 style={{ animationDelay: "100ms" }}
               >
                 {t("heroTitlePart1")}{" "}
                 <span className="italic">{t("heroTitleItalic")}</span>
               </h1>
               <p
-                className="hero-reveal text-lg md:text-xl text-white/85 max-w-lg mb-10 leading-relaxed"
+                className="hero-reveal text-base md:text-xl text-white/85 max-w-lg mb-7 md:mb-10 leading-relaxed"
                 style={{ animationDelay: "220ms" }}
               >
                 {t("heroSubtitle")}
               </p>
               <div
-                className="hero-reveal flex flex-wrap gap-4"
+                className="hero-reveal flex flex-wrap gap-3 md:gap-4"
                 style={{ animationDelay: "340ms" }}
               >
-                <Button href="/schedule-consultation" size="lg" icon="arrow_forward">
+                <Button
+                  href="/schedule-consultation"
+                  size="md"
+                  icon="arrow_forward"
+                  className="md:!px-8 md:!py-4 md:!text-base"
+                >
                   {t("ctaStartEvolution")}
                 </Button>
                 <Button
                   href="/solutions"
                   variant="secondary"
-                  size="lg"
-                  className="!border-white/40 !text-white hover:!bg-white/10"
+                  size="md"
+                  className="!border-white/40 !text-white hover:!bg-white/10 md:!px-8 md:!py-4 md:!text-base"
                 >
                   {t("ctaViewSolutions")}
                 </Button>
