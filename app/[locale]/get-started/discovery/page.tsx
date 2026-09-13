@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { DiscoveryForm } from "@/components/DiscoveryForm";
+import { Logo } from "@/components/Logo";
 
 export const metadata: Metadata = {
-  title: "Project Discovery | The Digital Architect",
+  title: "Project Discovery",
   description:
     "Step 1 of 2: Tell us about your vision so we can architect the infrastructure for your success.",
   alternates: { canonical: "/get-started/discovery" },
@@ -14,15 +15,10 @@ export default function ProjectDiscoveryPage() {
     <div className="bg-surface font-body text-on-surface antialiased min-h-screen relative">
       {/* TopAppBar - Suppressed main nav for focused onboarding journey */}
       <header className="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl">
-        <div className="flex justify-between items-center px-8 h-20 w-full max-w-screen-2xl mx-auto">
-          <div className="flex items-center gap-3">
-            <span className="material-symbols-outlined text-ink text-2xl" aria-hidden="true">
-              architecture
-            </span>
-            <span className="font-newsreader text-2xl font-bold tracking-tight text-ink">
-              The Digital Architect
-            </span>
-          </div>
+        <div className="flex justify-between items-center px-6 md:px-8 h-20 w-full max-w-screen-2xl mx-auto">
+          <a href="/" aria-label="JG Creative Tech — Home" className="shrink-0">
+            <Logo className="w-10 h-10 text-lg" />
+          </a>
           <div className="flex items-center gap-4">
             <span className="text-xs font-manrope uppercase tracking-widest text-on-surface-variant">
               Step 1 of 2

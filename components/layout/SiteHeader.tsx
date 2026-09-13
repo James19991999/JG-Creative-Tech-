@@ -100,7 +100,7 @@ export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
 
             {/* CTA — always visible */}
             <Link
-              href="/schedule-consultation"
+              href="/get-started/discovery"
               className="gradient-primary text-on-primary px-5 py-2.5 rounded-full font-manrope font-bold text-sm hover:opacity-90 transition-all active:scale-95"
             >
               {t("getStarted")}

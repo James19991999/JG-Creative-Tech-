@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { BookingForm } from "@/components/BookingForm";
+import { Logo } from "@/components/Logo";
 
 export const metadata: Metadata = {
-  title: "Select a Consultation Time | The Digital Architect",
+  title: "Select a Consultation Time",
   description:
     "Choose a date and time that fits your infrastructure roadmap. Our architects are ready to translate your vision into a scalable digital blueprint.",
   alternates: { canonical: "/schedule-consultation" },
@@ -13,28 +14,16 @@ export const metadata: Metadata = {
 export default function ScheduleConsultationPage() {
   return (
     <div className="bg-background text-on-surface font-body selection:bg-secondary-container min-h-screen">
-      {/* TopAppBar */}
+      {/* TopAppBar - deliberately minimal (no primary nav) to keep this
+          focused-onboarding step free of distraction, same as
+          /get-started/discovery. The two-step progress indicator below
+          is what actually communicates where the person is in the
+          flow - a full nav row here would be redundant with it. */}
       <header className="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl">
-        <div className="flex justify-between items-center px-8 h-20 w-full max-w-screen-2xl mx-auto">
-          <div className="flex items-center gap-3">
-            <span className="material-symbols-outlined text-ink" style={{ fontSize: "1.75rem" }} aria-hidden="true">
-              architecture
-            </span>
-            <span className="text-2xl font-newsreader text-ink tracking-tight">
-              The Digital Architect
-            </span>
-          </div>
-          <div className="hidden md:flex items-center gap-8">
-            <a className="text-on-surface-variant font-manrope font-medium hover:bg-surface-container-low transition-colors px-3 py-2 rounded" href="/get-started/discovery">
-              Discovery
-            </a>
-            <span className="text-ink font-manrope font-semibold px-3 py-2 rounded">
-              Consultation
-            </span>
-            <a className="text-on-surface-variant font-manrope font-medium hover:bg-surface-container-low transition-colors px-3 py-2 rounded" href="/about">
-              Agency
-            </a>
-          </div>
+        <div className="flex items-center px-6 md:px-8 h-20 w-full max-w-screen-2xl mx-auto">
+          <a href="/" aria-label="JG Creative Tech — Home" className="shrink-0">
+            <Logo className="w-10 h-10 text-lg" />
+          </a>
         </div>
       </header>
 
@@ -119,8 +108,8 @@ export default function ScheduleConsultationPage() {
       <footer className="w-full py-16 px-8 mt-24 bg-primary text-on-primary-container">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full max-w-screen-2xl mx-auto">
           <p className="font-manrope text-sm uppercase tracking-widest">
-            © 2026 JG Creative Tech Solution. Institutional Stability
-            through Agile Innovation.
+            © 2026 JG Creative Tech Solution. Crafted in Nairobi for the
+            Global Stage.
           </p>
           <div className="flex flex-wrap gap-8 justify-start md:justify-end">
             <a className="font-manrope text-sm uppercase tracking-widest hover:text-white transition-colors" href="/get-started/discovery">

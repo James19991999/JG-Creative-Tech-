@@ -113,11 +113,11 @@ export default function StrategicContextPage() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 px-12 max-w-7xl mx-auto">
           <div className="flex flex-col gap-2">
             <span className="font-newsreader text-xl font-semibold text-ink">
-              The Digital Architect
+              JG Creative Tech
             </span>
             <p className="font-manrope text-sm text-on-surface-variant max-w-xs">
-              © 2026 JG Creative Tech Solution. Editorial Digital
-              Infrastructure for Global SMEs.
+              © 2026 JG Creative Tech Solution. Crafted in Nairobi for the
+              Global Stage.
             </p>
           </div>
           <div className="flex flex-wrap justify-center gap-8">

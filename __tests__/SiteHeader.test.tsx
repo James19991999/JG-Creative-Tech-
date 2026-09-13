@@ -40,11 +40,11 @@ describe("SiteHeader", () => {
     expect(within(desktopNav).getByRole("link", { name: "Contact" })).toBeInTheDocument();
   });
 
-  it("renders the primary call to action", () => {
+  it("renders the primary call to action, routing through the discovery step first", () => {
     renderHeader();
 
     const cta = screen.getByRole("link", { name: "Get Started" });
-    expect(cta).toHaveAttribute("href", "/schedule-consultation");
+    expect(cta).toHaveAttribute("href", "/get-started/discovery");
   });
 
   it("marks the active link with aria-current in the desktop nav", () => {
