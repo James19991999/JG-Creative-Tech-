@@ -1,6 +1,7 @@
 import {
   ClientPortalActionError,
   sendClientMessage,
+  startInvoicePayment,
   uploadClientDocument,
 } from "@/lib/client-portal/actions";
 import { getFirebaseDb, getFirebaseStorage } from "@/lib/firebase-client";
@@ -114,6 +115,62 @@ describe("uploadClientDocument", () => {
         uploadedBy: "client",
         visibility: "shared",
       })
+    );
+  });
+});
+
+describe("startInvoicePayment", () => {
+  const fakeUser = { getIdToken: jest.fn().mockResolvedValue("fake-id-token") } as any;
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+    fakeUser.getIdToken.mockResolvedValue("fake-id-token");
+    global.fetch = jest.fn();
+  });
+
+  it("sends the ID token as a Bearer header and the invoiceId in the body", async () => {
+    (global.fetch as jest.Mock).mockResolvedValue({
+      ok: true,
+      json: async () => ({ url: "https://checkout.example/abc" }),
+    });
+
+    await startInvoicePayment(fakeUser, "inv1");
+
+    const [url, options] = (global.fetch as jest.Mock).mock.calls[0];
+    expect(url).toBe("/api/billing/intasend-checkout");
+    expect(options.headers.Authorization).toBe("Bearer fake-id-token");
+    expect(JSON.parse(options.body)).toEqual({ invoiceId: "inv1" });
+  });
+
+  it("returns the checkout url on success", async () => {
+    (global.fetch as jest.Mock).mockResolvedValue({
+      ok: true,
+      json: async () => ({ url: "https://checkout.example/abc" }),
+    });
+
+    const url = await startInvoicePayment(fakeUser, "inv1");
+    expect(url).toBe("https://checkout.example/abc");
+  });
+
+  it("throws the server's error message when the request fails", async () => {
+    (global.fetch as jest.Mock).mockResolvedValue({
+      ok: false,
+      json: async () => ({ error: "This invoice has already been paid." }),
+    });
+
+    await expect(startInvoicePayment(fakeUser, "inv1")).rejects.toThrow(
+      "This invoice has already been paid."
+    );
+  });
+
+  it("throws a generic error if the response has no url and no error message", async () => {
+    (global.fetch as jest.Mock).mockResolvedValue({
+      ok: true,
+      json: async () => ({}),
+    });
+
+    await expect(startInvoicePayment(fakeUser, "inv1")).rejects.toThrow(
+      ClientPortalActionError
     );
   });
 });

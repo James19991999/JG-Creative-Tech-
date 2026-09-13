@@ -11,6 +11,7 @@ import {
   doc,
   updateDoc,
 } from "firebase/firestore";
+import type { User } from "firebase/auth";
 import { getFirebaseDb, getFirebaseStorage } from "@/lib/firebase-client";
 
 const MAX_UPLOAD_BYTES = 20 * 1024 * 1024; // 20MB
@@ -105,4 +106,41 @@ export async function markNotificationRead(uid: string, notificationId: string) 
   await updateDoc(doc(db, "clients", uid, "notifications", notificationId), {
     read: true,
   });
+}
+
+/**
+ * Starts a real IntaSend checkout for one invoice and returns the
+ * hosted checkout URL to redirect the browser to. The actual "mark as
+ * paid" happens server-side once IntaSend's webhook confirms the
+ * payment (see app/api/webhooks/intasend/route.ts) - this function
+ * only ever starts that process, it never touches the invoice's
+ * status itself.
+ */
+export async function startInvoicePayment(
+  user: User,
+  invoiceId: string
+): Promise<string> {
+  const idToken = await user.getIdToken();
+
+  const response = await fetch("/api/billing/intasend-checkout", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${idToken}`,
+    },
+    body: JSON.stringify({ invoiceId }),
+  });
+
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new ClientPortalActionError(
+      data.error || "Couldn't start payment. Please try again."
+    );
+  }
+  if (!data.url) {
+    throw new ClientPortalActionError("Couldn't start payment. Please try again.");
+  }
+
+  return data.url as string;
 }

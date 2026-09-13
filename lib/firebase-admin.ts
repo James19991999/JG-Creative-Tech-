@@ -1,5 +1,6 @@
 import { cert, getApps, initializeApp, type App } from "firebase-admin/app";
 import { getFirestore, type Firestore } from "firebase-admin/firestore";
+import { getAuth, type Auth } from "firebase-admin/auth";
 
 /**
  * Firebase Admin initialization for server-side use only (API routes).
@@ -43,4 +44,10 @@ export function getAdminDb(): Firestore | null {
   const adminApp = getAdminApp();
   if (!adminApp) return null;
   return getFirestore(adminApp);
+}
+
+export function getAdminAuth(): Auth | null {
+  const adminApp = getAdminApp();
+  if (!adminApp) return null;
+  return getAuth(adminApp);
 }

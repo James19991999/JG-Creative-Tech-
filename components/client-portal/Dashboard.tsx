@@ -14,6 +14,7 @@ import {
   downloadClientDocument,
   markNotificationRead,
   sendClientMessage,
+  startInvoicePayment,
   uploadClientDocument,
 } from "@/lib/client-portal/actions";
 
@@ -70,6 +71,8 @@ export function ClientPortalDashboard() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [downloadError, setDownloadError] = useState<string | null>(null);
+  const [paymentError, setPaymentError] = useState<string | null>(null);
+  const [payingInvoiceId, setPayingInvoiceId] = useState<string | null>(null);
   const [notifOpen, setNotifOpen] = useState(false);
   const [messageOpen, setMessageOpen] = useState(false);
   const [messageBody, setMessageBody] = useState("");
@@ -141,6 +144,23 @@ export function ClientPortalDashboard() {
       await downloadClientDocument(storagePath, name);
     } catch {
       setDownloadError(`Couldn't download ${name}. Please try again.`);
+    }
+  }
+
+  async function handlePayInvoice(invoiceId: string) {
+    if (!user) return;
+    setPaymentError(null);
+    setPayingInvoiceId(invoiceId);
+    try {
+      const url = await startInvoicePayment(user, invoiceId);
+      window.location.href = url;
+    } catch (err) {
+      setPaymentError(
+        err instanceof ClientPortalActionError
+          ? err.message
+          : "Couldn't start payment. Please try again."
+      );
+      setPayingInvoiceId(null);
     }
   }
 
@@ -481,6 +501,11 @@ export function ClientPortalDashboard() {
         {/* Invoices */}
         <section ref={invoicesRef} className="scroll-mt-24">
           <h3 className="font-newsreader text-2xl font-semibold mb-6">Invoices</h3>
+          {paymentError ? (
+            <p role="alert" className="text-error text-sm font-bold mb-4">
+              {paymentError}
+            </p>
+          ) : null}
           {invoicesLoading ? (
             <p className="text-on-surface-variant text-sm">Loading invoices…</p>
           ) : invoices.length === 0 ? (
@@ -489,32 +514,46 @@ export function ClientPortalDashboard() {
             </p>
           ) : (
             <div className="bg-surface-container-low rounded-[2rem] p-8 space-y-3">
-              {invoices.map((inv) => (
-                <div
-                  key={inv.id}
-                  className="flex items-center justify-between p-5 bg-surface-container-lowest rounded-2xl ghost-border"
-                >
-                  <div>
-                    <h4 className="font-bold text-ink">Invoice {inv.number}</h4>
-                    <p className="text-xs text-on-surface-variant">
-                      Issued {formatDate(inv.issuedAt)} · Due {formatDate(inv.dueAt)}
-                    </p>
+              {invoices.map((inv) => {
+                const isPayable = inv.status === "sent" || inv.status === "overdue";
+                const isPaying = payingInvoiceId === inv.id;
+                return (
+                  <div
+                    key={inv.id}
+                    className="flex flex-wrap items-center justify-between gap-3 p-5 bg-surface-container-lowest rounded-2xl ghost-border"
+                  >
+                    <div>
+                      <h4 className="font-bold text-ink">Invoice {inv.number}</h4>
+                      <p className="text-xs text-on-surface-variant">
+                        Issued {formatDate(inv.issuedAt)} · Due {formatDate(inv.dueAt)}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <span className="font-bold text-ink">
+                        {(inv.amountCents / 100).toLocaleString(undefined, {
+                          style: "currency",
+                          currency: inv.currency || "USD",
+                        })}
+                      </span>
+                      <span
+                        className={`text-xs font-bold uppercase px-3 py-1 rounded-full ${INVOICE_STATUS_STYLES[inv.status] ?? "bg-surface-container text-on-surface-variant"}`}
+                      >
+                        {inv.status}
+                      </span>
+                      {isPayable ? (
+                        <button
+                          type="button"
+                          onClick={() => handlePayInvoice(inv.id)}
+                          disabled={isPaying}
+                          className="text-xs font-bold uppercase px-4 py-2 rounded-full bg-primary text-on-primary hover:opacity-90 active:scale-95 transition-all disabled:opacity-60"
+                        >
+                          {isPaying ? "Starting…" : "Pay Now"}
+                        </button>
+                      ) : null}
+                    </div>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <span className="font-bold text-ink">
-                      {(inv.amountCents / 100).toLocaleString(undefined, {
-                        style: "currency",
-                        currency: inv.currency || "USD",
-                      })}
-                    </span>
-                    <span
-                      className={`text-xs font-bold uppercase px-3 py-1 rounded-full ${INVOICE_STATUS_STYLES[inv.status] ?? "bg-surface-container text-on-surface-variant"}`}
-                    >
-                      {inv.status}
-                    </span>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </section>

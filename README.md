@@ -237,10 +237,6 @@ side on purpose.** Those are set by you.
 
 ### What deliberately isn't built
 
-- **No payment processing.** Invoices are informational status
-  records (number, amount, status, dates) — there's no "Pay Now"
-  button because no payment processor is wired into this project.
-  Adding one is a real scope/cost decision, not a checkbox.
 - **No self-service password reset UI** and **no account creation
   UI** — both are one-account, admin-driven per the scope above.
 - **No multi-client / admin dashboard.** If a second client ever
@@ -251,9 +247,88 @@ side on purpose.** Those are set by you.
 
 ---
 
+## 6b. Invoice Payments (Card + M-Pesa via IntaSend) — Setup
+
+"Pay Now" on an unpaid invoice creates a real IntaSend checkout
+session and redirects the client to a hosted page where they choose
+card or M-Pesa (STK Push) themselves — not two separate integrations,
+one hosted checkout that supports both.
+
+### How it actually works
+
+1. Client clicks "Pay Now" → `POST /api/billing/intasend-checkout`
+   (`Authorization: Bearer <their Firebase ID token>`, body
+   `{ invoiceId }`).
+2. That route reads the invoice **from Firestore, server-side** to
+   get the real amount and currency — it never trusts a client-
+   supplied amount, so there's no way to "pay" an invoice for less
+   than it's actually for. It creates the IntaSend checkout, stores a
+   lookup row in `intasendCheckouts/{apiRef}` (IntaSend's checkout
+   payload has no metadata field, so this is how the webhook later
+   knows which client + invoice a payment was for), and returns the
+   checkout URL.
+3. Client is redirected to IntaSend's hosted page and pays.
+4. **IntaSend's webhook** (`POST /api/webhooks/intasend`) is what
+   actually marks the invoice paid — never the client's browser
+   redirect back into the portal, which is UX only and could be
+   skipped or spoofed. The webhook handler:
+   - Checks the shared `challenge` string in the payload against
+     `INTASEND_WEBHOOK_CHALLENGE`, using a constant-time comparison.
+   - **Then independently re-confirms the payment status by calling
+     IntaSend's own status API directly**, rather than trusting the
+     webhook body alone. IntaSend's webhook security today is just
+     that shared challenge string — there's no HMAC request signing
+     the way Stripe's `Stripe-Signature` header works — so treating
+     the webhook as a hint to verify, not a fact to trust outright, is
+     what actually closes that gap.
+   - Is idempotent (IntaSend can and does redeliver webhooks) and
+     fails closed: if the independent verification call itself
+     errors, the invoice is *not* marked paid, and IntaSend's own
+     retry behavior gives it another chance once things recover.
+
+### Setup steps
+
+1. Get your keys from the IntaSend dashboard — sandbox:
+   `https://sandbox.intasend.com/account/api-keys/`, live:
+   `https://payment.intasend.com/account/api-keys/`.
+2. Add `INTASEND_PUBLISHABLE_KEY`, `INTASEND_SECRET_KEY`, and
+   `INTASEND_WEBHOOK_CHALLENGE` (a random string you choose) to `.env`
+   / Vercel project settings — see `.env.example`. Sandbox vs. live is
+   detected automatically from the key prefix (`ISPubKey_test_...` vs
+   `ISPubKey_live_...`), so there's no separate mode flag to keep in
+   sync.
+3. In the IntaSend dashboard, register your webhook URL
+   (`https://your-domain.com/api/webhooks/intasend`) under
+   Settings → Webhooks, and enter the **same** string you set as
+   `INTASEND_WEBHOOK_CHALLENGE`.
+4. Set an invoice's `status` field to `"sent"` or `"overdue"` in the
+   Firestore Console for "Pay Now" to appear on it — `"draft"` and
+   `"paid"` invoices don't show the button.
+
+### What deliberately isn't built
+
+- **IntaSend's Subscriptions API isn't used.** Their Checkout API
+  (what this integrates) is one-time payment only - paying via
+  IntaSend doesn't set up recurring billing the way a Stripe
+  subscription would. Not an oversight - a scope call, since this
+  portal's invoices are one-off documents, not subscriptions.
+- **No refund UI.** IntaSend's API supports refunds, but issuing one
+  is an administrative action with real financial consequences - it
+  belongs in the IntaSend dashboard directly, not a button a client
+  or this codebase can trigger.
+- **Live payment verification is genuinely impossible from a sandbox
+  with no real IntaSend account or credentials** — the code paths
+  that don't need live credentials (auth gating, invoice-not-found,
+  already-paid, malformed payloads, the challenge check, idempotency,
+  the fail-closed behavior on a verification error) are covered by
+  real tests; an actual M-Pesa STK Push completing end-to-end can only
+  be confirmed once this is deployed with real keys.
+
+---
+
 ## 7. Testing
 
-**132 tests across 21 suites.** Run with `npm test`.
+**222 tests across 29 suites.** Run with `npm test`.
 
 | Suite | What it covers |
 |---|---|
@@ -277,7 +352,10 @@ side on purpose.** Those are set by you.
 | `FeatureCard.test.tsx` | Title, description, heading role, decoration, variant styling |
 | `SignInForm.test.tsx` | Not-configured state, field rendering, submit → signIn call, friendly vs. generic error messages |
 | `ClientPortalDashboard.test.tsx` | Not-configured/loading/redirect states, real name vs. email fallback, empty vs. populated documents, no-project fallback copy, real invoice rendering |
-| `client-portal-actions.test.ts` | Upload size limit enforced before Storage is touched, message length/empty validation, correct Firestore payload shape |
+| `client-portal-actions.test.ts` | Upload size limit enforced before Storage is touched, message length/empty validation, correct Firestore payload shape, `startInvoicePayment`'s request shape and error propagation |
+| `intasend-client.test.ts` | Sandbox/live host detection from key prefix, checkout payload shape (no `method` field, so the hosted page offers both card and M-Pesa), bearer-token status lookups |
+| `intasend-checkout-route.test.ts` | Auth gating, invoice ownership (404 for missing/other-client invoices), already-paid/draft rejection, and the critical case: a client-supplied amount is always ignored in favor of the invoice's real server-side amount |
+| `intasend-webhook-route.test.ts` | Challenge verification (correct/wrong/missing/wrong-length), idempotency on redelivery, independent re-verification against IntaSend's API before marking paid, and failing closed (not marking paid) if that verification call itself errors |
 
 ---
 
