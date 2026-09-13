@@ -7,7 +7,8 @@ const baseUrl = "https://www.jgcreativetech.solutions";
 
 /**
  * Generates /sitemap.xml at build/request time. Excludes pages marked
- * noindex (client portal, consultation funnel steps) since those
+ * noindex (client portal, consultation funnel steps, /strategic-context)
+ * since those
  * shouldn't be discovered by search engines.
  *
  * Every route gets an entry for each locale (English at its existing
@@ -30,7 +31,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/solutions", priority: 0.9, changeFrequency: "monthly" as const },
     { path: "/digital-architecture", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/digital-strategy", priority: 0.7, changeFrequency: "monthly" as const },
-    { path: "/strategic-context", priority: 0.5, changeFrequency: "monthly" as const },
     { path: "/innovation-lab", priority: 0.6, changeFrequency: "monthly" as const },
     { path: "/portfolio", priority: 0.8, changeFrequency: "weekly" as const },
     { path: "/blog", priority: 0.7, changeFrequency: "weekly" as const },

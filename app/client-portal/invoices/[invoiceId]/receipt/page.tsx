@@ -80,7 +80,7 @@ export default function InvoiceReceiptPage() {
           <p className="text-on-surface-variant mb-4">
             That invoice couldn&apos;t be found.
           </p>
-          <a href="/client-portal" className="text-primary font-bold hover:underline">
+          <a href="/client-portal" className="text-ink font-bold hover:underline">
             Back to your portal
           </a>
         </div>

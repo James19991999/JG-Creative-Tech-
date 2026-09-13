@@ -22,7 +22,7 @@ const staticPages: SearchItem[] = [
   {
     title: "Home",
     description:
-      "We build the digital foundations that allow local resilience to scale globally. Premium architecture for businesses that demand excellence.",
+      "We engineer the digital infrastructure that turns Kenyan resilience into global reach - built to scale, designed to last.",
     category: "Pages",
     url: "/",
   },
