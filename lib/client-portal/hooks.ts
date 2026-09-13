@@ -30,6 +30,8 @@ export type ClientInvoice = {
   status: "draft" | "sent" | "paid" | "overdue";
   issuedAt: string;
   dueAt: string;
+  paidAt?: string;
+  intasendInvoiceId?: string;
 };
 
 export type ClientNotification = {
@@ -179,4 +181,47 @@ export function useClientProfile(uid: string | undefined) {
   }, [uid]);
 
   return { profile, loading, error };
+}
+
+/**
+ * Single-invoice real-time listener, for the receipt/print page -
+ * fetches by ID directly rather than waiting for the full invoices
+ * list to load just to show one record.
+ */
+export function useClientInvoice(uid: string | undefined, invoiceId: string | undefined) {
+  const [invoice, setInvoice] = useState<ClientInvoice | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!uid || !invoiceId) {
+      setLoading(false);
+      return;
+    }
+    const db = getFirebaseDb();
+    if (!db) {
+      setLoading(false);
+      setError("Portal is not configured.");
+      return;
+    }
+
+    const unsubscribe = onSnapshot(
+      doc(db, "clients", uid, "invoices", invoiceId),
+      (snapshot) => {
+        setInvoice(
+          snapshot.exists() ? ({ id: snapshot.id, ...snapshot.data() } as ClientInvoice) : null
+        );
+        setLoading(false);
+      },
+      (err: FirestoreError) => {
+        setLoading(false);
+        setError("Couldn't load this invoice. Please refresh the page.");
+        console.error("[client-portal] invoice listener error:", err);
+      }
+    );
+
+    return unsubscribe;
+  }, [uid, invoiceId]);
+
+  return { invoice, loading, error };
 }

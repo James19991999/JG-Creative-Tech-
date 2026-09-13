@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useEffect, useRef, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useClientPortalAuth } from "@/components/client-portal/AuthProvider";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import {
   useClientDocuments,
   useClientInvoices,
+  useClientMessages,
   useClientNotifications,
   useClientProfile,
 } from "@/lib/client-portal/hooks";
@@ -49,6 +51,67 @@ const INVOICE_STATUS_STYLES: Record<string, string> = {
   draft: "bg-surface-container text-on-surface-variant",
 };
 
+/**
+ * Reads the ?payment=complete param IntaSend's checkout redirects
+ * back to after a successful payment, shows a confirmation banner,
+ * then strips the param from the URL so refreshing or navigating
+ * back doesn't re-show it. Isolated in its own component (rather than
+ * called directly in ClientPortalDashboard) because useSearchParams
+ * requires a Suspense boundary for statically-rendered pages, and
+ * this is the only piece of the dashboard that actually needs it.
+ *
+ * Honest about what this banner does and doesn't guarantee: it only
+ * means the payment provider redirected the browser back after
+ * checkout, which is a UX signal, not proof the payment was recorded
+ * - the real status update comes from the webhook, which may take a
+ * few seconds to arrive. The invoice list updates live the moment it
+ * does, with no refresh needed - the banner says so rather than
+ * implying the status below has already changed.
+ */
+function PaymentConfirmationBanner() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (searchParams.get("payment") === "complete") {
+      setVisible(true);
+      router.replace("/client-portal");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (!visible) return null;
+
+  return (
+    <div
+      role="status"
+      className="bg-secondary-container text-on-secondary-container rounded-2xl p-5 mb-8 flex items-start gap-3"
+    >
+      <span className="material-symbols-outlined" aria-hidden="true">
+        check_circle
+      </span>
+      <div className="flex-1">
+        <p className="font-bold text-sm">Payment received — thank you!</p>
+        <p className="text-sm mt-1 opacity-90">
+          Your invoice below will update automatically once it&apos;s confirmed,
+          usually within a few seconds.
+        </p>
+      </div>
+      <button
+        type="button"
+        onClick={() => setVisible(false)}
+        aria-label="Dismiss"
+        className="text-on-secondary-container/70 hover:text-on-secondary-container"
+      >
+        <span className="material-symbols-outlined text-lg" aria-hidden="true">
+          close
+        </span>
+      </button>
+    </div>
+  );
+}
+
 export function ClientPortalDashboard() {
   const { user, loading: authLoading, configured, signOut } = useClientPortalAuth();
   const router = useRouter();
@@ -65,6 +128,7 @@ export function ClientPortalDashboard() {
     useClientDocuments(uid);
   const { data: invoices, loading: invoicesLoading } = useClientInvoices(uid);
   const { data: notifications } = useClientNotifications(uid);
+  const { data: messages } = useClientMessages(uid);
 
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
@@ -77,7 +141,7 @@ export function ClientPortalDashboard() {
   const [messageOpen, setMessageOpen] = useState(false);
   const [messageBody, setMessageBody] = useState("");
   const [messageState, setMessageState] = useState<
-    "idle" | "sending" | "sent" | "error"
+    "idle" | "sending" | "error"
   >("idle");
   const [messageError, setMessageError] = useState<string | null>(null);
 
@@ -170,7 +234,7 @@ export function ClientPortalDashboard() {
     setMessageError(null);
     try {
       await sendClientMessage(uid, messageBody);
-      setMessageState("sent");
+      setMessageState("idle");
       setMessageBody("");
     } catch (err) {
       setMessageState("error");
@@ -231,6 +295,7 @@ export function ClientPortalDashboard() {
               )}
             </div>
           ) : null}
+          <ThemeToggle />
           <div
             className="w-10 h-10 rounded-full bg-primary-container overflow-hidden ring-2 ring-white/20 flex items-center justify-center text-on-primary-container font-bold text-sm"
             aria-hidden="true"
@@ -248,6 +313,10 @@ export function ClientPortalDashboard() {
       </header>
 
       <main id="main-content" className="pt-24 px-6 md:px-12 max-w-7xl mx-auto space-y-12">
+        <Suspense fallback={null}>
+          <PaymentConfirmationBanner />
+        </Suspense>
+
         {/* Welcome Section */}
         <section className="mt-8">
           <span className="text-accent font-medium text-xs tracking-[0.2em] uppercase mb-2 block">
@@ -540,6 +609,14 @@ export function ClientPortalDashboard() {
                       >
                         {inv.status}
                       </span>
+                      {inv.status !== "draft" ? (
+                        <a
+                          href={`/client-portal/invoices/${inv.id}/receipt`}
+                          className="text-xs font-bold uppercase px-4 py-2 rounded-full border border-outline-variant text-ink hover:bg-surface-container transition-colors"
+                        >
+                          {inv.status === "paid" ? "Receipt" : "View"}
+                        </a>
+                      ) : null}
                       {isPayable ? (
                         <button
                           type="button"
@@ -585,63 +662,84 @@ export function ClientPortalDashboard() {
           aria-labelledby="message-team-title"
           className="fixed inset-0 z-[100] bg-black/40 flex items-center justify-center px-6"
         >
-          <div className="bg-surface-container-lowest rounded-2xl p-8 max-w-md w-full whisper-shadow">
-            <h3 id="message-team-title" className="font-newsreader text-2xl font-bold text-ink mb-4">
-              Message your team
-            </h3>
-            {messageState === "sent" ? (
-              <div>
-                <p className="text-on-surface-variant mb-6">
-                  Your message has been sent.
+          <div className="bg-surface-container-lowest rounded-2xl p-8 max-w-md w-full whisper-shadow flex flex-col max-h-[85vh]">
+            <div className="flex items-center justify-between mb-4">
+              <h3 id="message-team-title" className="font-newsreader text-2xl font-bold text-ink">
+                Message your team
+              </h3>
+              <button
+                type="button"
+                onClick={() => setMessageOpen(false)}
+                aria-label="Close"
+                className="text-on-surface-variant hover:text-ink transition-colors"
+              >
+                <span className="material-symbols-outlined" aria-hidden="true">
+                  close
+                </span>
+              </button>
+            </div>
+
+            {/* Thread history - oldest first, like a real conversation.
+                messages arrives newest-first from Firestore, so it's
+                reversed here for display only. */}
+            <div className="flex-1 overflow-y-auto mb-4 space-y-3 min-h-[120px]">
+              {messages.length === 0 ? (
+                <p className="text-on-surface-variant text-sm text-center py-8">
+                  No messages yet. Say hello below.
                 </p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setMessageOpen(false);
-                    setMessageState("idle");
-                  }}
-                  className="w-full bg-primary text-on-primary font-bold py-3 rounded-full"
-                >
-                  Close
-                </button>
-              </div>
-            ) : (
-              <>
-                {messageError ? (
-                  <p role="alert" className="text-error text-sm font-bold mb-4">
-                    {messageError}
-                  </p>
-                ) : null}
-                <label htmlFor="message-body" className="sr-only">
-                  Message
-                </label>
-                <textarea
-                  id="message-body"
-                  value={messageBody}
-                  onChange={(e) => setMessageBody(e.target.value)}
-                  rows={5}
-                  className="w-full px-4 py-3 rounded-lg border border-outline-variant bg-surface focus:outline-none focus:ring-2 focus:ring-primary mb-4"
-                  placeholder="What's on your mind?"
-                />
-                <div className="flex gap-3">
-                  <button
-                    type="button"
-                    onClick={() => setMessageOpen(false)}
-                    className="flex-1 border border-outline-variant text-ink font-bold py-3 rounded-full"
+              ) : (
+                [...messages].reverse().map((m) => (
+                  <div
+                    key={m.id}
+                    className={`max-w-[85%] p-3 rounded-2xl text-sm ${
+                      m.sentBy === "client"
+                        ? "ml-auto bg-primary text-on-primary rounded-br-sm"
+                        : "bg-surface-container text-ink rounded-bl-sm"
+                    }`}
                   >
-                    Cancel
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleSendMessage}
-                    disabled={messageState === "sending"}
-                    className="flex-1 bg-primary text-on-primary font-bold py-3 rounded-full disabled:opacity-60"
-                  >
-                    {messageState === "sending" ? "Sending…" : "Send"}
-                  </button>
-                </div>
-              </>
-            )}
+                    <p className="whitespace-pre-wrap break-words">{m.body}</p>
+                    <p
+                      className={`text-[10px] mt-1 ${
+                        m.sentBy === "client" ? "text-white/70" : "text-on-surface-variant"
+                      }`}
+                    >
+                      {m.sentBy === "client" ? "You" : "JG Creative Tech"} ·{" "}
+                      {formatDate(m.createdAt)}
+                    </p>
+                  </div>
+                ))
+              )}
+            </div>
+
+            {messageError ? (
+              <p role="alert" className="text-error text-sm font-bold mb-3">
+                {messageError}
+              </p>
+            ) : null}
+            <label htmlFor="message-body" className="sr-only">
+              Message
+            </label>
+            <div className="flex gap-2">
+              <textarea
+                id="message-body"
+                value={messageBody}
+                onChange={(e) => setMessageBody(e.target.value)}
+                rows={2}
+                className="flex-1 px-4 py-3 rounded-lg border border-outline-variant bg-surface focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                placeholder="What's on your mind?"
+              />
+              <button
+                type="button"
+                onClick={handleSendMessage}
+                disabled={messageState === "sending" || messageBody.trim().length === 0}
+                aria-label="Send message"
+                className="shrink-0 w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center disabled:opacity-60 hover:opacity-90 active:scale-95 transition-all"
+              >
+                <span className="material-symbols-outlined" aria-hidden="true">
+                  {messageState === "sending" ? "hourglass_top" : "send"}
+                </span>
+              </button>
+            </div>
           </div>
         </div>
       ) : null}

@@ -4,6 +4,7 @@ import { useClientPortalAuth } from "@/components/client-portal/AuthProvider";
 import {
   useClientDocuments,
   useClientInvoices,
+  useClientMessages,
   useClientNotifications,
   useClientProfile,
 } from "@/lib/client-portal/hooks";
@@ -12,6 +13,7 @@ const replace = jest.fn();
 
 jest.mock("next/navigation", () => ({
   useRouter: () => ({ replace }),
+  useSearchParams: () => new URLSearchParams(),
 }));
 
 jest.mock("@/components/client-portal/AuthProvider", () => ({
@@ -21,6 +23,7 @@ jest.mock("@/components/client-portal/AuthProvider", () => ({
 jest.mock("@/lib/client-portal/hooks", () => ({
   useClientDocuments: jest.fn(),
   useClientInvoices: jest.fn(),
+  useClientMessages: jest.fn(),
   useClientNotifications: jest.fn(),
   useClientProfile: jest.fn(),
 }));
@@ -28,6 +31,7 @@ jest.mock("@/lib/client-portal/hooks", () => ({
 const mockedUseAuth = useClientPortalAuth as jest.Mock;
 const mockedDocs = useClientDocuments as jest.Mock;
 const mockedInvoices = useClientInvoices as jest.Mock;
+const mockedMessages = useClientMessages as jest.Mock;
 const mockedNotifications = useClientNotifications as jest.Mock;
 const mockedProfile = useClientProfile as jest.Mock;
 
@@ -40,6 +44,7 @@ const baseUser = {
 function setupDefaultMocks() {
   mockedDocs.mockReturnValue({ data: [], loading: false, error: null });
   mockedInvoices.mockReturnValue({ data: [], loading: false, error: null });
+  mockedMessages.mockReturnValue({ data: [], loading: false, error: null });
   mockedNotifications.mockReturnValue({ data: [], loading: false, error: null });
   mockedProfile.mockReturnValue({ profile: null, loading: false, error: null });
 }
