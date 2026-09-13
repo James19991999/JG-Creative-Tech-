@@ -1,40 +1,29 @@
 "use client";
 
+import { useCookieConsent } from "@/lib/cookie-consent";
 import { useState } from "react";
-
-const STORAGE_KEY = "jg-cookie-consent-detailed";
-
-type Preferences = {
-  analytics: boolean;
-  marketing: boolean;
-};
 
 /**
  * Cookie category toggle grid matching the original Stitch "Operational
  * Frameworks" bento section. Essential cookies are always-on and not
  * toggleable (matches source: no checkbox, "Mandatory" badge).
- * Analytics defaults on, Marketing defaults off, matching the source's
- * `checked` attribute on the first toggle only.
+ *
+ * Reads/writes through the same useCookieConsent hook as CookieBanner
+ * (see lib/cookie-consent.ts) rather than its own separate storage, so
+ * a decision made here and a decision made in the banner can never
+ * disagree with each other.
  */
 export function CookiePreferences() {
-  const [preferences, setPreferences] = useState<Preferences>({
-    analytics: true,
-    marketing: false,
-  });
+  const { consent, setCategory } = useCookieConsent();
   const [savedMessage, setSavedMessage] = useState(false);
 
-  function toggle(key: keyof Preferences) {
-    setPreferences((prev) => {
-      const next = { ...prev, [key]: !prev[key] };
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-      } catch {
-        // ignore storage failures
-      }
-      setSavedMessage(true);
-      setTimeout(() => setSavedMessage(false), 2000);
-      return next;
-    });
+  const analytics = consent === "loading" ? false : consent.analytics;
+  const marketing = consent === "loading" ? false : consent.marketing;
+
+  function toggle(category: "analytics" | "marketing", current: boolean) {
+    setCategory(category, !current);
+    setSavedMessage(true);
+    setTimeout(() => setSavedMessage(false), 2000);
   }
 
   return (
@@ -91,8 +80,8 @@ export function CookiePreferences() {
               <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
                 <span className="sr-only">Toggle analytics cookies</span>
                 <input
-                  checked={preferences.analytics}
-                  onChange={() => toggle("analytics")}
+                  checked={analytics}
+                  onChange={() => toggle("analytics", analytics)}
                   className="sr-only peer"
                   type="checkbox"
                 />
@@ -116,8 +105,8 @@ export function CookiePreferences() {
               <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
                 <span className="sr-only">Toggle marketing cookies</span>
                 <input
-                  checked={preferences.marketing}
-                  onChange={() => toggle("marketing")}
+                  checked={marketing}
+                  onChange={() => toggle("marketing", marketing)}
                   className="sr-only peer"
                   type="checkbox"
                 />

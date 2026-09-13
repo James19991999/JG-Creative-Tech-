@@ -1,44 +1,25 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
-
-const CONSENT_KEY = "jg-cookie-consent";
-
-type ConsentState = "accepted" | "declined" | null;
+import { useCookieConsent } from "@/lib/cookie-consent";
 
 /**
- * Cookie consent banner. Shown on first visit; decision persisted in
- * localStorage. Compliant with GDPR and Kenya's Data Protection Act 2019.
+ * Cookie consent banner. Shown on first visit; decision persisted via
+ * the shared useCookieConsent hook (see lib/cookie-consent.ts) so it
+ * stays in sync with the granular per-category toggles on
+ * /legal/cookies rather than tracking its own separate state.
+ * Compliant with GDPR and Kenya's Data Protection Act 2019.
  *
- * - "Accept" sets analytics consent and clears the banner.
+ * - "Accept" grants analytics + marketing consent and clears the banner.
  * - "Decline" records the decline and clears the banner (no analytics).
- * - Links to /legal/cookies for full policy.
- * - Renders nothing once consent has been given (either way).
+ * - Links to /legal/cookies for full policy and granular control.
+ * - Renders nothing once a decision has been made (either way).
  */
 export function CookieBanner() {
-  const [consent, setConsent] = useState<ConsentState | "loading">("loading");
+  const { consent, acceptAll, declineAll } = useCookieConsent();
 
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem(CONSENT_KEY) as ConsentState | null;
-      setConsent(stored);
-    } catch {
-      setConsent(null);
-    }
-  }, []);
-
-  function handleDecision(decision: "accepted" | "declined") {
-    try {
-      localStorage.setItem(CONSENT_KEY, decision);
-    } catch {
-      // localStorage unavailable — consent still visually dismissed
-    }
-    setConsent(decision);
-  }
-
-  // Don't render during SSR or after a decision has been made
-  if (consent !== null) return null;
+  // Don't render during SSR/loading or after a decision has been made
+  if (consent === "loading" || consent.hasDecided) return null;
 
   return (
     <div
@@ -76,14 +57,14 @@ export function CookieBanner() {
         <div className="flex gap-3">
           <button
             type="button"
-            onClick={() => handleDecision("accepted")}
+            onClick={acceptAll}
             className="flex-1 bg-on-primary text-primary font-manrope font-bold text-sm py-3 rounded-full hover:opacity-90 transition-all active:scale-95"
           >
             Accept all
           </button>
           <button
             type="button"
-            onClick={() => handleDecision("declined")}
+            onClick={declineAll}
             className="flex-1 border border-white/20 text-on-primary font-manrope font-medium text-sm py-3 rounded-full hover:bg-white/10 transition-colors"
           >
             Decline

@@ -376,9 +376,71 @@ itself for the person submitting it.
 
 ---
 
+## 6d. Analytics — Setup
+
+Real traffic data via Google Analytics 4, gated behind the site's
+existing cookie consent through Google's **Consent Mode v2** - not
+just "load the script if consented, skip it otherwise." This closes a
+real gap: the cookie banner has always said "optional analytics
+cookies," but until this, nothing was actually wired up to collect
+anything.
+
+### How consent actually works now
+
+Before this, `CookieBanner` (the popup) and `CookiePreferences` (the
+granular Analytics/Marketing toggles on `/legal/cookies`) wrote to two
+different, disconnected `localStorage` keys - declining in the banner
+and then separately toggling Analytics on in the detailed panel would
+just leave the two disagreeing with each other, with nothing to
+reconcile them. Both now read and write through one shared hook
+(`lib/cookie-consent.ts`), so a decision made in either place is
+immediately visible in the other - verified directly in a real
+browser: decline in the banner, then load `/legal/cookies` and the
+Analytics toggle correctly shows off, matching the decision made
+somewhere else entirely.
+
+`components/Analytics.tsx` maps that shared state onto the four
+Consent Mode v2 signals Google actually uses: the `analytics` category
+controls `analytics_storage`; `marketing` controls `ad_storage`,
+`ad_user_data`, and `ad_personalization`. This site doesn't run Google
+Ads today, but wiring the marketing signal correctly now means it's
+already in place if that ever changes.
+
+On page load, gtag.js loads and immediately sends `consent: default`
+with everything denied (`wait_for_update: 500`) - Google's tags never
+fire without an explicit signal about what they're allowed to do. Once
+the visitor decides (via the banner or the detailed panel), a
+`consent: update` call fires with the real state. Confirmed this whole
+handshake directly in a browser by reading `window.dataLayer`, not
+just by reading the code: default-denied on load, update-granted
+immediately on Accept, and an independent update when only the
+Analytics toggle (not Marketing) is flipped later.
+
+### Setup
+
+1. Create a GA4 property at [analytics.google.com](https://analytics.google.com)
+   if you don't have one, then find your Measurement ID under
+   **Admin → Data Streams → your web stream** (looks like
+   `G-XXXXXXXXXX`).
+2. Set `NEXT_PUBLIC_GA_MEASUREMENT_ID` - see `.env.example`. This is
+   intentionally a public env var, not a secret one: gtag.js runs
+   entirely in the browser, so the ID is visible in page source either
+   way.
+3. Once you have real traffic flowing, connect this GA4 property to
+   Search Console (Admin → Product Links, inside GA4) to see search
+   query and ranking data alongside behavior data in one place - a
+   separate, one-time setup step in Google's own dashboards, not
+   something this codebase can do for you.
+
+Without `NEXT_PUBLIC_GA_MEASUREMENT_ID` set, no analytics scripts load
+at all - not even a consent-denied stub - matching how every other
+optional integration in this project degrades when unconfigured.
+
+---
+
 ## 7. Testing
 
-**249 tests across 34 suites.** Run with `npm test`.
+**270 tests across 37 suites.** Run with `npm test`.
 
 | Suite | What it covers |
 |---|---|
@@ -409,6 +471,8 @@ itself for the person submitting it.
 | `resend-client.test.ts` | Config detection, correct Resend payload shape, and `sendEmailBestEffort` never throwing even when the send itself fails |
 | `email-templates.test.ts` | Correct content per email type, discovery-context fields omitted entirely when not provided, and - the one that matters most - HTML in user-submitted content is escaped rather than injected raw into the email |
 | `contact-route.test.ts`, `schedule-consultation-route.test.ts`, `newsletter-route.test.ts` | Notification + confirmation emails sent with the right recipients (reply-to set to the submitter on the owner-facing ones), email skipped silently (not an error) when Resend isn't configured, and a failed send never blocks the form's own success response |
+| `cookie-consent.test.ts` | The unified consent hook - correct defaults, `acceptAll`/`declineAll`/`setCategory` behavior, legacy-key migration, and that two independent hook instances (banner + preferences panel) actually stay in sync rather than just coincidentally matching in one test |
+| `Analytics.test.tsx` | No scripts render at all when unconfigured, and the Consent Mode v2 signal mapping is correct: no `gtag` call before a decision exists, `analytics_storage` tracks the analytics category, and the three ad-related signals track marketing independently |
 
 ---
 

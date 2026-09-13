@@ -22,21 +22,25 @@ describe("CookiePreferences", () => {
     expect(screen.getByText("Always Active")).toBeInTheDocument();
   });
 
-  it("defaults analytics to on and marketing to off, matching the source design", () => {
+  it("defaults both categories to off until an explicit decision is made", () => {
     render(<CookiePreferences />);
 
-    expect(screen.getByLabelText("Toggle analytics cookies")).toBeChecked();
+    // Real analytics is now wired to this consent state (see
+    // components/Analytics.tsx) - defaulting a category to "on"
+    // before the visitor has made any decision would mean tracking
+    // fires without genuine consent, so both must start denied.
+    expect(screen.getByLabelText("Toggle analytics cookies")).not.toBeChecked();
     expect(screen.getByLabelText("Toggle marketing cookies")).not.toBeChecked();
   });
 
-  it("toggles analytics off when clicked", async () => {
+  it("toggles analytics on when clicked", async () => {
     const user = userEvent.setup();
     render(<CookiePreferences />);
 
     const analyticsToggle = screen.getByLabelText("Toggle analytics cookies");
     await user.click(analyticsToggle);
 
-    expect(analyticsToggle).not.toBeChecked();
+    expect(analyticsToggle).toBeChecked();
   });
 
   it("toggles marketing on when clicked", async () => {
@@ -47,6 +51,16 @@ describe("CookiePreferences", () => {
     await user.click(marketingToggle);
 
     expect(marketingToggle).toBeChecked();
+  });
+
+  it("toggling one category doesn't affect the other", async () => {
+    const user = userEvent.setup();
+    render(<CookiePreferences />);
+
+    await user.click(screen.getByLabelText("Toggle analytics cookies"));
+
+    expect(screen.getByLabelText("Toggle analytics cookies")).toBeChecked();
+    expect(screen.getByLabelText("Toggle marketing cookies")).not.toBeChecked();
   });
 
   it("persists preference changes to localStorage", async () => {

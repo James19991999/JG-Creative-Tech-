@@ -11,6 +11,7 @@ import { RouteTransition } from "@/components/RouteTransition";
 import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
 import { CommandPaletteProvider } from "@/components/CommandPalette";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { Analytics } from "@/components/Analytics";
 import { getSearchIndex } from "@/lib/search-index";
 import { themeInitScript } from "@/lib/theme-script";
 
@@ -127,6 +128,7 @@ export default async function LocaleLayout({
             <RouteTransition>{children}</RouteTransition>
             <CookieBanner />
             <WhatsAppButton />
+            <Analytics />
             <ServiceWorkerRegistration />
           </CommandPaletteProvider>
         </NextIntlClientProvider>
