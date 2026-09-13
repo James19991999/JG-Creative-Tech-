@@ -20,7 +20,8 @@
     "closeMenu": "Close navigation menu",
     "openMenu": "Open navigation menu",
     "menuLandmark": "Navigation menu",
-    "mobileLandmark": "Mobile"
+    "mobileLandmark": "Mobile",
+    "faq": "FAQ"
   },
   "footer": {
     "blurb": "Building the digital foundations for Kenya's most ambitious businesses. We specialize in digital infrastructure that is both resilient and elegant.",
@@ -146,5 +147,28 @@
   },
   "whatsapp": {
     "chatOnWhatsApp": "Chat with us on WhatsApp"
+  },
+  "faq": {
+    "metaTitle": "Frequently Asked Questions",
+    "metaDescription": "Common questions about working with JG Creative Tech - services, getting started, payment, and the client portal.",
+    "kicker": "Common Questions",
+    "title": "Frequently Asked Questions",
+    "subtitle": "Answers to what most people ask before working with us. Still have a question? Reach out directly.",
+    "q1Question": "What does JG Creative Tech actually do?",
+    "q1Answer": "We build digital infrastructure for Kenyan and East African SMEs - web development, digital architecture, digital strategy, and editorial-grade design. In practice that means everything from a business's core website to the systems behind it: client portals, payment processing, and ongoing technical strategy.",
+    "q2Question": "How do I get started on a project?",
+    "q2Answer": "Click \"Get Started\" from the homepage. You'll fill out a short Project Discovery form (your goals, business stage, and any context worth knowing), then choose a time for a consultation call. Nothing is booked or charged until that call.",
+    "q3Question": "How much does a project cost?",
+    "q3Answer": "It depends on scope - a marketing website and a custom client portal are very different projects. We don't publish fixed packages because most real projects don't fit a template. Book a consultation and we'll give you an honest, specific estimate based on what you actually need.",
+    "q4Question": "Can I pay with M-Pesa?",
+    "q4Answer": "Yes. Invoices in your client portal can be paid by M-Pesa or card through a single secure checkout - you choose the method that works for you at the time of payment.",
+    "q5Question": "Do you only work with businesses in Nairobi?",
+    "q5Answer": "No. We're based in Nairobi, but our work is entirely remote-friendly and we work with SMEs across Kenya and East Africa more broadly.",
+    "q6Question": "What is the client portal, and do I get access to one?",
+    "q6Answer": "It's where active clients view project documents, track invoices, pay them, and message our team directly, all in one place. Portal access is set up for you once you become a client - there's no public sign-up.",
+    "q7Question": "Is your site and your service available in Swahili?",
+    "q7Answer": "Yes - the site itself is fully available in English and Swahili, and we're happy to communicate in either language throughout a project.",
+    "q8Question": "What's the fastest way to reach you directly?",
+    "q8Answer": "WhatsApp is usually fastest - there's a chat button on every page. You can also use the contact form, or book a consultation directly if you already know what you're looking for."
   }
 }

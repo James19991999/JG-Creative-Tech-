@@ -34,6 +34,13 @@ const staticPages: SearchItem[] = [
     url: "/about",
   },
   {
+    title: "Frequently Asked Questions",
+    description:
+      "Common questions about working with JG Creative Tech - services, getting started, payment, and the client portal.",
+    category: "Pages",
+    url: "/faq",
+  },
+  {
     title: "Solutions",
     description:
       "We engineer premium digital infrastructure for ambitious SMEs, bridging the gap between legacy operations and future-proof innovation.",

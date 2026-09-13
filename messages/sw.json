@@ -20,7 +20,8 @@
     "closeMenu": "Funga menyu ya urambazaji",
     "openMenu": "Fungua menyu ya urambazaji",
     "menuLandmark": "Menyu ya Urambazaji",
-    "mobileLandmark": "Simu"
+    "mobileLandmark": "Simu",
+    "faq": "Maswali"
   },
   "footer": {
     "blurb": "Tunajenga misingi ya kidijitali kwa biashara zenye malengo makubwa nchini Kenya. Utaalamu wetu ni miundombinu ya kidijitali iliyo imara na yenye umahiri.",
@@ -146,5 +147,28 @@
   },
   "whatsapp": {
     "chatOnWhatsApp": "Ongea Nasi kwa WhatsApp"
+  },
+  "faq": {
+    "metaTitle": "Maswali Yanayoulizwa Mara kwa Mara",
+    "metaDescription": "Maswali ya kawaida kuhusu kufanya kazi na JG Creative Tech - huduma, kuanza, malipo, na lango la mteja.",
+    "kicker": "Maswali ya Kawaida",
+    "title": "Maswali Yanayoulizwa Mara kwa Mara",
+    "subtitle": "Majibu ya kile ambacho watu wengi huuliza kabla ya kufanya kazi nasi. Bado una swali? Wasiliana nasi moja kwa moja.",
+    "q1Question": "JG Creative Tech hufanya nini hasa?",
+    "q1Answer": "Tunajenga miundombinu ya kidijitali kwa SME za Kenya na Afrika Mashariki - uundaji wa tovuti, usanifu wa kidijitali, mkakati wa kidijitali, na ubunifu wa hadhi ya uhariri. Kwa vitendo, hii inamaanisha kila kitu kutoka tovuti kuu ya biashara hadi mifumo iliyo nyuma yake: milango ya wateja, uchakataji wa malipo, na mkakati wa kiufundi unaoendelea.",
+    "q2Question": "Nawezaje kuanza mradi?",
+    "q2Answer": "Bofya \"Anza Sasa\" kutoka ukurasa wa nyumbani. Utajaza fomu fupi ya Ugunduzi wa Mradi (malengo yako, hatua ya biashara, na muktadha wowote unaofaa kujulikana), kisha uchague muda wa mazungumzo ya ushauri. Hakuna kinachopangwa au kutozwa hadi mazungumzo hayo.",
+    "q3Question": "Mradi hugharimu kiasi gani?",
+    "q3Answer": "Inategemea wigo - tovuti ya uuzaji na lango maalum la mteja ni miradi tofauti kabisa. Hatuchapishi vifurushi vya bei za kudumu kwa sababu miradi mingi halisi haifai kiolezo. Panga mashauriano nasi na tutakupa makadirio ya kweli na mahususi kulingana na unachohitaji.",
+    "q4Question": "Naweza kulipa kwa M-Pesa?",
+    "q4Answer": "Ndiyo. Ankara katika lango lako la mteja zinaweza kulipwa kwa M-Pesa au kadi kupitia malipo salama moja - unachagua njia inayokufaa wakati wa malipo.",
+    "q5Question": "Je, mnafanya kazi na biashara za Nairobi pekee?",
+    "q5Answer": "Hapana. Tuko Nairobi, lakini kazi yetu inafaa kabisa kufanywa kwa mbali na tunafanya kazi na SME kote Kenya na Afrika Mashariki kwa jumla.",
+    "q6Question": "Lango la mteja ni nini, na je, nitapata ufikiaji wa moja?",
+    "q6Answer": "Ni mahali wateja walio hai huangalia hati za mradi, kufuatilia ankara, kuzilipa, na kutuma ujumbe kwa timu yetu moja kwa moja, yote mahali pamoja. Ufikiaji wa lango huwekwa kwa ajili yako mara tu unapokuwa mteja - hakuna usajili wa umma.",
+    "q7Question": "Je, tovuti na huduma yenu inapatikana kwa Kiswahili?",
+    "q7Answer": "Ndiyo - tovuti yenyewe inapatikana kikamilifu kwa Kiingereza na Kiswahili, na tunafurahi kuwasiliana kwa lugha yoyote katika mradi mzima.",
+    "q8Question": "Njia gani ya haraka zaidi ya kuwasiliana nasi moja kwa moja?",
+    "q8Answer": "WhatsApp kwa kawaida ni haraka zaidi - kuna kitufe cha mazungumzo kwenye kila ukurasa. Unaweza pia kutumia fomu ya mawasiliano, au panga mashauriano moja kwa moja ikiwa tayari unajua unachotafuta."
   }
 }

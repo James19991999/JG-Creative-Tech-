@@ -493,9 +493,21 @@ optional integration in this project degrades when unconfigured.
 
 - Per-page `metadata` with title, description, canonical URL
 - Dynamic per-page Open Graph images (`opengraph-image.tsx` under each route) + Twitter cards
-- Organization JSON-LD structured data site-wide, Article + BreadcrumbList JSON-LD on blog posts
+- Organization JSON-LD structured data site-wide, Article + BreadcrumbList JSON-LD on blog posts, FAQPage JSON-LD on `/faq`
 - Dynamic `sitemap.xml` including all portfolio case studies, blog posts, and both language versions of every page with proper `hreflang` alternates (see §10)
 - `robots.txt` disallows the client portal and consultation funnel
+
+**A note on `/faq`'s schema markup, stated plainly rather than overclaimed:**
+Google retired the FAQ rich-result search feature entirely on May 7,
+2026 (it had already been restricted to a small set of government/
+health sites since 2023) - the expandable Q&A dropdown this markup
+used to earn in search results no longer exists for anyone. The
+`FAQPage` JSON-LD is still included because it's harmless, still
+valid, and other consumers of structured data (AI answer engines,
+internal tooling) may still use it - but it is not a ranking lever or
+a guaranteed search appearance. The page's actual value is the
+genuine, specific answers themselves ranking normally in search and
+reducing real friction for visitors, not the schema wrapping them.
 
 ---
 

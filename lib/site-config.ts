@@ -57,6 +57,7 @@ export const footerServiceLinks: NavLink[] = [
 export const footerCompanyLinks: NavLink[] = [
   { key: "about", label: "About", href: "/about" },
   { key: "portfolio", label: "Portfolio", href: "/portfolio" },
+  { key: "faq", label: "FAQ", href: "/faq" },
   { key: "contact", label: "Contact", href: "/contact" },
   { key: "clientPortal", label: "Client Portal", href: "/client-portal" },
 ];
