@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import { getAdminDb } from "@/lib/firebase-admin";
 import { isRateLimited } from "@/lib/rate-limit";
 import { validateBookingForm } from "@/lib/validate-booking";
+import { getEmailConfig, sendEmailBestEffort } from "@/lib/email/resend-client";
+import { bookingConfirmationEmail, bookingNotificationEmail } from "@/lib/email/templates";
+import { siteConfig } from "@/lib/site-config";
 
 /**
  * POST /api/schedule-consultation
@@ -10,7 +13,10 @@ import { validateBookingForm } from "@/lib/validate-booking";
  * page. Same validate -> rate-limit -> Firestore-or-log pattern as
  * /api/contact, written to a dedicated "consultation_bookings"
  * collection so booking requests don't get mixed in with general
- * contact form inquiries.
+ * contact form inquiries. Also sends a real notification email to the
+ * site owner (reply-to set to the requester) and a confirmation to the
+ * requester, independent of whether the Firestore write succeeds - see
+ * the fuller reasoning in app/api/contact/route.ts.
  */
 export async function POST(request: Request) {
   const forwardedFor = request.headers.get("x-forwarded-for");
@@ -61,6 +67,26 @@ export async function POST(request: Request) {
       { error: "Something went wrong. Please try again or email us directly." },
       { status: 500 }
     );
+  }
+
+  const emailConfig = getEmailConfig();
+  if (emailConfig) {
+    const notification = bookingNotificationEmail(result.data);
+    const confirmation = bookingConfirmationEmail(result.data);
+    await Promise.all([
+      sendEmailBestEffort(
+        emailConfig,
+        { to: siteConfig.contact.email, replyTo: result.data.email, ...notification },
+        "booking notification"
+      ),
+      sendEmailBestEffort(
+        emailConfig,
+        { to: result.data.email, ...confirmation },
+        "booking confirmation"
+      ),
+    ]);
+  } else {
+    console.info("[schedule-consultation] Resend not configured, skipping email notification.");
   }
 
   return NextResponse.json({ success: true });

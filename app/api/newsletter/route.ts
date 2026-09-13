@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { getAdminDb } from "@/lib/firebase-admin";
 import { isRateLimited } from "@/lib/rate-limit";
+import { getEmailConfig, sendEmailBestEffort } from "@/lib/email/resend-client";
+import { newsletterNotificationEmail, newsletterWelcomeEmail } from "@/lib/email/templates";
+import { siteConfig } from "@/lib/site-config";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -9,7 +12,9 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
  *
  * Accepts { email } for newsletter signups. Same Firebase-or-log
  * fallback pattern as /api/contact, written to the
- * "newsletter_subscribers" collection.
+ * "newsletter_subscribers" collection. Also sends a real notification
+ * email to the site owner and a welcome email to the new subscriber,
+ * independent of whether the Firestore write succeeds.
  */
 export async function POST(request: Request) {
   const forwardedFor = request.headers.get("x-forwarded-for");
@@ -59,6 +64,22 @@ export async function POST(request: Request) {
       { error: "Something went wrong. Please try again." },
       { status: 500 }
     );
+  }
+
+  const emailConfig = getEmailConfig();
+  if (emailConfig) {
+    const notification = newsletterNotificationEmail(email);
+    const welcome = newsletterWelcomeEmail();
+    await Promise.all([
+      sendEmailBestEffort(
+        emailConfig,
+        { to: siteConfig.contact.email, ...notification },
+        "newsletter notification"
+      ),
+      sendEmailBestEffort(emailConfig, { to: email, ...welcome }, "newsletter welcome"),
+    ]);
+  } else {
+    console.info("[newsletter] Resend not configured, skipping email notification.");
   }
 
   return NextResponse.json({ success: true });

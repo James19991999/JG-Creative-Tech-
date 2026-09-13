@@ -326,9 +326,59 @@ one hosted checkout that supports both.
 
 ---
 
+## 6c. Form Email Notifications — Setup
+
+The contact form, consultation booking, and newsletter signup all
+persist to Firestore (see §6), but **that alone doesn't notify anyone**
+- someone would have to manually check the Firestore Console to know a
+submission arrived. Real email notifications go through
+[Resend](https://resend.com):
+
+- **Contact form**: notifies the site owner (reply-to set to the
+  submitter, so replying in an inbox goes straight back to them) and
+  sends a short confirmation to the person who wrote in.
+- **Consultation booking**: same pattern, plus any Project Discovery
+  context (goal, business stage, notes) the requester gave earlier in
+  the funnel, since that's exactly what's useful to see before a call.
+- **Newsletter signup**: notifies the site owner and sends a welcome
+  email to the new subscriber.
+
+### Setup
+
+1. Sign up at [resend.com](https://resend.com) and create an API key
+   under **API Keys**.
+2. Add and verify your own sending domain under **Domains** (follow
+   the DNS records Resend gives you). Sending from their shared
+   `onboarding@resend.dev` address works for quick testing, but real
+   production email should come from your own domain so it doesn't
+   read as spam and so replies work properly.
+3. Set `RESEND_API_KEY` and `RESEND_FROM_EMAIL` — see `.env.example`.
+
+Without these set, forms still work exactly as before (submissions
+are still saved to Firestore, or logged to the console if Firebase
+isn't configured either) - they silently skip sending any email
+instead of erroring, so a missing API key never breaks the form
+itself for the person submitting it.
+
+### Design notes
+
+- Email sending is deliberately independent of the Firestore write -
+  both are attempted regardless of whether the other succeeds, since
+  a failed database write should never be the reason the site owner
+  doesn't hear about an inquiry, and vice versa.
+- All three routes use `sendEmailBestEffort`, which logs failures but
+  never throws - a Resend outage or bad API key degrades to "no email
+  sent" rather than a 500 error on the form itself.
+- User-submitted content (name, message, etc.) is HTML-escaped before
+  being embedded in the notification email, since it's rendered as
+  HTML in the recipient's inbox - untreated, that's a real HTML/script
+  injection path into whatever emails it.
+
+---
+
 ## 7. Testing
 
-**222 tests across 29 suites.** Run with `npm test`.
+**249 tests across 34 suites.** Run with `npm test`.
 
 | Suite | What it covers |
 |---|---|
@@ -356,6 +406,9 @@ one hosted checkout that supports both.
 | `intasend-client.test.ts` | Sandbox/live host detection from key prefix, checkout payload shape (no `method` field, so the hosted page offers both card and M-Pesa), bearer-token status lookups |
 | `intasend-checkout-route.test.ts` | Auth gating, invoice ownership (404 for missing/other-client invoices), already-paid/draft rejection, and the critical case: a client-supplied amount is always ignored in favor of the invoice's real server-side amount |
 | `intasend-webhook-route.test.ts` | Challenge verification (correct/wrong/missing/wrong-length), idempotency on redelivery, independent re-verification against IntaSend's API before marking paid, and failing closed (not marking paid) if that verification call itself errors |
+| `resend-client.test.ts` | Config detection, correct Resend payload shape, and `sendEmailBestEffort` never throwing even when the send itself fails |
+| `email-templates.test.ts` | Correct content per email type, discovery-context fields omitted entirely when not provided, and - the one that matters most - HTML in user-submitted content is escaped rather than injected raw into the email |
+| `contact-route.test.ts`, `schedule-consultation-route.test.ts`, `newsletter-route.test.ts` | Notification + confirmation emails sent with the right recipients (reply-to set to the submitter on the owner-facing ones), email skipped silently (not an error) when Resend isn't configured, and a failed send never blocks the form's own success response |
 
 ---
 
