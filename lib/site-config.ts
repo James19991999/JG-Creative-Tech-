@@ -23,16 +23,12 @@ export const siteConfig = {
   },
   /**
    * WhatsApp click-to-chat number, in full international format with
-   * no spaces/dashes/plus sign (e.g. "254712345678" for a Kenyan
-   * number) - this is exactly the format wa.me links require.
-   *
-   * PLACEHOLDER - REPLACE BEFORE DEPLOYING. "254700000000" is not a
-   * real number; shipping this as-is would silently send every
-   * WhatsApp click to a dead/wrong number. See components/
-   * WhatsAppButton.tsx for where this is used.
+   * no spaces/dashes/plus sign - this is exactly the format wa.me
+   * links require. Real number, provided by the site owner: +254 115
+   * 418 191 -> 254115418191.
    */
   whatsapp: {
-    phoneNumber: "254700000000",
+    phoneNumber: "254115418191",
     defaultMessage: "Hi! I'd like to talk about a project.",
   },
 } as const;
