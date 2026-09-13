@@ -21,6 +21,20 @@ export const siteConfig = {
     linkedin: "https://www.linkedin.com/in/james-maruti-a6738231a",
     github: "https://github.com/James19991999",
   },
+  /**
+   * WhatsApp click-to-chat number, in full international format with
+   * no spaces/dashes/plus sign (e.g. "254712345678" for a Kenyan
+   * number) - this is exactly the format wa.me links require.
+   *
+   * PLACEHOLDER - REPLACE BEFORE DEPLOYING. "254700000000" is not a
+   * real number; shipping this as-is would silently send every
+   * WhatsApp click to a dead/wrong number. See components/
+   * WhatsAppButton.tsx for where this is used.
+   */
+  whatsapp: {
+    phoneNumber: "254700000000",
+    defaultMessage: "Hi! I'd like to talk about a project.",
+  },
 } as const;
 
 export type NavLink = {

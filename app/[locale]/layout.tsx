@@ -10,6 +10,7 @@ import { CookieBanner } from "@/components/CookieBanner";
 import { RouteTransition } from "@/components/RouteTransition";
 import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
 import { CommandPaletteProvider } from "@/components/CommandPalette";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { getSearchIndex } from "@/lib/search-index";
 import { themeInitScript } from "@/lib/theme-script";
 
@@ -125,6 +126,7 @@ export default async function LocaleLayout({
           <CommandPaletteProvider items={getSearchIndex()}>
             <RouteTransition>{children}</RouteTransition>
             <CookieBanner />
+            <WhatsAppButton />
             <ServiceWorkerRegistration />
           </CommandPaletteProvider>
         </NextIntlClientProvider>

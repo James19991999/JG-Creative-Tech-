@@ -143,7 +143,9 @@ export function SiteHeader({ activeHref, className = "" }: SiteHeaderProps) {
         aria-modal="true"
         aria-hidden={!drawerOpen}
         className={`md:hidden fixed inset-0 z-40 transition-opacity duration-300 ${
-          drawerOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          drawerOpen
+            ? "opacity-100 pointer-events-auto visible"
+            : "opacity-0 pointer-events-none invisible"
         }`}
       >
         {/* Backdrop */}
