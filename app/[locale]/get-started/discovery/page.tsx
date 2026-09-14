@@ -86,12 +86,6 @@ export default function ProjectDiscoveryPage() {
         <div className="absolute inset-0 bg-primary-container opacity-5" />
         <div className="absolute top-1/4 -right-20 w-80 h-80 border-2 border-primary/10 rounded-full" />
         <div className="absolute top-1/2 right-10 w-40 h-40 border-2 border-on-tertiary-container/20 rounded-full" />
-        {/* eslint-disable-next-line @next/next/no-img-element -- decorative fixed-position background element, next/image's fill behavior conflicts with this fixed/absolute layering */}
-        <img
-          alt=""
-          className="absolute bottom-0 right-0 w-full h-1/2 object-cover grayscale opacity-20"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCklYjdZGUJJA317b7s7A3gc3V6XKchhvVi22QcMrmJPJfQ0DNfRcL1jV3LAcRbo47Khy8aM1BuExfZLGx16jGRoso-G3MKun1ki8ikYtJJqOWbHLeAbqPlKkLj3wNLPKfL0I_dq3WVPanImBzIiDW3rKXjPSgMv_91Cn-ZipmrBFt1ZVPvrf7sEudB0pco96dNfbKzH9ldDQk5LAHkdJkMjSZYpqSW5wy7Wt5n_5vZ1pnfd8ZWRGy39K6GSqnDcX0uZueQtYDNGQ"
-        />
       </div>
     </div>
   );

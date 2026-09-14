@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { ContactForm } from "@/components/ContactForm";
+import { ArchitecturalArt } from "@/components/ArchitecturalArt";
 import { siteConfig } from "@/lib/site-config";
 
 type Props = {
@@ -95,12 +95,10 @@ export default async function ContactPage({ params }: Props) {
 
         {/* Visual Anchor */}
         <div className="relative w-full h-48 rounded-2xl overflow-hidden bg-surface-container-high">
-          <Image
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5wBDc71MfWKiTWpwEL18CEG7fKDC-UgkkxCZ1449zUCZ2c8IDI-Jfe7DKqDNGJ2vYjyWpaTHTv3t7UyMkd44DICkNvxDU-mODRwGOWIDVvbpNPbNgpYWv0-2Tuo-5FalUp8sWm0OLMw8J0PHId974nLIPk1iWDRo5d8Z16PSIF-c7z3P1EeZIGz21rVxuIR_p0dplBZ39rjhGPORaT1tNj-1EFG5PkmZTQ2UeqO8Fab5MkOwCLhOm-cFzte2r5Z18ZUNS7yrlJA"
-            alt="Architectural detail of a modern glass building reflecting a Nairobi sunset"
-            fill
-            sizes="(max-width: 768px) 90vw, 400px"
-            className="object-cover"
+          <ArchitecturalArt
+            variant="tower"
+            label="Abstract illustration of a building elevation"
+            className="absolute inset-0 w-full h-full"
           />
           <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
           <div className="absolute bottom-4 left-4 text-white">

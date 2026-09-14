@@ -7,7 +7,7 @@ import { getAllPosts } from "@/lib/blog";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Insights | JG Creative Tech Solution",
+  title: "Insights",
   description:
     "Practical thinking on digital infrastructure, engineering decisions, and what actually holds up when a Kenyan SME's website has to work under real load.",
   alternates: { canonical: "/blog" },

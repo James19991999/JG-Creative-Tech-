@@ -28,6 +28,13 @@ const nextConfig = {
       },
     ],
     formats: ["image/avif", "image/webp"],
+    // Local, first-party SVG illustrations (public/portfolio/*.svg) -
+    // self-authored, no embedded scripts, replacing dead external
+    // placeholder images. Off by default because SVGs from untrusted
+    // sources can carry XSS payloads; safe here since these are ours.
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "attachment",
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 
   async headers() {

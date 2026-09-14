@@ -1,0 +1,20 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" fill="#f8f9fa"/>
+  <g stroke="#e2e5e9" stroke-width="1" opacity="0.6">
+    <line x1="0" y1="112" x2="1200" y2="112"/>
+    <line x1="0" y1="225" x2="1200" y2="225"/>
+    <line x1="0" y1="337" x2="1200" y2="337"/>
+    <line x1="0" y1="450" x2="1200" y2="450"/>
+    <line x1="0" y1="562" x2="1200" y2="562"/>
+  </g>
+  <rect x="420" y="380" width="280" height="220" rx="4" fill="#003366" opacity="0.9"/>
+  <rect x="480" y="230" width="200" height="190" rx="4" fill="#001e40"/>
+  <rect x="530" y="110" width="140" height="150" rx="4" fill="#832700" opacity="0.9"/>
+  <g stroke="#ffffff" stroke-width="1" opacity="0.35">
+    <line x1="480" y1="270" x2="680" y2="270"/>
+    <line x1="480" y1="320" x2="680" y2="320"/>
+    <line x1="480" y1="370" x2="680" y2="370"/>
+    <line x1="530" y1="150" x2="670" y2="150"/>
+    <line x1="530" y1="190" x2="670" y2="190"/>
+  </g>
+</svg>

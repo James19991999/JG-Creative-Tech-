@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { StrategicContextForm } from "@/components/StrategicContextForm";
+import { ArchitecturalArt } from "@/components/ArchitecturalArt";
 
 export const metadata: Metadata = {
   title: "Strategic Context | Discovery Session",
@@ -83,13 +83,10 @@ export default function StrategicContextPage() {
               </p>
             </div>
             <div className="relative rounded-xl overflow-hidden aspect-[4/5] hidden lg:block whisper-shadow">
-              <Image
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMkc188ebDz6jVZoUXpvtqUEsBYukLiQxiiL9Rem5QhQNN2OGPjJxAJ3yq3qVToqKoOAIQeHZiziowZD1LPnHwPBuN1msXHP19q5PntZ25HsygJWVKFz5KtG0EwVC9j_0-ee2niULgegzglJ5na8RZKPdlHSS221b_q9f_mTEFfIRC8BkOBbg2shSVFCuGyjlRgAr7YC8h1fYLixtXrY3OT9lWvbpXhVvZCYZ_mgdJBsCVMiB4hG5dJqEYrlAV57xawqTxzyGUfQ"
-                alt="Modern architectural blueprint on a clean white desk with minimalist office supplies"
-                fill
-                priority
-                sizes="(max-width: 1024px) 90vw, 40vw"
-                className="object-cover"
+              <ArchitecturalArt
+                variant="planes"
+                label="Abstract illustration of overlapping architectural planes over a blueprint grid"
+                className="absolute inset-0 w-full h-full"
               />
               <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">

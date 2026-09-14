@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Button } from "@/components/ui/Button";
-import { AboutHeroArt } from "@/components/AboutHeroArt";
+import { ArchitecturalArt } from "@/components/ArchitecturalArt";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -46,7 +46,11 @@ export default async function AboutPage({ params }: Props) {
             {t("heroTitle")}
           </h1>
           <div className="relative aspect-video rounded-xl overflow-hidden whisper-shadow ghost-border max-w-2xl mx-auto">
-            <AboutHeroArt className="w-full h-full" />
+            <ArchitecturalArt
+              variant="planes"
+              label="Abstract illustration of overlapping architectural planes over a blueprint grid, symbolizing the Digital Architect philosophy"
+              className="w-full h-full"
+            />
           </div>
         </section>
 

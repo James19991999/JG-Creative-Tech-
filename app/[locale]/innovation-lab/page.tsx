@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
+import { Logo } from "@/components/Logo";
 
 export const metadata: Metadata = {
   title: "Innovation",
@@ -17,10 +17,6 @@ const experiments = [
     title: "AI-Driven Logistics Optimization",
     description:
       "Leveraging neural networks to solve last-mile delivery challenges in high-density urban areas.",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBnvB3CDDXBtIJ-T-6cKTHNh6TvW9YKMIgBNq6yQ7YqxYUZT0ucM9sgjDLqIb5i7zg5QJInH-WOT-sRRcCMXBDQnNBMARl3i3KQ3Xk8rxpXTqw_dX7M1gzr3vKlEvXvswU_XgWjNjDbfFLN83ZCNemDdTeISR5vX1NgOXsFcFzzyccO1eVzRLbxI5rpfxkXfquoMlK2blq7EoubDFL256afIY335j-9XjSqQdFuLswfFmJDVjhns4PPUBi-DjTJcyy6rbTaC1xbuQ",
-    imageAlt:
-      "Modern logistics hub with automated sorting systems and digital displays in a clean industrial setting with blue highlights",
   },
   {
     status: "Beta",
@@ -29,10 +25,6 @@ const experiments = [
     title: "Blockchain for Local Supply Chains",
     description:
       "Securing transparency for agricultural exports through decentralized ledger protocols.",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCALelTs8iWU4VC7fiZlm6qRhjcWHfSfe7zRUVVFLA954cuCem1y2vCNYUgHk6ZLIaeK_bp6mSMX9HpVYU86MCcy3Q6GWQaLZHM6bKoOWK4EP0XsqMSz23qBCGtSaSaVVPFYb1W80jGqPPnRJ0ZobjMWgeSE6vmlxbM_ysZPSnOAiJi7Itzh_Vh4mWpPgMOiCZU5S5p-AvQy3n3HPIs78WzoYlUsCl_LnM-rW7LFk4eT_v8JtDDf-2v6Xq3zCO68lZs7B185-lVHA",
-    imageAlt:
-      "Crystalline digital data structures floating in a dark void with sharp lighting and cyan energy nodes",
   },
   {
     status: "Proof of Concept",
@@ -80,13 +72,7 @@ export default function InnovationLabPage() {
             <h1 className="font-newsreader text-xl font-bold text-ink">Innovation</h1>
           </div>
           <a href="/about" aria-label="About JG Creative Tech" className="w-10 h-10 rounded-full overflow-hidden block">
-            <Image
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWB5Qslv_JuNPmG9UdNzWu78-pJ-c_T1z8ivmz4T06uRMpNTtrWYMVPHsCvJe4CL6tx1982MMorj2SDHzxC29RQy4E0RxzlunptSqxSbnDpUL0e0G5vOsEUHduUEvcllV06ro_DWKsRf0ZuPBK5KU5SLYAucmkeyzIKoXdLklpmbPQwcFxjbVYDreEuLVLWwd1UgP3vg4tPtIvLwmrNJUL9bNUkY-1cQLO2vumLogeFCk4gUqItq7Xpd6RLdfi7QtJ6xTaKSbCHw"
-              alt="Creative director portrait"
-              width={40}
-              height={40}
-              className="w-full h-full object-cover"
-            />
+            <Logo className="w-10 h-10 text-sm" />
           </a>
         </div>
       </header>
@@ -95,16 +81,6 @@ export default function InnovationLabPage() {
         {/* Hero Section */}
         <section className="px-6 py-12 relative overflow-hidden">
           <div aria-hidden="true" className="absolute inset-0 z-0 bg-gradient-to-br from-primary to-primary-container opacity-95" />
-          <div aria-hidden="true" className="absolute inset-0 z-0 mix-blend-overlay opacity-40">
-            <Image
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQxdB86Z4XKXXe-qFJ8FcE4Fp8ZOhV0Ys9G2RSEoWJ-s_MI2yPRKQtcdDjrK711bUekSG6vthIp0ZZJRk7rndPGjkaBIZNdFDGI1T5gYAczul8ufEqeLHJEKwRzlXDM9A6A-KdgfDzxi5-mBoAnZawBINYrhuXZo3CD6fjqYEeBJTz8CCqc7V2ApImWt4_7JjQrPrSNa4xnQxNGXg46lcdnxYxyR-44b2PAVYLeY8p9OddMgkBMC9P7q_ZN7XuyktY2HP_96LdCQ"
-              alt=""
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover"
-            />
-          </div>
           <div className="relative z-10">
             <span className="inline-block text-on-tertiary-container font-manrope text-xs tracking-widest uppercase mb-4">
               The Digital Frontier
@@ -140,14 +116,7 @@ export default function InnovationLabPage() {
                   </span>
                 </div>
                 <h4 className="font-newsreader text-xl font-bold text-ink mb-3">{exp.title}</h4>
-                <p className={exp.image ? "text-on-surface-variant text-sm mb-6" : "text-on-surface-variant text-sm"}>
-                  {exp.description}
-                </p>
-                {exp.image ? (
-                  <div className="relative h-40 rounded-lg overflow-hidden">
-                    <Image src={exp.image} alt={exp.imageAlt} fill sizes="(max-width: 768px) 100vw, 600px" className="object-cover" />
-                  </div>
-                ) : null}
+                <p className="text-on-surface-variant text-sm">{exp.description}</p>
               </div>
             ))}
           </div>

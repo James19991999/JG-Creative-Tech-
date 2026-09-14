@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { PrivacyContactForm } from "@/components/PrivacyContactForm";
+import { ArchitecturalArt } from "@/components/ArchitecturalArt";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -231,12 +231,10 @@ export default function PrivacyPolicyPage() {
             </div>
             <div className="relative">
               <div className="relative rounded-2xl w-full h-80 overflow-hidden">
-                <Image
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3ltNjGClP7_LBlnepOeV3ShMBH-CgAFnedmiFsIM7OyRZaS_JXelKOW7WG2dGpeInQKs5F-m8Rcczh8L_zgBSXbe20c1f3FaMwJE23hVE802rC-t4gyMd9Ksm1tAjjpSYpvWsIXYtmAejqfyNpPdlygu1e-T_NJMTKm3yK2rtIZ0MRleELsweIJI8Ijj-XZzDw4YqLsvIctKQsAvuPRft659-XVxO0NsQhHo9V8yRgFR5rLaAB3iAK4WMED5m8VlCDoHOxHF1KA"
-                  alt="Abstract close-up of blue glowing server racks in a high-tech data center with dramatic lighting"
-                  fill
-                  sizes="(max-width: 1024px) 90vw, 500px"
-                  className="object-cover grayscale opacity-80 hover:grayscale-0 transition-all"
+                <ArchitecturalArt
+                  variant="network"
+                  label="Abstract illustration of connected data nodes"
+                  className="absolute inset-0 w-full h-full"
                 />
               </div>
             </div>

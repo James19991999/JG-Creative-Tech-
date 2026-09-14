@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { BookingForm } from "@/components/BookingForm";
 import { Logo } from "@/components/Logo";
+import { ArchitecturalArt } from "@/components/ArchitecturalArt";
 
 export const metadata: Metadata = {
   title: "Select a Consultation Time",
@@ -61,12 +61,10 @@ export default function ScheduleConsultationPage() {
         {/* Extra Content: Trust Section (Asymmetric) */}
         <section className="mt-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="relative rounded-xl overflow-hidden h-[400px]">
-            <Image
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4xoNEV6q-NQhudsHrv1OEY7_R5WMTystabX8OOzCQBU2rc1pIpm5Xesdfr0Tjz8k6VOv2MBQcRL7BgEUBUbOUe4OItB-U7bqusbSfXTuNn2FKni6L-vVbsPSVLLQXoD8JcY64RmBLwmP6htOFYDm-mse5qceqkxupmN8Gkg_GkunauSlrebNfbra6F8HEaCmOqmfHqHb7R9lJZFwXGl8xqj3K_DkQmP_BA44EFjRvsZBKJ4095_NQElLmweRV6REk3QCVdOkULQ"
-              alt="Ultra modern minimal office space with large windows and sophisticated architectural lighting"
-              fill
-              sizes="(max-width: 768px) 90vw, 45vw"
-              className="object-cover"
+            <ArchitecturalArt
+              variant="planes"
+              label="Abstract illustration of overlapping architectural planes"
+              className="absolute inset-0 w-full h-full"
             />
             <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
             <div className="absolute bottom-8 left-8 right-8">

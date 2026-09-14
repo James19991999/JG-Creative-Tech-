@@ -28,7 +28,7 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "Infrastructure & Custom SaaS",
     tagline: "Fleet Management • Real-time Tracking",
     heroImage:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBXKr_mzlFasNdQTAlyqQkcFU5-LfUXpQJLD_bhNpUfBYcjmXn3SuO_cHH06wO8seQ7ZcqU4daz1MG6J7pSy98V1_wDI5KBPeRL1QPj4vXXFX_QcKEBULpOUKgyNfU0v-kz-pq7V2ljHgs5rygzUs8NxbsaJrD19LHPTVdKJxMKhwIy2Ku3VaxxUBrR3rm7brVXOIQobT3zQO-DWT9KYW3Yicy1_PBrJqUYuFmvk6ux_nyqoMe1KzbIqoyxuvFzHMwMuMDQZwzpiA",
+      "/portfolio/sammy-dylax-logistics.svg",
     heroImageAlt:
       "Sammy Dylax Logistics dashboard interface showing fleet tracking and analytics",
     summary:
@@ -53,7 +53,7 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "Brand Identity & Web Ecosystem",
     tagline: "Cross-continental venture capital representation",
     heroImage:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBgbN4-kDUwF2MbLevsdgY_KeGN5WbPPpEZSkU72rT2xsA-p4Wftf4XZTxnqB8vutaexMtTway4m4zz66NuV5qkeO7CQ1TmvfRxrmmGK-PEmvaYXezqpJswZsgI1t-qM313sUaF4YW9NBYzeNbaUfoH8kVa0BhDzZ8ux2jI-qPxx92uGPD6Ed3WmcKuloV9ZfxhyVGIqT_nOD3IrgWgbQLO3SGl35sIYKLelPnWatObouJTRJZBtpNtFI4KRMCyP8lWT9O5usyhzQ",
+      "/portfolio/gm-global-ventures.svg",
     heroImageAlt:
       "Minimalist luxury brand stationery and digital devices for GM Global Ventures",
     summary:
@@ -78,7 +78,7 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "Property Portal",
     tagline: "Modern listings platform for the Nairobi property market",
     heroImage:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBqdGOaHBWrXXJGyr3ZeChV5zlVEXP4sbCtK_6ZMQc5lN4YhfJTnsnY3HZ_2FiHzKgIrqugiKe8rQCyT4rilEwem_yta54hCG0tKT1e0IFVaXoC4KkwMU2APs0SBm5W1ktff3xCfD0iwoxiTbR8vvIVMXRZgxC-8oEXF-IkILolleRKlFy6uSAUj9zjs5Kb8M66NRdbbBWrbUp0699bOfXVR1iS03UKyzR55b3teqq_mRGkXDJSK7b6WWeN0Bk30l025eLYGnvZDQ",
+      "/portfolio/apex-realty.svg",
     heroImageAlt: "Modern glass office building facade representing Apex Realty",
     summary:
       "A searchable property listings portal built to replace static PDF brochures with a fast, filterable browsing experience for prospective tenants and buyers.",

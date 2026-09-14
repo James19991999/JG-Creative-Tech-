@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { Button } from "@/components/ui/Button";
+import { ArchitecturalArt } from "@/components/ArchitecturalArt";
 
 export const metadata: Metadata = {
   title: "Digital Strategy",
@@ -71,13 +71,10 @@ export default function DigitalStrategyPage() {
             </div>
             <div className="relative">
               <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-2xl shadow-primary/10">
-                <Image
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2zAT00EvaE6oDmIxPDMj5MIdQ3Heq7tvq0P8L1k0mjhsiUuONR78BgoM1dvp_59Q42VvPm3xB_Iz4VeEEAZhE452JdtXm5hT6PjVBnlXRW1zJf9ESIvrL6Ewe-bBz8Ow5VQUiuDVCcEafb96Uf1KH-1096jXme__tYca7BBPjYOcBTFaW3rvREUbLxixOmhu6LXL5ohpqFi9CJyA1Y8eLNZY5XBmsaCQxiR5qk5jaLi8OL9kOfpVgU6poqTK78ND6mSvzu4MaZQ"
-                  priority
-                  alt="Modern minimalist architectural interior with clean lines and soft daylight"
-                  fill
-                  sizes="(max-width: 768px) 90vw, 45vw"
-                  className="object-cover"
+                <ArchitecturalArt
+                  variant="network"
+                  label="Abstract illustration of connected strategic nodes"
+                  className="absolute inset-0 w-full h-full"
                 />
                 <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
               </div>
@@ -190,41 +187,33 @@ export default function DigitalStrategyPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-4">
                   <div className="relative aspect-square rounded-xl overflow-hidden shadow-lg">
-                    <Image
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUdEAoDsxGhtNjPt7TuhHf0-Ec7FyuphppJLi9tTv5pjslYJHkBiaubkYoDv1daiyKbmTURGi7b0Ce4QLYRXo3DOSQAh7xFNjwhuxcoiU3C6D3rg1LyyQWNpErbVYFyZBtrbFUEMLmn914E2uxodXTkAcyLIboqKeT_eIms7VrNNnEexAl8WXvMbuPBFske2E_SsARYLMOCx-waJaL0ytQyClNT4sYq8wU-8uznitu4qs4LRuk-Kwd5Cjw0ZBsmyctKHYL_Q89Hg"
-                      alt="Close-up of a modern corporate skyscraper's glass facade"
-                      fill
-                      sizes="(max-width: 768px) 45vw, 250px"
-                      className="object-cover"
+                    <ArchitecturalArt
+                      variant="tower"
+                      label="Abstract illustration of a building elevation"
+                      className="absolute inset-0 w-full h-full"
                     />
                   </div>
                   <div className="relative aspect-[3/4] rounded-xl overflow-hidden shadow-lg">
-                    <Image
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuDp3yVHkT_oRR9iPb72Qk54dc1_7zPUR-FRay5E_-XGLky3kkFSyKnP49FuA_Y-1hAVFO-Hu6fArKaBIOlxTHc_7qtXZWqHr3tpZ-JSNF11RzU3jd7yg2d2e1CM3RhiN4DpmAUhFIivCeFW8UlhQr9sHCoXYU0j0SwzaCPfHOqKnTdE7iWDqQUVmVnuviAp8dLXFmWYlonfKMp9m0uyWJ7cpVQL6F-KxpfAFuYD7tLWNq19Qim8y_ASgNumGq5jBLhRgMfAbY4xMg"
-                      alt="Abstract black and white architectural shadows"
-                      fill
-                      sizes="(max-width: 768px) 45vw, 250px"
-                      className="object-cover"
+                    <ArchitecturalArt
+                      variant="planes"
+                      label="Abstract illustration of overlapping architectural planes"
+                      className="absolute inset-0 w-full h-full"
                     />
                   </div>
                 </div>
                 <div className="pt-12 space-y-4">
                   <div className="relative aspect-[3/4] rounded-xl overflow-hidden shadow-lg">
-                    <Image
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPg_u_d6vzjo1akDjuzQ_wlu5vbZnRvdj-B_2CulEWDaf9pQ-swIkyxN3trEJuF0BxhX65H-XaogOJbShnYjI3a4hvhwqEZgklO-mMM4xKaND_hrbcT8JVskbzRwhIU4jbGCck53g454EpuWkHU9P-i1HJtDl0VBGPyRaMLxLQVGQ6Pe6CSCJSC-EELWnom-cfsBICGdQZ9LcnH6YtT8QYKk2uRCBIDsDvU_BZX-pNUHkfG8Y7D7xTujDdP8KDZCv4HiMnAQWiBQ"
-                      alt="Professional analyzing digital charts on a tablet"
-                      fill
-                      sizes="(max-width: 768px) 45vw, 250px"
-                      className="object-cover"
+                    <ArchitecturalArt
+                      variant="network"
+                      label="Abstract illustration of connected data nodes"
+                      className="absolute inset-0 w-full h-full"
                     />
                   </div>
                   <div className="relative aspect-square rounded-xl overflow-hidden shadow-lg">
-                    <Image
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDVzFndBXZ6GTNAj4IIjYNIIoYgIbDMBmYljxDvt7qVayNCxRlqVCqN7gdQDYQMo_dhBp7qnsOp68xpF_PPn15ac08jAKNYcVNZ3RpBWyXVz82s7ypOnJRm0baub0YwA-o5dqiGxi38Xtx7a5w7ZDQdPrbk6CToIuFQFfFQCZBTu-sk9QmjwFNIhpdzSCBpd7L9wY7WPpY540Qtqy2Dc3YC3PMpaha5BVUZMCJQ8Fu-r_s4L6b_VUc8sU5BObqj1FkNKB08yuM0w"
-                      alt="Minimalist office lounge with premium furniture"
-                      fill
-                      sizes="(max-width: 768px) 45vw, 250px"
-                      className="object-cover"
+                    <ArchitecturalArt
+                      variant="planes"
+                      label="Abstract illustration of overlapping architectural planes"
+                      className="absolute inset-0 w-full h-full"
                     />
                   </div>
                 </div>

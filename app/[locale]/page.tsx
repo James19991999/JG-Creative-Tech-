@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { FeatureCard } from "@/components/ui/FeatureCard";
 import { HeroVideo } from "@/components/HeroVideo";
 import { CountUp } from "@/components/CountUp";
+import { initials } from "@/lib/initials";
 import { portfolioProjects } from "@/lib/portfolio";
 
 type Props = {
@@ -29,15 +30,11 @@ const testimonials = [
     quoteKey: "testimonial1Quote",
     name: "Samuel D.",
     role: "CEO, Sammy Dylax",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCwHcbZ6nRx4bM_SmdThxrWHEQ0Wt-ZQx03jtj3TstvuAJTJjAdf8bnffaG2e2s4acz8gyZEhCjwvZ8-B99b_n6jBOWnF7c2UNwg8nLcGlGiyliMJuLwsExOjIwx0RpE4xIxuBqY0oZje-p2hS-c_PGIT3rBfyZ7HCJGQQtBe9KKh5ZsFKmSgNeo1Na4uD_bkH5ejOP6jqp7oIpR8BoyqMwxFjwSZX-ZvNBLw6E8CozNhTs6veBHQcePM4pZh0gTmj-UkJbJUI9KA",
   },
   {
     quoteKey: "testimonial2Quote",
     name: "Grace M.",
     role: "Managing Director, GM Global",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDDseZqR0Yfhs2f9l6Z_7QhsTctRLGL2sCu9dPqtC87cAOn7v2q2KR_JKkZo-CzkO5ohZzCUR--9gkX2ghtMkxoBLSZ-NXpd9c1JXow4OQ7-eYylzilwZHkFpvfDKNF4B0-ErC0LX-ZpMM6DYnnLN4o7Ny-zPbmPhKQhjKXLYIj6ZRHP6F3ArMoq9qWZtikYJAmculdDdLdmDOmF2DNyHOUqyTAGDSMFLjoxY0KJn-d7UWwT_isr-O_DXi5E1ik7TCK_yMVXQasHQ",
   },
 ];
 
@@ -281,14 +278,10 @@ export default async function HomePage({ params }: Props) {
                       &quot;{t(item.quoteKey)}&quot;
                     </p>
                     <div className="flex items-center gap-4">
-                      <div className="relative w-10 h-10 rounded-full bg-surface-container-high overflow-hidden">
-                        <Image
-                          src={item.image}
-                          alt={`Portrait of ${item.name}`}
-                          fill
-                          sizes="40px"
-                          className="object-cover"
-                        />
+                      <div className="relative w-10 h-10 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+                        <span className="text-on-primary-container font-bold text-xs" aria-hidden="true">
+                          {initials(item.name)}
+                        </span>
                       </div>
                       <div>
                         <h3 className="font-manrope font-bold text-ink text-sm not-italic">

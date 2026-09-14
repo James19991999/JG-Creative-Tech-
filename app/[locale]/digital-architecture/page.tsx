@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Sidebar, type SidebarItem } from "@/components/layout/Sidebar";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { Button } from "@/components/ui/Button";
+import { ArchitecturalArt } from "@/components/ArchitecturalArt";
 
 export const metadata: Metadata = {
   title: "Digital Architecture",
@@ -100,12 +100,10 @@ export default function DigitalArchitecturePage() {
             </div>
           </div>
           <div className="absolute right-0 top-0 w-1/2 h-full hidden lg:block opacity-20">
-            <Image
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBssQ00PgBeiHmhXhUEse-qlTR0_V7q17obmYe4gmbBFkHYSr5VrhhWco6Coiqr4hyIJEthwJ7NTO763kOKhCl5XBoyPV1dbOFYC966x760dztmRLtyUwA9Us5sbi1gn3rbx2zdwVQPZINfjlIFucWF0ghUPNn9FtXTI1XLzup5UYXZo4KlnZxI1y8crupAeG5hJcUiXllx3JT0tDJORof-x2gov8K_nSoLJh0VtjS2mSEeecE1FD1mJ4iaWY5zS_w5MFO6aZMBlw"
-              alt=""
-              fill
-              priority
-              className="object-cover grayscale"
+            <ArchitecturalArt
+              variant="tower"
+              label="Abstract illustration of a stacked building elevation"
+              className="absolute inset-0 w-full h-full grayscale"
             />
           </div>
         </section>

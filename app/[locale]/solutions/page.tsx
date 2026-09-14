@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { Button } from "@/components/ui/Button";
+import { ArchitecturalArt } from "@/components/ArchitecturalArt";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -39,15 +39,6 @@ export default async function SolutionsPage({ params }: Props) {
       <main id="main-content" className="pt-24 pb-24 md:pb-24 pb-28">
         {/* Hero Section */}
         <section className="relative px-6 py-20 overflow-hidden bg-primary">
-          <div className="absolute inset-0 opacity-20">
-            <Image
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb6BaJIckfSaE3xIGeIFwv8uRUTbuw1O7EDAGzM9ubEOzd-gj5ophklEO348JOzei88cw94S0OFaFauTvsL4PTFfwDpEH-A42n6UElL9LjW17tCVnmBhd_omYk9YyUWk75VM8L09197DrKWI3kh-fre_jpEEy7W6lGHK4E0DbTJgtWxPOGe_QhNjj-KSgIm4Jil4SKQcSXvq60KyRn8tMgNc45sXq4_YsEzH3uBgt-sbZFUVgeSA3IYfFVKuhDuclK6Cl8k11i_Q"
-              alt=""
-              fill
-              priority
-              className="object-cover"
-            />
-          </div>
           <div className="relative z-10 max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tertiary-container text-on-tertiary-container mb-6">
               <span className="text-[10px] font-bold uppercase tracking-widest">
@@ -128,11 +119,10 @@ export default async function SolutionsPage({ params }: Props) {
                 </Link>
               </div>
               <div className="relative mt-12 h-32 w-full rounded-lg overflow-hidden grayscale opacity-40">
-                <Image
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2I-2Vsa-QxSdqP4THjEEoCsOJUgfyBAZpgm-o2wJuIZ4bLbVonhx49aFjhEDnRSN5gSTZbNA0M6qGItoNGELQT8xjHFlqkJVO1N6eMLU4NRwJRMns_SJ2gEqPr6QFfOh5TVv-LiVPgyu6ky_V-mY0O2lMxFAU54-i63ODWL7Nur7C5_8IkTe9xhK_23PYwkwucPo01-kz5y0ARRC8zYawK9pmX-TMo6kTIYOCqNDtlox4QtCs1PoGU55Jd1EMjZYr3Nzeem_btg"
-                  alt=""
-                  fill
-                  className="object-cover"
+                <ArchitecturalArt
+                  variant="network"
+                  label="Abstract illustration of connected nodes"
+                  className="absolute inset-0 w-full h-full"
                 />
               </div>
             </div>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { CookiePreferences } from "@/components/CookiePreferences";
 import { ClearStorageButton } from "@/components/ClearStorageButton";
+import { ArchitecturalArt } from "@/components/ArchitecturalArt";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -59,13 +59,10 @@ export default function CookiePolicyPage() {
             </div>
             <div className="md:col-span-4 flex items-center justify-center">
               <div className="relative w-full aspect-square rounded-xl overflow-hidden bg-surface-container shadow-sm">
-                <Image
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuC76Vs4dX0Ww3UM_QEdAZ_uWkQ1F0kPrFJQDa2ki2wk2zwyPvvc8NROUh3WSL0IMRwJLbEg0qsYf6TGt_LZ38qqHUgayBzJHLU9SodgP508qBXWl-viJYHyoxVeEr8Sdd9CjXvYRBA5wa2XlKfw2tbHPyK-447gTGPEJgbZ4gvpUWiTsbBUD9eLdw3b-Cc1QG9BiJTo86j11D3UjyykMsw8gqVZt1E-TJh3zIdS922gxvboegccJJCZW3XAoMrgSZQuLC0ShqGFzw"
-                  alt="Modern minimalist architectural detail with clean lines and soft shadows on white concrete surfaces in daylight"
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 90vw, 300px"
-                  className="object-cover grayscale opacity-80 mix-blend-multiply"
+                <ArchitecturalArt
+                  variant="planes"
+                  label="Abstract illustration of overlapping architectural planes"
+                  className="absolute inset-0 w-full h-full opacity-80"
                 />
               </div>
             </div>
@@ -91,12 +88,10 @@ export default function CookiePolicyPage() {
           </div>
           <div className="relative">
             <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
-              <Image
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPEBJ7Ep6bLUtZE6BjGcy-FFksx7RPb4n5Dps15SA3Xe5LlQhw3i4X1PeAU9cRJoehvvLE8c2f-VJN9tjZQhrfRi9x4BQHdtEqihadlCrW4azzZ9a7uTZr-QlzfjrH8f-fKZ3QcHciiD2nWJRAqX4GQQqrJckb8eX4YYuz1DYudg8wJj1sjNG3Cw0N_SxXRVVzc9Day2RQWCDRptjQRTXdZcniGxJquzvWX5qrXQlWntLEkjc1BZsp6ESH2nLG18-0RhA8R6W-yw"
-                alt="Top down view of clean office workspace with white notepad, elegant fountain pen, and soft natural window light"
-                fill
-                sizes="(max-width: 768px) 90vw, 500px"
-                className="object-cover"
+              <ArchitecturalArt
+                variant="tower"
+                label="Abstract illustration of a stacked building elevation"
+                className="absolute inset-0 w-full h-full"
               />
             </div>
             <div className="absolute -bottom-4 -left-4 bg-on-tertiary-fixed-variant text-white px-4 py-2 rounded-lg text-xs font-bold font-manrope uppercase">

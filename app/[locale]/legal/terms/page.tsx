@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -169,17 +168,6 @@ export default function TermsOfServicePage() {
                 </div>
               </div>
             </article>
-
-            {/* Image Break */}
-            <div className="relative w-full aspect-[21/9] rounded-xl overflow-hidden">
-              <Image
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLHJV7P4LBwe88yXNpgKdg5tJFBPvxxwLu6JLsVJUm2neoI3zrzAywmdy7-X6VB3HWYiW2xZUAWUzykjDiWeHsAUUwom_pcDXzBdnW-wvPMjeCvhnx4V4ya1bx0woeZSBt4jyo0Y6AxMhmPu-4G9murN5QXVzmw2lVPlQvGh5RWmsOuRegJkc6Ctu4f-odoXgDzPeSkkepzaqifqiIGJU3UWr123dp5U-3HC-aZ0pvAsxzXcROwkmjGMLCJeUP4Kca86DArapoIg"
-                alt="Sophisticated architectural interior of a modern legal office in Nairobi with glass walls, mahogany accents, and soft morning sunlight"
-                fill
-                sizes="(max-width: 1024px) 90vw, 900px"
-                className="object-cover grayscale contrast-125"
-              />
-            </div>
 
             {/* Section 3: User Responsibilities */}
             <article className="bg-surface-container-lowest p-8 md:p-12 rounded-xl scroll-mt-32" id="responsibilities">
