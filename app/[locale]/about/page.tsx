@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Button } from "@/components/ui/Button";
+import { AboutHeroArt } from "@/components/AboutHeroArt";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -52,14 +52,7 @@ export default async function AboutPage({ params }: Props) {
             {t("heroTitle")}
           </h1>
           <div className="relative aspect-video rounded-xl overflow-hidden whisper-shadow ghost-border max-w-2xl mx-auto">
-            <Image
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDl-bFV5Gr1Vt8xoxaYQFX-l_5BGvVVSTTsaC9WkF5sNbPwCGeI__D2pWCXj1CLp_A4WV7lC1Dbgwvfj1BI4uZYSy8mEt_exiIjr_B4tLgAx5I9qJHQx0yzTOiS4kh6nlltkneZXIqrjTGE3-WreaHw2xU1NLx5A6ti_SfEoO1W04UoWGCRbrPwyZtpzUqp6IEVOS_ZoOor69zquDPHFbX311NSVByuZFZmtalFgVrqZQ4Wlkqh1LDYnE--w"
-              alt="Modern minimalist workspace symbolizing the Digital Architect philosophy"
-              priority
-              fill
-              sizes="(max-width: 768px) 90vw, 700px"
-              className="object-cover"
-            />
+            <AboutHeroArt className="w-full h-full" />
           </div>
         </section>
 
