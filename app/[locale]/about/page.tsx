@@ -21,12 +21,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const coreValueIcons = ["verified", "bolt", "shield_person", "design_services"];
 
-const team = [
-  { name: "James Gathuru", roleKey: "role1" },
-  { name: "Sarah Kamau", roleKey: "role2" },
-  { name: "David Mwangi", roleKey: "role3" },
-];
-
 export default async function AboutPage({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "about" });
@@ -106,28 +100,6 @@ export default async function AboutPage({ params }: Props) {
                 >
                   {value.description}
                 </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Team */}
-        <section className="px-6 md:px-8 max-w-6xl mx-auto mb-24">
-          <h2 className="text-center font-newsreader italic text-3xl text-ink mb-12">
-            {t("teamTitle")}
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-            {team.map((member) => (
-              <div key={member.name} className="text-center">
-                <div className="aspect-square rounded-xl overflow-hidden bg-surface-container-high mb-4 flex items-center justify-center">
-                  <span className="material-symbols-outlined text-6xl text-outline" aria-hidden="true">
-                    person
-                  </span>
-                </div>
-                <h3 className="font-newsreader font-bold text-ink text-lg">
-                  {member.name}
-                </h3>
-                <p className="text-sm text-on-surface-variant">{t(member.roleKey)}</p>
               </div>
             ))}
           </div>
