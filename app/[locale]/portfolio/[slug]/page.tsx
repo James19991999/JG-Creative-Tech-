@@ -3,6 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { CountUp } from "@/components/CountUp";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { Button } from "@/components/ui/Button";
 import { getPortfolioProject, portfolioProjects } from "@/lib/portfolio";
@@ -119,7 +120,7 @@ export default function PortfolioCaseStudyPage({ params }: Props) {
           {project.stats.map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="font-newsreader text-3xl text-ink font-bold mb-1">
-                {stat.value}
+                <CountUp value={stat.value} />
               </div>
               <div className="text-xs uppercase tracking-widest text-on-surface-variant">
                 {stat.label}

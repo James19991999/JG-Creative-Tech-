@@ -7,6 +7,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Button } from "@/components/ui/Button";
 import { FeatureCard } from "@/components/ui/FeatureCard";
 import { HeroVideo } from "@/components/HeroVideo";
+import { CountUp } from "@/components/CountUp";
 import { portfolioProjects } from "@/lib/portfolio";
 
 type Props = {
@@ -124,7 +125,7 @@ export default async function HomePage({ params }: Props) {
                 <div className="grid grid-cols-2 gap-8">
                   <div>
                     <h3 className="text-ink font-bold text-2xl font-newsreader mb-2">
-                      {t("stat1Number")}
+                      <CountUp value={t("stat1Number")} />
                     </h3>
                     <p className="text-sm text-on-surface-variant font-manrope">
                       {t("stat1Label")}
@@ -132,7 +133,7 @@ export default async function HomePage({ params }: Props) {
                   </div>
                   <div>
                     <h3 className="text-ink font-bold text-2xl font-newsreader mb-2">
-                      {t("stat2Number")}
+                      <CountUp value={t("stat2Number")} />
                     </h3>
                     <p className="text-sm text-on-surface-variant font-manrope">
                       {t("stat2Label")}
