@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
+    id: "/",
     name: "JG Creative Tech Solution",
     short_name: "JG Creative Tech",
     description:
@@ -22,7 +23,7 @@ export default function manifest(): MetadataRoute.Manifest {
         src: "/apple-icon.png",
         sizes: "180x180",
         type: "image/png",
-        purpose: "maskable",
+        purpose: "any",
       },
     ],
     categories: ["business", "technology"],
