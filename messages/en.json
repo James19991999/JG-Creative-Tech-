@@ -170,5 +170,17 @@
     "q7Answer": "Yes - the site itself is fully available in English and Swahili, and we're happy to communicate in either language throughout a project.",
     "q8Question": "What's the fastest way to reach you directly?",
     "q8Answer": "WhatsApp is usually fastest - there's a chat button on every page. You can also use the contact form, or book a consultation directly if you already know what you're looking for."
+  },
+  "chat": {
+    "openChat": "Open chat assistant",
+    "closeChat": "Close chat",
+    "title": "Ask us anything",
+    "greeting": "Hi! I can answer questions about our services, getting started, or how to reach the team. What would you like to know?",
+    "placeholder": "Type a message…",
+    "send": "Send",
+    "disclaimer": "AI assistant - for a real conversation, use WhatsApp or the contact form.",
+    "errorGeneric": "Couldn't get a response right now. Please try again.",
+    "errorRateLimit": "You're sending messages too quickly. Please wait a moment.",
+    "newConversation": "Start a new conversation"
   }
 }

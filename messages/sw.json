@@ -170,5 +170,17 @@
     "q7Answer": "Ndiyo - tovuti yenyewe inapatikana kikamilifu kwa Kiingereza na Kiswahili, na tunafurahi kuwasiliana kwa lugha yoyote katika mradi mzima.",
     "q8Question": "Njia gani ya haraka zaidi ya kuwasiliana nasi moja kwa moja?",
     "q8Answer": "WhatsApp kwa kawaida ni haraka zaidi - kuna kitufe cha mazungumzo kwenye kila ukurasa. Unaweza pia kutumia fomu ya mawasiliano, au panga mashauriano moja kwa moja ikiwa tayari unajua unachotafuta."
+  },
+  "chat": {
+    "openChat": "Fungua msaidizi wa mazungumzo",
+    "closeChat": "Funga mazungumzo",
+    "title": "Tuulize Chochote",
+    "greeting": "Habari! Ninaweza kujibu maswali kuhusu huduma zetu, jinsi ya kuanza, au jinsi ya kuwasiliana na timu. Ungependa kujua nini?",
+    "placeholder": "Andika ujumbe…",
+    "send": "Tuma",
+    "disclaimer": "Msaidizi wa AI - kwa mazungumzo halisi, tumia WhatsApp au fomu ya mawasiliano.",
+    "errorGeneric": "Imeshindwa kupata jibu kwa sasa. Tafadhali jaribu tena.",
+    "errorRateLimit": "Unatuma ujumbe haraka mno. Tafadhali subiri kidogo.",
+    "newConversation": "Anza mazungumzo mapya"
   }
 }

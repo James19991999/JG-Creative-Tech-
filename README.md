@@ -544,9 +544,65 @@ processes anything, rather than running unauthenticated.
 
 ---
 
+## 6f. AI Chat Assistant — Setup
+
+A floating chat widget (every marketing page except the two focused-
+onboarding funnel steps) that answers visitor questions using the
+Claude API. It's grounded in this site's own real FAQ content - it
+won't invent pricing, timelines, or commitments the business hasn't
+actually made, and it hands off to WhatsApp/the contact form/booking
+a consultation for anything that needs an actual person or
+transaction. See `lib/ai-chat/system-prompt.ts` for exactly what it's
+told and forbidden from doing.
+
+### Setup
+
+1. Get an API key from [console.anthropic.com](https://console.anthropic.com)
+   → API Keys.
+2. Set `ANTHROPIC_API_KEY` - see `.env.example`.
+
+Without it set, the widget still renders normally; sending a message
+returns a clear "chat isn't configured yet" error in the chat panel
+itself rather than failing silently or crashing.
+
+### Cost and abuse controls
+
+Every message a visitor sends is a real, metered API call - unlike
+the forms elsewhere in this project, usage here scales with however
+many people open the widget, not with real business events like a
+booking or a payment. `app/api/chat/route.ts` has its own limits,
+separate from the rest of the site:
+
+- **Rate limit**: 15 messages/minute/IP, not the 5/minute default
+  used for one-shot forms elsewhere (`lib/rate-limit.ts` now accepts
+  optional `maxRequests`/`windowMs` overrides for exactly this - a
+  real conversation needs more room than a form someone submits once).
+- **Conversation length cap**: 20 messages per request. The client
+  sends its whole conversation so far on every turn (there's no
+  server-side history to append to - see below), so this bounds the
+  token cost of any single request regardless of how long a
+  conversation runs.
+- **Per-message length cap**: 1000 characters.
+- **Model**: `claude-haiku-4-5-20251001` - the cheapest/fastest
+  current Claude model, appropriate for a FAQ/lead-qualification
+  widget where cost scales with every visitor, not a task that
+  actually needs the most capable model available.
+
+### What's deliberately not built
+
+**No conversation persistence, anywhere.** The conversation lives only
+in the visitor's browser tab (React state) and is gone on refresh.
+These are anonymous site visitors, not authenticated client-portal
+users with an account to attach history to - there's no natural place
+to store it and no reason to. This also means there's nothing here for
+Firebase to configure; the chat widget works independently of whether
+Firebase is set up at all.
+
+---
+
 ## 7. Testing
 
-**302 tests across 41 suites.** Run with `npm test`.
+**351 tests across 46 suites.** Run with `npm test`.
 
 | Suite | What it covers |
 |---|---|
@@ -581,6 +637,8 @@ processes anything, rather than running unauthenticated.
 | `Analytics.test.tsx` | No scripts render at all when unconfigured, and the Consent Mode v2 signal mapping is correct: no `gtag` call before a decision exists, `analytics_storage` tracks the analytics category, and the three ad-related signals track marketing independently |
 | `invoice-reminders-cron.test.ts` | Auth (missing/wrong/correct secret), the actual date-math boundaries (due-in-2-days sends, due-in-10-days doesn't), no duplicate due-soon reminders, the 7-day cooldown between overdue follow-ups, and the owner digest only firing when something was actually sent |
 | `admin-auth.test.ts`, `admin-overview-route.test.ts`, `admin-reply-route.test.ts` | The custom-claim check itself (missing/invalid/non-admin/admin tokens), both admin routes' 403/503 gating, invoices sorted worst-first, and - the one that actually matters - a message thread is only ever flagged "needs reply" when the *client* sent the most recent message, not whichever one happened to load first |
+| `CountUp.test.tsx` | Numeric parsing and graceful fallback for non-numeric stat values, the animation only firing once per mount, prefers-reduced-motion skipping it entirely, and the real final value being available to screen readers before the animation even starts |
+| `anthropic-client.test.ts`, `system-prompt.test.ts`, `chat-route.test.ts`, `ChatWidget.test.tsx` | The `x-api-key` auth header specifically (not `Authorization`, the easy mistake for this one API), the system prompt containing its real constraints (never inventing a price, never claiming to book anything), the chat route's higher-than-default rate limit and conversation-length/message-length caps, and the widget's actual open/close/send/error/new-conversation behavior including Escape-to-close |
 
 ---
 
