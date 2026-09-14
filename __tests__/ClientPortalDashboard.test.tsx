@@ -39,6 +39,7 @@ const baseUser = {
   uid: "test-uid",
   email: "client@example.com",
   metadata: { lastSignInTime: undefined },
+  getIdTokenResult: jest.fn().mockResolvedValue({ claims: {} }),
 };
 
 function setupDefaultMocks() {

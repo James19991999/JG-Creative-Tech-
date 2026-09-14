@@ -239,11 +239,61 @@ side on purpose.** Those are set by you.
 
 - **No self-service password reset UI** and **no account creation
   UI** — both are one-account, admin-driven per the scope above.
-- **No multi-client / admin dashboard.** If a second client ever
-  needs this, the data model (`clients/{uid}/...`) already generalizes
-  cleanly, but the sign-up flow, an admin view across clients, and
-  probably role-based access all still need to be designed and built
-  — that's a genuinely different scope, not a small extension.
+- **No client-creation or invoice-editing UI even for admins.**
+  §6b' below adds a lightweight admin *view* (see all clients,
+  invoices, and messages in one place, reply to a message) - but
+  creating a client, issuing an invoice, or uploading a document on a
+  client's behalf still happens via Firebase Console/Admin SDK, same
+  as before. Building those into the app is a genuinely different,
+  larger scope, not a small extension of the view that now exists.
+
+---
+
+## 6b'. Admin Overview — Setup
+
+A lightweight admin view at `/client-portal/admin`: every client,
+every invoice (worst-first), and every message thread with which ones
+still need a reply - the exact thing that stops scaling once there's
+more than one client and everything lives in the Firebase Console.
+This does not replace the Console for anything else (still no
+client-creation, invoice-issuing, or document-upload UI here - see
+above).
+
+### How access actually works
+
+There's no self-service or in-app way to become an admin, on purpose.
+Access is gated on a Firebase **custom claim** (`admin: true`),
+verified server-side by every `/api/admin/*` route via the Admin SDK
+- not a Firestore field a client's own browser could read or infer,
+and not something the app itself can grant. The existing Firestore
+Security Rules (`firestore.rules`) are completely unchanged by this -
+a regular client's browser still cannot read another client's data
+under any circumstance. Admin routes work by using the Admin SDK
+directly (which bypasses those rules entirely, the same way the
+IntaSend webhook and the invoice reminder cron already do), gated on
+the claim instead.
+
+### Setup
+
+Grant yourself (or anyone else who needs it) admin access with:
+
+```
+node --env-file=.env.local scripts/grant-admin-claim.mjs you@example.com
+```
+
+This uses the same `FIREBASE_PROJECT_ID` / `FIREBASE_CLIENT_EMAIL` /
+`FIREBASE_PRIVATE_KEY` credentials every other server-side feature in
+this project already needs - no new environment variables. Revoke
+access the same way with `--revoke` appended. After granting or
+revoking, the person needs to sign out and back in (or wait up to an
+hour) before it takes effect - custom claims are baked into the ID
+token itself, which only refreshes on a fresh sign-in or its own
+expiry, not the moment the claim changes server-side.
+
+Once granted, a small shield icon appears in the portal header next
+to the theme toggle, linking to the overview - visible only to
+accounts with the claim; everyone else's portal looks exactly as it
+always has.
 
 ---
 
@@ -496,7 +546,7 @@ processes anything, rather than running unauthenticated.
 
 ## 7. Testing
 
-**288 tests across 38 suites.** Run with `npm test`.
+**302 tests across 41 suites.** Run with `npm test`.
 
 | Suite | What it covers |
 |---|---|
@@ -530,6 +580,7 @@ processes anything, rather than running unauthenticated.
 | `cookie-consent.test.ts` | The unified consent hook - correct defaults, `acceptAll`/`declineAll`/`setCategory` behavior, legacy-key migration, and that two independent hook instances (banner + preferences panel) actually stay in sync rather than just coincidentally matching in one test |
 | `Analytics.test.tsx` | No scripts render at all when unconfigured, and the Consent Mode v2 signal mapping is correct: no `gtag` call before a decision exists, `analytics_storage` tracks the analytics category, and the three ad-related signals track marketing independently |
 | `invoice-reminders-cron.test.ts` | Auth (missing/wrong/correct secret), the actual date-math boundaries (due-in-2-days sends, due-in-10-days doesn't), no duplicate due-soon reminders, the 7-day cooldown between overdue follow-ups, and the owner digest only firing when something was actually sent |
+| `admin-auth.test.ts`, `admin-overview-route.test.ts`, `admin-reply-route.test.ts` | The custom-claim check itself (missing/invalid/non-admin/admin tokens), both admin routes' 403/503 gating, invoices sorted worst-first, and - the one that actually matters - a message thread is only ever flagged "needs reply" when the *client* sent the most recent message, not whichever one happened to load first |
 
 ---
 

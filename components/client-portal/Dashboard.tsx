@@ -115,6 +115,18 @@ function PaymentConfirmationBanner() {
 export function ClientPortalDashboard() {
   const { user, loading: authLoading, configured, signOut } = useClientPortalAuth();
   const router = useRouter();
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    if (!user) return;
+    let cancelled = false;
+    user.getIdTokenResult().then((result) => {
+      if (!cancelled) setIsAdmin(result.claims.admin === true);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [user]);
 
   useEffect(() => {
     if (!authLoading && configured && !user) {
@@ -294,6 +306,17 @@ export function ClientPortalDashboard() {
                 ))
               )}
             </div>
+          ) : null}
+          {isAdmin ? (
+            <a
+              href="/client-portal/admin"
+              aria-label="Admin overview"
+              className="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-ink transition-colors"
+            >
+              <span className="material-symbols-outlined" aria-hidden="true">
+                admin_panel_settings
+              </span>
+            </a>
           ) : null}
           <ThemeToggle />
           <div
