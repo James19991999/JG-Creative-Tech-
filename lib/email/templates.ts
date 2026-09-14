@@ -111,3 +111,76 @@ export function newsletterWelcomeEmail() {
     text: `You're on the list.\n\nThanks for subscribing to updates from ${siteConfig.fullName}. We'll only email when we have something worth sharing.`,
   };
 }
+
+// ---- Invoice reminders ----
+
+export type ReminderInvoiceSummary = {
+  number: string;
+  amountFormatted: string;
+  dueDate: string;
+};
+
+const PORTAL_URL_PATH = "/client-portal";
+
+export function invoiceDueSoonEmail(clientName: string, invoice: ReminderInvoiceSummary) {
+  const portalUrl = `${siteConfig.url}${PORTAL_URL_PATH}`;
+  return {
+    subject: `Reminder: Invoice ${invoice.number} is due soon`,
+    html: wrapHtml(`
+      <h2 style="margin-bottom: 4px;">Hi ${escapeHtml(clientName)},</h2>
+      <p>Just a friendly reminder that invoice <strong>${escapeHtml(invoice.number)}</strong> for <strong>${escapeHtml(invoice.amountFormatted)}</strong> is due on <strong>${escapeHtml(invoice.dueDate)}</strong>.</p>
+      <p><a href="${portalUrl}" style="display: inline-block; background: #001e40; color: #fff; padding: 10px 20px; border-radius: 999px; text-decoration: none; font-weight: bold;">View and pay in your portal</a></p>
+    `),
+    text: `Hi ${clientName},\n\nJust a friendly reminder that invoice ${invoice.number} for ${invoice.amountFormatted} is due on ${invoice.dueDate}.\n\nView and pay: ${portalUrl}`,
+  };
+}
+
+export function invoiceOverdueEmail(clientName: string, invoice: ReminderInvoiceSummary) {
+  const portalUrl = `${siteConfig.url}${PORTAL_URL_PATH}`;
+  return {
+    subject: `Invoice ${invoice.number} is now overdue`,
+    html: wrapHtml(`
+      <h2 style="margin-bottom: 4px;">Hi ${escapeHtml(clientName)},</h2>
+      <p>Invoice <strong>${escapeHtml(invoice.number)}</strong> for <strong>${escapeHtml(invoice.amountFormatted)}</strong> was due on <strong>${escapeHtml(invoice.dueDate)}</strong> and is now overdue. If you've already paid, please disregard this message.</p>
+      <p><a href="${portalUrl}" style="display: inline-block; background: #001e40; color: #fff; padding: 10px 20px; border-radius: 999px; text-decoration: none; font-weight: bold;">View and pay in your portal</a></p>
+    `),
+    text: `Hi ${clientName},\n\nInvoice ${invoice.number} for ${invoice.amountFormatted} was due on ${invoice.dueDate} and is now overdue. If you've already paid, please disregard this message.\n\nView and pay: ${portalUrl}`,
+  };
+}
+
+export type ReminderDigestEntry = {
+  clientEmail: string;
+  invoiceNumber: string;
+  type: "due-soon" | "overdue";
+};
+
+/**
+ * Sent to the site owner once per cron run, and only when at least one
+ * reminder actually went out - a daily "nothing happened" email would
+ * just be noise that trains the recipient to ignore this address.
+ */
+export function invoiceReminderDigestEmail(entries: ReminderDigestEntry[]) {
+  const rows = entries
+    .map(
+      (e) =>
+        `<li>${escapeHtml(e.invoiceNumber)} (${escapeHtml(e.clientEmail)}) - ${
+          e.type === "due-soon" ? "due-soon reminder sent" : "overdue reminder sent"
+        }</li>`
+    )
+    .join("");
+  const textRows = entries
+    .map(
+      (e) =>
+        `- ${e.invoiceNumber} (${e.clientEmail}) - ${e.type === "due-soon" ? "due-soon reminder sent" : "overdue reminder sent"}`
+    )
+    .join("\n");
+
+  return {
+    subject: `Invoice reminders sent (${entries.length})`,
+    html: wrapHtml(`
+      <h2 style="margin-bottom: 4px;">Automated invoice reminders sent today</h2>
+      <ul style="background: #f5f5f5; padding: 16px 16px 16px 32px; border-radius: 8px;">${rows}</ul>
+    `),
+    text: `Automated invoice reminders sent today:\n\n${textRows}`,
+  };
+}

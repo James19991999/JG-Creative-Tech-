@@ -3,6 +3,9 @@ import {
   bookingNotificationEmail,
   contactConfirmationEmail,
   contactNotificationEmail,
+  invoiceDueSoonEmail,
+  invoiceOverdueEmail,
+  invoiceReminderDigestEmail,
   newsletterNotificationEmail,
   newsletterWelcomeEmail,
 } from "@/lib/email/templates";
@@ -85,5 +88,42 @@ describe("newsletter email templates", () => {
     const email = newsletterWelcomeEmail();
     expect(email.subject).toBeTruthy();
     expect(email.html).toContain("subscri");
+  });
+});
+
+describe("invoice reminder email templates", () => {
+  const invoice = { number: "INV-042", amountFormatted: "$450.00", dueDate: "September 20, 2026" };
+
+  it("due-soon email addresses the client by name and states the amount and date", () => {
+    const email = invoiceDueSoonEmail("Jane", invoice);
+    expect(email.subject).toContain("INV-042");
+    expect(email.html).toContain("Jane");
+    expect(email.html).toContain("$450.00");
+    expect(email.html).toContain("September 20, 2026");
+    expect(email.html).toContain("/client-portal");
+  });
+
+  it("overdue email states the invoice is overdue and offers a disregard-if-paid note", () => {
+    const email = invoiceOverdueEmail("Jane", invoice);
+    expect(email.subject.toLowerCase()).toContain("overdue");
+    expect(email.html.toLowerCase()).toContain("overdue");
+    expect(email.html.toLowerCase()).toContain("already paid");
+  });
+
+  it("escapes HTML in the client's name", () => {
+    const email = invoiceDueSoonEmail("<script>alert(1)</script>", invoice);
+    expect(email.html).not.toContain("<script>");
+  });
+
+  it("owner digest lists every entry with its type", () => {
+    const digest = invoiceReminderDigestEmail([
+      { clientEmail: "a@example.com", invoiceNumber: "001", type: "due-soon" },
+      { clientEmail: "b@example.com", invoiceNumber: "002", type: "overdue" },
+    ]);
+    expect(digest.subject).toContain("2");
+    expect(digest.html).toContain("a@example.com");
+    expect(digest.html).toContain("b@example.com");
+    expect(digest.html).toContain("due-soon reminder sent");
+    expect(digest.html).toContain("overdue reminder sent");
   });
 });

@@ -438,9 +438,65 @@ optional integration in this project degrades when unconfigured.
 
 ---
 
+## 6e. Automated Invoice Reminders — Setup
+
+A daily job checks every client's unpaid invoices and emails a
+reminder when one is due within 3 days, then flips it to "overdue" and
+emails again the moment it passes its due date - using the exact same
+email infrastructure from §6c, not a new system. Follow-up overdue
+reminders go out every 7 days after that, rather than daily, so they
+stay a nudge rather than becoming noise the client learns to ignore.
+The site owner gets a single digest email whenever at least one
+reminder actually went out - never a "nothing happened today" email.
+
+### How it's triggered
+
+This runs via [Vercel Cron](https://vercel.com/docs/cron-jobs)
+(`vercel.json`), not a traditional always-on server - Vercel makes an
+authenticated HTTP request to `/api/cron/invoice-reminders` on the
+schedule declared there (currently once daily, 8am UTC). Verified
+Vercel's actual current cron authentication model before building this
+rather than assuming: once you set `CRON_SECRET` as an environment
+variable in your Vercel project, Vercel automatically includes it as
+a `Authorization: Bearer` header on its own scheduled requests - your
+route handler's only job is comparing that header against the same
+env var, which is exactly what this route does. You never call this
+endpoint yourself; only Vercel's scheduler does.
+
+### Setup
+
+1. Set `CRON_SECRET` to a random string of at least 16 characters
+   (Vercel's own recommendation) - see `.env.example`.
+2. Deploy the Firestore index this route's cross-client query needs:
+   ```
+   firebase deploy --only firestore:indexes
+   ```
+   This is a genuinely different kind of query than anything else in
+   this project - invoices live in a `clients/{uid}/invoices/{id}`
+   subcollection, one per client, and this route needs to check *all*
+   clients' invoices in one pass rather than one client's own. That's
+   a Firestore **collection-group query**, and it needs its own index
+   declared with `COLLECTION_GROUP` scope (see
+   `firestore.indexes.json`) - a plain per-client index doesn't cover
+   it. If you skip this step, the route's own error will make the
+   problem obvious rather than failing silently: Firestore returns an
+   error that includes a direct link to create the missing index.
+3. Redeploy. Vercel picks up the cron schedule from `vercel.json`
+   automatically on deploy - no separate dashboard step needed.
+
+**Note on the Vercel Hobby (free) tier:** cron jobs are limited to
+once per day there. The daily schedule this project ships with already
+respects that limit; if you're on a paid plan and want a shorter
+recheck interval, adjust the schedule in `vercel.json`.
+
+Without `CRON_SECRET` set, the route returns a clean `503` and never
+processes anything, rather than running unauthenticated.
+
+---
+
 ## 7. Testing
 
-**270 tests across 37 suites.** Run with `npm test`.
+**288 tests across 38 suites.** Run with `npm test`.
 
 | Suite | What it covers |
 |---|---|
@@ -473,6 +529,7 @@ optional integration in this project degrades when unconfigured.
 | `contact-route.test.ts`, `schedule-consultation-route.test.ts`, `newsletter-route.test.ts` | Notification + confirmation emails sent with the right recipients (reply-to set to the submitter on the owner-facing ones), email skipped silently (not an error) when Resend isn't configured, and a failed send never blocks the form's own success response |
 | `cookie-consent.test.ts` | The unified consent hook - correct defaults, `acceptAll`/`declineAll`/`setCategory` behavior, legacy-key migration, and that two independent hook instances (banner + preferences panel) actually stay in sync rather than just coincidentally matching in one test |
 | `Analytics.test.tsx` | No scripts render at all when unconfigured, and the Consent Mode v2 signal mapping is correct: no `gtag` call before a decision exists, `analytics_storage` tracks the analytics category, and the three ad-related signals track marketing independently |
+| `invoice-reminders-cron.test.ts` | Auth (missing/wrong/correct secret), the actual date-math boundaries (due-in-2-days sends, due-in-10-days doesn't), no duplicate due-soon reminders, the 7-day cooldown between overdue follow-ups, and the owner digest only firing when something was actually sent |
 
 ---
 

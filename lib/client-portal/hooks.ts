@@ -32,6 +32,8 @@ export type ClientInvoice = {
   dueAt: string;
   paidAt?: string;
   intasendInvoiceId?: string;
+  reminder3DaySentAt?: string;
+  lastOverdueReminderSentAt?: string;
 };
 
 export type ClientNotification = {
