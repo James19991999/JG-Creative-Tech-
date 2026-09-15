@@ -211,13 +211,22 @@ side on purpose.** Those are set by you.
    settings (see `.env.example` — `NEXT_PUBLIC_FIREBASE_*`). These are
    safe to expose to the browser; the real protection is the rules
    files, not secrecy of these values.
-2. **Create the one client account**: Firebase Console → Authentication
-   → Add user → their email + a temporary password (have them reset it
-   on first login via Firebase's password-reset flow, not built into
-   this UI since there's only one account to manage).
-3. **Create their profile document**: Firestore Console → start
-   collection `clients` → document ID = **their Auth UID** (copy it
-   from the Authentication tab) → add fields matching the `ClientProfile`
+2. **Create the one client account.** Fastest way:
+   ```bash
+   node --env-file=.env.local scripts/create-client-account.mjs you@example.com "A Temporary Password123" "Your Name"
+   ```
+   This creates both the Firebase Auth account and the matching
+   `clients/{uid}` profile document (step 3 below) in one command.
+   Have the client change that password via Firebase Auth's own
+   password-reset flow on first login - there's no in-app password
+   reset UI, same reasoning as there being no sign-up UI.
+
+   Or do it the manual way if you'd rather: Firebase Console →
+   Authentication → Add user → their email + a temporary password.
+3. **Create their profile document** (already done by the script
+   above if you used it): Firestore Console → start collection
+   `clients` → document ID = **their Auth UID** (copy it from the
+   Authentication tab) → add fields matching the `ClientProfile`
    type in `lib/client-portal/hooks.ts` (`displayName`,
    `activeProjectName`, `activeProjectCompletionPercent`, etc.). Until
    this exists, the dashboard correctly shows "no active project" /
@@ -237,8 +246,13 @@ side on purpose.** Those are set by you.
 
 ### What deliberately isn't built
 
-- **No self-service password reset UI** and **no account creation
-  UI** — both are one-account, admin-driven per the scope above.
+- **No self-service password reset UI** and **no public sign-up
+  UI** — both are one-account-at-a-time, admin-driven per the scope
+  above. `scripts/create-client-account.mjs` makes that manual
+  provisioning step faster for *you* to run - it doesn't add a public
+  registration form anyone could use, which remains a deliberate
+  choice: a client portal where random visitors could self-register
+  isn't what this business needs.
 - **No client-creation or invoice-editing UI even for admins.**
   §6b' below adds a lightweight admin *view* (see all clients,
   invoices, and messages in one place, reply to a message) - but
