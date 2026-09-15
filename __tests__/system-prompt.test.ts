@@ -21,8 +21,9 @@ describe("buildSystemPrompt", () => {
     expect(prompt).toContain("M-Pesa or card");
   });
 
-  it("states the real client portal access model (admin-provisioned, no public sign-up)", () => {
-    expect(prompt.toLowerCase()).toContain("no public sign-up");
+  it("states the real client portal sign-up model accurately", () => {
+    expect(prompt).toContain("/client-portal/sign-up");
+    expect(prompt.toLowerCase()).toContain("reviews new accounts");
   });
 
   it("instructs the model to identify as an AI, not imply it's a team member", () => {

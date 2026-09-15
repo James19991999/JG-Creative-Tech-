@@ -208,31 +208,59 @@ export default function AdminOverviewPage() {
       ) : (
         <>
           <section>
-            <h2 className="font-newsreader text-xl font-bold text-ink mb-4">
-              Clients ({overview.clients.length})
-            </h2>
+            {(() => {
+              const pendingCount = overview.clients.filter((c) =>
+                c.activeProjectStatus.toLowerCase().includes("pending review")
+              ).length;
+              return (
+                <h2 className="font-newsreader text-xl font-bold text-ink mb-4">
+                  Clients ({overview.clients.length}
+                  {pendingCount > 0
+                    ? `, ${pendingCount} new sign-up${pendingCount === 1 ? "" : "s"} ${
+                        pendingCount === 1 ? "needs" : "need"
+                      } review`
+                    : ""}
+                  )
+                </h2>
+              );
+            })()}
             <div className="bg-surface-container-lowest rounded-2xl overflow-hidden ghost-border">
               {overview.clients.length === 0 ? (
                 <p className="p-6 text-on-surface-variant">No clients yet.</p>
               ) : (
-                overview.clients.map((c) => (
-                  <div
-                    key={c.uid}
-                    className="flex flex-wrap items-center justify-between gap-3 p-5 border-b border-outline-variant/20 last:border-0"
-                  >
-                    <div>
-                      <p className="font-bold text-ink">{c.displayName || c.email}</p>
-                      <p className="text-xs text-on-surface-variant">
-                        {c.email} {c.company ? `· ${c.company}` : ""}
-                      </p>
+                overview.clients.map((c) => {
+                  const isPendingReview = c.activeProjectStatus
+                    .toLowerCase()
+                    .includes("pending review");
+                  return (
+                    <div
+                      key={c.uid}
+                      className={`flex flex-wrap items-center justify-between gap-3 p-5 border-b border-outline-variant/20 last:border-0 ${
+                        isPendingReview ? "border-l-4 border-l-tertiary bg-tertiary-container/10" : ""
+                      }`}
+                    >
+                      <div>
+                        <p className="font-bold text-ink">{c.displayName || c.email}</p>
+                        <p className="text-xs text-on-surface-variant">
+                          {c.email} {c.company ? `· ${c.company}` : ""}
+                        </p>
+                      </div>
+                      <div className="text-right">
+                        {isPendingReview ? (
+                          <span className="text-xs font-bold uppercase text-tertiary">
+                            New sign-up - needs review
+                          </span>
+                        ) : c.activeProjectName ? (
+                          <p className="text-sm text-on-surface-variant">
+                            {c.activeProjectName} - {c.activeProjectStatus}
+                          </p>
+                        ) : c.activeProjectStatus ? (
+                          <p className="text-sm text-on-surface-variant">{c.activeProjectStatus}</p>
+                        ) : null}
+                      </div>
                     </div>
-                    {c.activeProjectName ? (
-                      <p className="text-sm text-on-surface-variant">
-                        {c.activeProjectName} - {c.activeProjectStatus}
-                      </p>
-                    ) : null}
-                  </div>
-                ))
+                  );
+                })
               )}
             </div>
           </section>

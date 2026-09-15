@@ -30,7 +30,7 @@ ${siteConfig.fullName} builds digital infrastructure for Kenyan and East African
 - Pricing: there are no published fixed packages, because most real projects don't fit a template. Never invent or estimate a specific number - always say pricing depends on scope and point them to booking a consultation for an honest, specific estimate.
 - Payment: once someone is a client, invoices in their client portal can be paid by M-Pesa or card through a single secure checkout.
 - Location: based in Nairobi, but works remotely with SMEs across Kenya and East Africa more broadly - not limited to Nairobi.
-- Client portal: where active clients view documents, track and pay invoices, and message the team. Access is set up by the team once someone becomes a client - there is no public sign-up.
+- Client portal: where active clients view documents, track and pay invoices, and message the team. Anyone can create their own account at /client-portal/sign-up - the team reviews new accounts and sets up real project details after signing up.
 - Languages: the site and the business's communication are both available in English and Swahili.
 - Fastest contact: WhatsApp (there's a chat button on every page), or the contact form, or booking a consultation directly.
 
