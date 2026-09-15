@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { isRateLimited } from "@/lib/rate-limit";
 import {
+  AnthropicError,
   getAnthropicConfig,
   sendChatMessage,
   type ChatMessage,
@@ -102,7 +103,20 @@ export async function POST(request: Request) {
     const reply = await sendChatMessage(config, buildSystemPrompt(), validatedMessages);
     return NextResponse.json({ reply });
   } catch (error) {
-    console.error("[chat] Anthropic request failed:", error);
+    // AnthropicError.details holds the actual response body Anthropic
+    // sent back (e.g. "invalid x-api-key", "insufficient credits",
+    // "model not found") - the single most useful piece of
+    // information for diagnosing a real failure, and it was being
+    // silently dropped here: console.error(error) alone only prints
+    // an Error's message/stack, not custom properties on a subclass.
+    // Logging it explicitly means the next real failure shows up in
+    // Vercel's function logs with the actual reason, not just "it
+    // failed."
+    if (error instanceof AnthropicError) {
+      console.error("[chat] Anthropic request failed:", error.message, error.details);
+    } else {
+      console.error("[chat] Anthropic request failed:", error);
+    }
     return NextResponse.json(
       { error: "Couldn't get a response right now. Please try again." },
       { status: 502 }

@@ -3,7 +3,7 @@
  */
 import { POST } from "@/app/api/chat/route";
 import { isRateLimited } from "@/lib/rate-limit";
-import { getAnthropicConfig, sendChatMessage } from "@/lib/ai-chat/anthropic-client";
+import { AnthropicError, getAnthropicConfig, sendChatMessage } from "@/lib/ai-chat/anthropic-client";
 
 jest.mock("@/lib/rate-limit", () => ({
   isRateLimited: jest.fn(() => false),
@@ -11,6 +11,11 @@ jest.mock("@/lib/rate-limit", () => ({
 jest.mock("@/lib/ai-chat/anthropic-client", () => ({
   getAnthropicConfig: jest.fn(),
   sendChatMessage: jest.fn(),
+  AnthropicError: class AnthropicError extends Error {
+    constructor(message: string, public readonly details?: unknown) {
+      super(message);
+    }
+  },
 }));
 
 const mockedIsRateLimited = isRateLimited as jest.Mock;
@@ -118,5 +123,29 @@ describe("POST /api/chat", () => {
     mockedSendChatMessage.mockRejectedValue(new Error("network error"));
     const res = await POST(makeRequest({ messages: [{ role: "user", content: "hi" }] }));
     expect(res.status).toBe(502);
+  });
+
+  it("logs the actual Anthropic error details on failure, not just a generic message", async () => {
+    const consoleSpy = jest.spyOn(console, "error").mockImplementation(() => {});
+    mockedSendChatMessage.mockRejectedValue(
+      new AnthropicError("Anthropic API request failed (401)", {
+        type: "error",
+        error: { type: "authentication_error", message: "invalid x-api-key" },
+      })
+    );
+
+    await POST(makeRequest({ messages: [{ role: "user", content: "hi" }] }));
+
+    // The whole point of this fix: the actual Anthropic-provided
+    // reason (invalid key, no credits, etc.) must actually reach the
+    // logs, not get silently dropped by logging the bare Error object.
+    expect(consoleSpy).toHaveBeenCalledWith(
+      expect.any(String),
+      expect.any(String),
+      expect.objectContaining({
+        error: expect.objectContaining({ type: "authentication_error" }),
+      })
+    );
+    consoleSpy.mockRestore();
   });
 });
