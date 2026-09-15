@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { SignInForm } from "@/components/client-portal/SignInForm";
+import { SignUpForm } from "@/components/client-portal/SignUpForm";
 
 export const metadata: Metadata = {
-  title: "Sign In | Infrastructure Portal",
+  title: "Create Account | Infrastructure Portal",
   robots: { index: false, follow: false },
 };
 
-export default function ClientPortalSignInPage() {
+export default function ClientPortalSignUpPage() {
   return (
     <main
       id="main-content"
@@ -15,17 +15,18 @@ export default function ClientPortalSignInPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="font-newsreader text-3xl font-bold text-ink">
-            Infrastructure Portal
+            Create Your Account
           </h1>
           <p className="text-on-surface-variant mt-2 text-sm">
-            Sign in to view your documents, invoices, and project status.
+            Set up portal access to view your documents, invoices, and project
+            status.
           </p>
         </div>
-        <SignInForm />
+        <SignUpForm />
         <p className="text-center text-sm text-on-surface-variant mt-6">
-          Don&apos;t have an account?{" "}
-          <a href="/client-portal/sign-up" className="text-ink font-bold hover:underline">
-            Create one
+          Already have an account?{" "}
+          <a href="/client-portal/sign-in" className="text-ink font-bold hover:underline">
+            Sign in
           </a>
         </p>
       </div>

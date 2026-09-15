@@ -183,22 +183,24 @@ Firestore collections: `contact_submissions`, `newsletter_subscribers`, `consult
 
 ## 6a. Client Portal (`/client-portal`) — Setup
 
-The portal is a real, single-client feature: one real sign-in, real
-per-client documents (upload + download), real invoices, real
-notifications, and a real message thread — not a static mockup.
-Scoped deliberately to **one client account**, not a multi-tenant
-system, per the actual requirement.
+The portal is a real, multi-client feature: real sign-in and
+sign-up, real per-client documents (upload + download), real
+invoices, real notifications, and a real message thread — not a
+static mockup. Originally scoped to one admin-provisioned account;
+now also supports public self-service sign-up (`/client-portal/sign-up`)
+alongside that - see the note on that below.
 
 ### What's real vs. what needs a one-time manual step
 
 | Piece | Status |
 |---|---|
 | Sign-in (email/password) | Real — Firebase Auth |
+| Sign-up (email/password) | Real — creates a Firebase Auth account and a `clients/{uid}` profile, flagged `activeProjectStatus: "New sign-up - pending review"` until you review it |
 | Document upload/download | Real — Firebase Storage, enforced by `storage.rules` |
 | Documents/invoices/notifications/messages list | Real — Firestore, enforced by `firestore.rules` |
 | Data isolation | Real — every rule re-checks `request.auth.uid`, not just app code |
-| The client's Firebase Auth account itself | **Manual, one-time** — see step 2 below |
-| Their profile (name, project status, invoices) | **Manual, ongoing** — see step 3 below |
+| The client's Firebase Auth account itself | Real via self-service sign-up, or still manual/admin-created if you prefer - see step 2 below |
+| Their real project details (name, status, invoices) | **Manual, ongoing** — see step 3 below. A self-signed-up account's profile starts empty/flagged until you fill it in |
 
 The client can never edit their own project-status fields, CDN stats,
 or invoices — `firestore.rules` makes the `clients/{uid}` profile
@@ -211,7 +213,9 @@ side on purpose.** Those are set by you.
    settings (see `.env.example` — `NEXT_PUBLIC_FIREBASE_*`). These are
    safe to expose to the browser; the real protection is the rules
    files, not secrecy of these values.
-2. **Create the one client account.** Fastest way:
+2. **Create your own account** (for testing, or for any client you'd
+   rather provision yourself instead of having them use public
+   sign-up). Fastest way:
    ```bash
    node --env-file=.env.local scripts/create-client-account.mjs you@example.com "A Temporary Password123" "Your Name"
    ```
@@ -219,7 +223,8 @@ side on purpose.** Those are set by you.
    `clients/{uid}` profile document (step 3 below) in one command.
    Have the client change that password via Firebase Auth's own
    password-reset flow on first login - there's no in-app password
-   reset UI, same reasoning as there being no sign-up UI.
+   reset UI (see §6a' for the public sign-up path instead, if you'd
+   rather they create their own account).
 
    Or do it the manual way if you'd rather: Firebase Console →
    Authentication → Add user → their email + a temporary password.
@@ -246,13 +251,9 @@ side on purpose.** Those are set by you.
 
 ### What deliberately isn't built
 
-- **No self-service password reset UI** and **no public sign-up
-  UI** — both are one-account-at-a-time, admin-driven per the scope
-  above. `scripts/create-client-account.mjs` makes that manual
-  provisioning step faster for *you* to run - it doesn't add a public
-  registration form anyone could use, which remains a deliberate
-  choice: a client portal where random visitors could self-register
-  isn't what this business needs.
+- **No self-service password reset UI.** Use Firebase Auth's own
+  password-reset flow (or the Firebase Console) instead - not built
+  into this UI.
 - **No client-creation or invoice-editing UI even for admins.**
   §6b' below adds a lightweight admin *view* (see all clients,
   invoices, and messages in one place, reply to a message) - but
@@ -260,6 +261,37 @@ side on purpose.** Those are set by you.
   client's behalf still happens via Firebase Console/Admin SDK, same
   as before. Building those into the app is a genuinely different,
   larger scope, not a small extension of the view that now exists.
+
+---
+
+## 6a'. Public Sign-Up — What It Actually Does
+
+`/client-portal/sign-up` creates a **real** account immediately - a
+Firebase Auth user plus a `clients/{uid}` profile document, using
+`app/api/client-portal/sign-up/route.ts` (the same two-step creation
+`scripts/create-client-account.mjs` does manually, exposed as a public
+endpoint). This is a genuine change from the portal's original
+admin-only design, made deliberately rather than silently:
+
+- **New accounts are not blocked or gated behind approval.** Someone
+  who signs up can log in and see their (empty) dashboard right away.
+  A "pending, can't log in yet" gate would be a real, separate feature
+  needing its own auth state - not something to bolt on quietly here.
+- **The safety net instead:** every new sign-up is flagged with
+  `activeProjectStatus: "New sign-up - pending review"` (visible at a
+  glance in the admin overview, §6b' below), and the site owner gets a
+  real email the moment one is created (reusing the same Resend
+  infrastructure as every other notification in this project - see
+  §6c). You'll always know within moments when someone signs up.
+- **Passwords require at least 8 characters**, enforced server-side -
+  Firebase's own default minimum is 6.
+- Rate-limited the same way the other public forms are (5 attempts/
+  minute/IP via `lib/rate-limit.ts`'s default), to slow down abuse
+  without blocking normal use.
+- `firestore.rules` is completely unchanged by this - the profile
+  document is still written entirely server-side via the Admin SDK,
+  never by the client directly, so a signed-up client still can never
+  edit their own project-status fields or invoices later.
 
 ---
 
@@ -616,7 +648,7 @@ Firebase is set up at all.
 
 ## 7. Testing
 
-**351 tests across 46 suites.** Run with `npm test`.
+**370 tests across 48 suites.** Run with `npm test`.
 
 | Suite | What it covers |
 |---|---|
@@ -653,6 +685,7 @@ Firebase is set up at all.
 | `admin-auth.test.ts`, `admin-overview-route.test.ts`, `admin-reply-route.test.ts` | The custom-claim check itself (missing/invalid/non-admin/admin tokens), both admin routes' 403/503 gating, invoices sorted worst-first, and - the one that actually matters - a message thread is only ever flagged "needs reply" when the *client* sent the most recent message, not whichever one happened to load first |
 | `CountUp.test.tsx` | Numeric parsing and graceful fallback for non-numeric stat values, the animation only firing once per mount, prefers-reduced-motion skipping it entirely, and the real final value being available to screen readers before the animation even starts |
 | `anthropic-client.test.ts`, `system-prompt.test.ts`, `chat-route.test.ts`, `ChatWidget.test.tsx` | The `x-api-key` auth header specifically (not `Authorization`, the easy mistake for this one API), the system prompt containing its real constraints (never inventing a price, never claiming to book anything), the chat route's higher-than-default rate limit and conversation-length/message-length caps, and the widget's actual open/close/send/error/new-conversation behavior including Escape-to-close |
+| `client-portal-signup-route.test.ts`, `SignUpForm.test.tsx` | Email/password validation, the 409 on a duplicate email, the profile document being created with the "pending review" flag, the owner notification firing (and the request still succeeding if that email fails to send), password-confirmation mismatch never reaching the server, and the form surfacing the server's real error message rather than a generic one |
 
 ---
 

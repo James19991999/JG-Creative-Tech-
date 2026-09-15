@@ -6,6 +6,7 @@ import {
   invoiceDueSoonEmail,
   invoiceOverdueEmail,
   invoiceReminderDigestEmail,
+  newClientSignupEmail,
   newsletterNotificationEmail,
   newsletterWelcomeEmail,
 } from "@/lib/email/templates";
@@ -125,5 +126,25 @@ describe("invoice reminder email templates", () => {
     expect(digest.html).toContain("b@example.com");
     expect(digest.html).toContain("due-soon reminder sent");
     expect(digest.html).toContain("overdue reminder sent");
+  });
+});
+
+describe("newClientSignupEmail", () => {
+  it("includes the new client's name and email", () => {
+    const email = newClientSignupEmail("jane@example.com", "Jane Doe");
+    expect(email.subject).toContain("Jane Doe");
+    expect(email.html).toContain("Jane Doe");
+    expect(email.html).toContain("jane@example.com");
+  });
+
+  it("falls back to the email in the subject when no name was given", () => {
+    const email = newClientSignupEmail("jane@example.com", "");
+    expect(email.subject).toContain("jane@example.com");
+    expect(email.html).toContain("(not provided)");
+  });
+
+  it("escapes HTML in the provided name", () => {
+    const email = newClientSignupEmail("jane@example.com", "<script>alert(1)</script>");
+    expect(email.html).not.toContain("<script>");
   });
 });

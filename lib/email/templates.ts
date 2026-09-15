@@ -184,3 +184,27 @@ export function invoiceReminderDigestEmail(entries: ReminderDigestEntry[]) {
     text: `Automated invoice reminders sent today:\n\n${textRows}`,
   };
 }
+
+// ---- Client portal sign-up ----
+
+/**
+ * Sent to the site owner the moment someone creates a client portal
+ * account through the public sign-up form. This is the safety net for
+ * that form: new accounts are created immediately (no approval gate
+ * blocking login - that would be a bigger, separate feature), but the
+ * owner finds out right away and can review who just signed up, since
+ * their profile is also flagged with activeProjectStatus "New sign-up
+ * - pending review" (visible in the admin overview) until reviewed.
+ */
+export function newClientSignupEmail(email: string, displayName: string) {
+  return {
+    subject: `New client portal sign-up: ${displayName || email}`,
+    html: wrapHtml(`
+      <h2 style="margin-bottom: 4px;">New client portal account created</h2>
+      <p><strong>Name:</strong> ${escapeHtml(displayName || "(not provided)")}</p>
+      <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+      <p style="font-size: 13px; color: #666;">Their account and dashboard access are already active. Review them in the admin overview and update their profile with real project details when ready.</p>
+    `),
+    text: `New client portal account created\n\nName: ${displayName || "(not provided)"}\nEmail: ${email}\n\nTheir account and dashboard access are already active. Review them in the admin overview and update their profile with real project details when ready.`,
+  };
+}
